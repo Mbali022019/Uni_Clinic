@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniClinic — Book Appointment</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="sidebar-logo-text">UniClinic</div>
+        <div class="sidebar-logo-sub">Campus Health Portal</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main Menu</div>
+      <a href="dashboard.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a href="booking.html" class="nav-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Appointments
+        <span class="nav-badge">3</span>
+      </a>
+      <a href="profile.html" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        My Profile
+      </a>
+      <div class="nav-section-label" style="margin-top:8px;">Support</div>
+      <a href="#" class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Help & Support
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">TN</div>
+        <div>
+          <div class="sidebar-user-name">Thabo Nkosi</div>
+          <div class="sidebar-user-role">Student · 202512345</div>
+        </div>
+      </div>
+      <a href="login.html" class="nav-item" style="color:rgba(255,255,255,.6);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <div class="main-content">
+
+    <div class="topbar">
+      <div>
+        <div class="topbar-title">Book Appointment</div>
+        <div class="topbar-sub">Schedule a clinic visit</div>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </button>
+        <div class="topbar-avatar">TN</div>
+      </div>
+    </div>
+
+    <div class="page-body">
+
+      <div class="booking-grid fade-up">
+
+        <!-- ── LEFT COLUMN ── -->
+        <div class="flex-col">
+
+          <!-- Service Selection -->
+          <div class="card">
+            <div class="card-header"><div class="card-title">Select Service</div></div>
+            <div class="card-body">
+              <div id="chips">
+                <span class="chip" onclick="selectChip(this)">Medication Collection</span>
+                <span class="chip" onclick="selectChip(this)">Pregnancy Testing</span>
+                <span class="chip" onclick="selectChip(this)">Pregnancy Checkup</span>
+                <span class="chip" onclick="selectChip(this)">HIV Testing</span>
+                <span class="chip" onclick="selectChip(this)">Flu and Fever</span>
+                <span class="chip" onclick="selectChip(this)">Pap Smear</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Date Picker -->
+          <div class="card">
+            <div class="card-header"><div class="card-title">Select Date</div></div>
+            <div class="card-body">
+              <div class="field" style="margin-bottom:0;">
+                <label class="field-label">Preferred Date</label>
+                <input type="date" class="no-icon" id="dateInput" onchange="updateSummary()" style="width:100%;padding:12px 14px;background:var(--slate-50);border:1.5px solid var(--slate-200);border-radius:var(--r-md);font-size:14px;font-family:var(--font-body);outline:none;" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="card">
+            <div class="card-header"><div class="card-title">Additional Notes</div></div>
+            <div class="card-body">
+              <textarea class="field" placeholder="Any relevant symptoms or information for the clinician..." rows="3"
+                style="width:100%;padding:12px 14px;background:var(--slate-50);border:1.5px solid var(--slate-200);border-radius:var(--r-md);font-size:14px;font-family:var(--font-body);outline:none;resize:vertical;display:block;margin:0;"></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── RIGHT COLUMN ── -->
+        <div class="flex-col">
+
+          <!-- Time Slots -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Available Time Slots</div>
+                <div class="card-sub">Select a convenient time</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="time-grid">
+                <div class="time-slot" onclick="selectSlot(this)">08:00</div>
+                <div class="time-slot" onclick="selectSlot(this)">08:30</div>
+                <div class="time-slot" onclick="selectSlot(this)">09:00</div>
+                <div class="time-slot" onclick="selectSlot(this)">09:30</div>
+                <div class="time-slot" onclick="selectSlot(this)">10:00</div>
+                <div class="time-slot" onclick="selectSlot(this)">10:30</div>
+                <div class="time-slot" onclick="selectSlot(this)">11:00</div>
+                <div class="time-slot" onclick="selectSlot(this)">11:30</div>
+                <div class="time-slot" onclick="selectSlot(this)">13:00</div>
+                <div class="time-slot" onclick="selectSlot(this)">13:30</div>
+                <div class="time-slot unavail">14:00</div>
+                <div class="time-slot unavail">14:30</div>
+              </div>
+              <p style="font-size:12px;color:var(--slate-400);margin-top:12px;">Greyed slots are unavailable for the selected date.</p>
+            </div>
+          </div>
+
+          <!-- Summary -->
+          <div class="card">
+            <div class="card-header"><div class="card-title">Booking Summary</div></div>
+            <div class="card-body">
+              <div id="summary-empty" style="text-align:center;padding:20px 0;font-size:14px;color:var(--slate-400);">
+                Select a service, date, and time to see your summary.
+              </div>
+              <div id="summary-box" class="confirm-box" style="display:none;">
+                <div class="confirm-row"><span class="confirm-key">Patient</span><span class="confirm-val">Thabo Nkosi</span></div>
+                <div class="confirm-row"><span class="confirm-key">Service</span><span class="confirm-val" id="s-service">—</span></div>
+                <div class="confirm-row"><span class="confirm-key">Date</span><span class="confirm-val" id="s-date">—</span></div>
+                <div class="confirm-row"><span class="confirm-key">Time</span><span class="confirm-val" id="s-time">—</span></div>
+              </div>
+              <button class="btn btn-primary btn-full mt-20" id="bookBtn" onclick="confirmBooking()" style="opacity:.45;cursor:not-allowed;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Book Appointment
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Past Appointments -->
+      <div class="card mt-20 fade-up-1">
+        <div class="card-header"><div class="card-title">My Appointment History</div></div>
+        <div class="card-body">
+          <div class="appt-list">
+            <div class="appt-item">
+              <div class="appt-bar teal"></div>
+              <div class="appt-info"><div class="appt-service">HIV Testing</div><div class="appt-meta">Mon, 19 May 2025 · 09:00</div></div>
+              <span class="badge badge-green">Confirmed</span>
+              <button class="btn btn-outline btn-sm" style="margin-left:12px;">Cancel</button>
+            </div>
+            <div class="appt-item">
+              <div class="appt-bar blue"></div>
+              <div class="appt-info"><div class="appt-service">Flu and Fever</div><div class="appt-meta">Wed, 21 May 2025 · 10:30</div></div>
+              <span class="badge badge-yellow">Pending</span>
+              <button class="btn btn-outline btn-sm" style="margin-left:12px;">Cancel</button>
+            </div>
+            <div class="appt-item">
+              <div class="appt-bar purple"></div>
+              <div class="appt-info"><div class="appt-service">Pap Smear</div><div class="appt-meta">Fri, 23 May 2025 · 13:00</div></div>
+              <span class="badge badge-green">Confirmed</span>
+              <button class="btn btn-outline btn-sm" style="margin-left:12px;">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" style="display:none;position:fixed;bottom:28px;right:28px;background:#15803d;color:white;padding:14px 22px;border-radius:var(--r-md);font-size:14px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.15);z-index:999;font-family:var(--font-head);">
+  ✓ Appointment booked successfully!
+</div>
+
+<script>
+  let sel = { service: '', date: '', time: '' };
+
+  function selectChip(el) {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    sel.service = el.textContent;
+    updateSummary();
+  }
+  function selectSlot(el) {
+    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    sel.time = el.textContent;
+    updateSummary();
+  }
+  function updateSummary() {
+    sel.date = document.getElementById('dateInput').value;
+    const hasAll = sel.service && sel.date && sel.time;
+    document.getElementById('summary-empty').style.display = hasAll ? 'none' : 'block';
+    document.getElementById('summary-box').style.display = hasAll ? 'block' : 'none';
+    if (sel.service) document.getElementById('s-service').textContent = sel.service;
+    if (sel.date)    document.getElementById('s-date').textContent    = sel.date;
+    if (sel.time)    document.getElementById('s-time').textContent    = sel.time;
+    const btn = document.getElementById('bookBtn');
+    btn.style.opacity = hasAll ? '1' : '.45';
+    btn.style.cursor  = hasAll ? 'pointer' : 'not-allowed';
+  }
+  function confirmBooking() {
+    if (!sel.service || !sel.date || !sel.time) return;
+    const t = document.getElementById('toast');
+    t.style.display = 'block';
+    setTimeout(() => { t.style.display = 'none'; }, 3500);
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+    document.getElementById('dateInput').value = '';
+    sel = { service:'', date:'', time:'' };
+    updateSummary();
+  }
+</script>
+
+</body>
+</html>
