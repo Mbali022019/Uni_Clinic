@@ -167,42 +167,82 @@ body { font-family: var(--font-body); background: var(--slate-100); color: var(-
 /* ─── APP SHELL ───────────────────────────── */
 .app-shell { display: flex; height: 100vh; overflow: hidden; }
 
+/* ── WHITE SIDEBAR (matches screenshot) ── */
 .sidebar {
-  width: 256px; flex-shrink: 0;
-  background: linear-gradient(165deg, #115e59 0%, #0f766e 50%, #0d9488 100%);
+  width: 260px; flex-shrink: 0;
+  background: white;
   display: flex; flex-direction: column;
-  position: relative; overflow: hidden;
+  border-right: 1px solid var(--slate-200);
+  box-shadow: 2px 0 12px rgba(0,0,0,.04);
+  position: relative;
 }
-.sidebar::before { content: ''; position: absolute; width: 220px; height: 220px; border-radius: 50%; background: rgba(255,255,255,.05); top: -60px; right: -70px; pointer-events: none; }
-.sidebar::after { content: ''; position: absolute; width: 180px; height: 180px; border-radius: 50%; background: rgba(255,255,255,.04); bottom: 60px; left: -60px; pointer-events: none; }
 
-.sidebar-logo { padding: 26px 22px 22px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid rgba(255,255,255,.1); }
-.sidebar-logo-icon { width: 40px; height: 40px; background: rgba(255,255,255,.18); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid rgba(255,255,255,.22); }
-.sidebar-logo-text { font-family: var(--font-head); font-size: 19px; font-weight: 800; color: white; }
-.sidebar-logo-sub { font-size: 11px; color: rgba(255,255,255,.55); margin-top: 1px; }
+.sidebar-logo {
+  padding: 28px 24px 22px;
+  display: flex; align-items: center; gap: 14px;
+}
+.sidebar-logo-icon {
+  width: 44px; height: 44px;
+  background: var(--teal-500);
+  border-radius: var(--r-lg);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(20,184,166,.35);
+}
+.sidebar-logo-icon svg { width: 22px; height: 22px; }
+.sidebar-logo-text { font-family: var(--font-head); font-size: 18px; font-weight: 800; color: var(--slate-900); letter-spacing: -.01em; }
+.sidebar-logo-sub { font-size: 10px; font-weight: 700; color: var(--slate-400); text-transform: uppercase; letter-spacing: .08em; margin-top: 1px; }
 
-.sidebar-nav { flex: 1; padding: 18px 12px; display: flex; flex-direction: column; gap: 3px; position: relative; z-index: 1; }
-.nav-section-label { font-size: 10px; font-weight: 700; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .08em; padding: 12px 10px 6px; }
+.sidebar-nav { flex: 1; padding: 10px 16px; display: flex; flex-direction: column; gap: 4px; }
+.nav-section-label { display: none; }
 .nav-item {
-  display: flex; align-items: center; gap: 11px;
-  padding: 11px 14px; border-radius: var(--r-md);
-  color: rgba(255,255,255,.7);
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--r-xl);
+  color: var(--slate-500);
   font-size: 14px; font-weight: 500;
   font-family: var(--font-body);
   text-decoration: none;
-  transition: all .18s;
+  transition: all .18s ease;
   position: relative;
 }
-.nav-item:hover { background: rgba(255,255,255,.12); color: white; transform: translateX(2px); }
-.nav-item.active { background: rgba(255,255,255,.18); color: white; font-weight: 600; }
-.nav-item.active::before { content: ''; position: absolute; left: 0; top: 25%; bottom: 25%; width: 3px; background: white; border-radius: 0 2px 2px 0; }
-.nav-badge { margin-left: auto; background: rgba(255,255,255,.22); color: white; font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: var(--r-full); }
+.nav-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+.nav-item:hover { background: var(--slate-100); color: var(--slate-700); }
+.nav-item.active {
+  background: var(--teal-500);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(20,184,166,.3);
+}
+.nav-item.active svg { stroke: white; }
+.nav-item.active::before { display: none; }
+.nav-badge { display: none; }
 
-.sidebar-footer { padding: 14px 12px 24px; border-top: 1px solid rgba(255,255,255,.1); position: relative; z-index: 1; }
-.sidebar-user { display: flex; align-items: center; gap: 10px; padding: 10px 12px; background: rgba(255,255,255,.1); border-radius: var(--r-md); border: 1px solid rgba(255,255,255,.12); margin-bottom: 8px; }
-.sidebar-avatar { width: 36px; height: 36px; background: rgba(255,255,255,.22); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-size: 13px; font-weight: 800; color: white; flex-shrink: 0; }
-.sidebar-user-name { font-size: 13px; font-weight: 600; color: white; line-height: 1.2; }
-.sidebar-user-role { font-size: 11px; color: rgba(255,255,255,.55); }
+.sidebar-footer {
+  padding: 16px 16px 28px;
+  border-top: 1px solid var(--slate-100);
+}
+.sidebar-user {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  background: var(--slate-50);
+  border-radius: var(--r-md);
+  border: 1px solid var(--slate-100);
+  margin-bottom: 8px;
+}
+.sidebar-avatar {
+  width: 36px; height: 36px;
+  background: var(--teal-500);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 13px; font-weight: 800;
+  color: white; flex-shrink: 0;
+}
+.sidebar-user-name { font-size: 13px; font-weight: 600; color: var(--slate-800); line-height: 1.2; }
+.sidebar-user-role { font-size: 11px; color: var(--slate-400); }
+.nav-item.logout-btn { color: var(--slate-400); font-size: 13px; padding: 10px 12px; border-radius: var(--r-md); }
+.nav-item.logout-btn:hover { background: var(--red-100); color: var(--red-600); }
+.nav-item.logout-btn svg { stroke: currentColor; }
 
 .main-content { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
 
@@ -230,10 +270,113 @@ body { font-family: var(--font-body); background: var(--slate-100); color: var(-
 .stat-icon.green { background: var(--green-100); }
 .stat-icon.blue { background: var(--blue-100); }
 .stat-icon.purple { background: var(--purple-100); }
+.stat-icon.orange { background: #fff7ed; }
 .stat-val { font-family: var(--font-head); font-size: 30px; font-weight: 800; color: var(--slate-900); line-height: 1; }
 .stat-label { font-size: 13px; color: var(--slate-500); margin-top: 5px; }
 .stat-trend { font-size: 12px; font-weight: 600; margin-top: 8px; }
 .stat-trend.up { color: var(--green-600); }
+.stat-trend.down { color: #dc2626; }
+.stat-trend.neutral { color: var(--slate-400); }
+
+/* ── IOT LIVE PANEL ── */
+.iot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 22px; }
+
+.iot-card {
+  background: white;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--slate-200);
+  box-shadow: var(--shadow-sm);
+  padding: 22px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all .2s;
+}
+.iot-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.iot-card.accent-teal { border-left: 4px solid var(--teal-500); }
+.iot-card.accent-orange { border-left: 4px solid #f97316; }
+
+.iot-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.iot-card-title { font-family: var(--font-head); font-size: 13px; font-weight: 700; color: var(--slate-500); text-transform: uppercase; letter-spacing: .06em; }
+
+/* Live sensor pulse dot */
+.sensor-live {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; color: var(--green-600);
+  font-family: var(--font-head);
+}
+.pulse-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--green-600);
+  position: relative;
+}
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: var(--green-600);
+  opacity: .3;
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(.6); opacity: .5; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.iot-number {
+  font-family: var(--font-head);
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--slate-900);
+  line-height: 1;
+  letter-spacing: -.03em;
+}
+.iot-number.orange { color: #ea580c; }
+.iot-number.teal   { color: var(--teal-600); }
+
+.iot-sublabel { font-size: 13px; color: var(--slate-500); margin-top: 6px; }
+.iot-sublabel strong { color: var(--slate-700); }
+
+/* countdown ring */
+.iot-ring-wrap {
+  position: absolute; right: 20px; bottom: 16px;
+  width: 64px; height: 64px;
+}
+.iot-ring-wrap svg { transform: rotate(-90deg); }
+.iot-ring-bg  { fill: none; stroke: var(--slate-100); stroke-width: 5; }
+.iot-ring-fg  { fill: none; stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset .6s ease; }
+.iot-ring-fg.teal   { stroke: var(--teal-500); }
+.iot-ring-fg.orange { stroke: #f97316; }
+
+.iot-progress-bar-wrap { margin-top: 14px; }
+.iot-bar-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--slate-400); margin-bottom: 6px; }
+.iot-bar-label strong { color: var(--slate-600); }
+.iot-bar-track { height: 7px; background: var(--slate-100); border-radius: var(--r-full); overflow: hidden; }
+.iot-bar-fill  { height: 100%; border-radius: var(--r-full); transition: width .6s ease; }
+.iot-bar-fill.teal   { background: linear-gradient(90deg, var(--teal-400), var(--teal-600)); }
+.iot-bar-fill.orange { background: linear-gradient(90deg, #fb923c, #ea580c); }
+
+/* Sensor scan log */
+.scan-log { display: flex; flex-direction: column; gap: 0; }
+.scan-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--slate-100);
+  font-size: 13px;
+}
+.scan-row:last-child { border-bottom: none; }
+.scan-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.scan-dot.in  { background: var(--teal-500); }
+.scan-dot.out { background: #f97316; }
+.scan-name { flex: 1; font-weight: 500; color: var(--slate-700); }
+.scan-time { font-size: 12px; color: var(--slate-400); }
+.scan-type { font-size: 11px; font-weight: 700; font-family: var(--font-head); }
+.scan-type.in  { color: var(--teal-600); }
+.scan-type.out { color: #ea580c; }
 
 /* ─── BADGE ───────────────────────────────── */
 .badge { display: inline-flex; padding: 3px 10px; border-radius: var(--r-full); font-size: 11px; font-weight: 700; font-family: var(--font-head); }

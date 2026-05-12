@@ -14,40 +14,39 @@
   <aside class="sidebar">
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
       </div>
       <div>
         <div class="sidebar-logo-text">UniClinic</div>
-        <div class="sidebar-logo-sub">Campus Health Portal</div>
+        <div class="sidebar-logo-sub">University Health</div>
       </div>
     </div>
 
     <nav class="sidebar-nav">
-      <div class="nav-section-label">Main Menu</div>
-
       <a href="dashboard.html" class="nav-item active">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
+        </svg>
         Dashboard
       </a>
-
       <a href="booking.html" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/>
+        </svg>
         Appointments
-        <span class="nav-badge">3</span>
       </a>
-
       <a href="profile.html" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        My Profile
-      </a>
-
-      <div class="nav-section-label" style="margin-top:8px;">Support</div>
-
-      <a href="#" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        Help & Support
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Profile
       </a>
     </nav>
 
@@ -59,8 +58,11 @@
           <div class="sidebar-user-role">Student · 202512345</div>
         </div>
       </div>
-      <a href="login.html" class="nav-item" style="color:rgba(255,255,255,.6);">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      <a href="login.html" class="nav-item logout-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
         Logout
       </a>
     </div>
@@ -69,37 +71,35 @@
   <!-- ═══ MAIN ═══ -->
   <div class="main-content">
 
-    <!-- Topbar -->
     <div class="topbar">
-      <div class="topbar-left">
+      <div>
         <div class="topbar-title">Dashboard</div>
-        <div class="topbar-sub">Welcome back, Thabo 👋  — Tuesday, 13 May 2025</div>
+        <div class="topbar-sub" id="dateSub">Welcome back, Thabo 👋</div>
       </div>
       <div class="topbar-right">
-        <!-- Notification bell -->
         <button class="icon-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        </button>
-        <!-- Search -->
-        <button class="icon-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
         </button>
         <div class="topbar-avatar">TN</div>
       </div>
     </div>
 
-    <!-- Page body -->
     <div class="page-body">
 
-      <!-- ── STAT CARDS ─────────────────────────── -->
+      <!-- ── SUMMARY STAT CARDS ── -->
       <div class="stats-grid fade-up">
 
         <div class="stat-card">
           <div class="stat-icon teal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
           </div>
           <div class="stat-val">12</div>
-          <div class="stat-label">Total Appointments</div>
+          <div class="stat-label">My Appointments</div>
           <div class="stat-trend up">↑ +2 this month</div>
         </div>
 
@@ -114,165 +114,237 @@
 
         <div class="stat-card">
           <div class="stat-icon blue">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
           </div>
           <div class="stat-val">Mon</div>
           <div class="stat-label">Next Appointment</div>
-          <div class="stat-trend" style="color:var(--blue-600);">09:00 · HIV Testing</div>
+          <div class="stat-trend neutral" style="color:var(--blue-600);">09:00 · HIV Testing</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-icon purple">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="stat-icon" style="background:#dcfce7;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
           </div>
-          <div class="stat-val">94%</div>
-          <div class="stat-label">Health Score</div>
-          <div class="stat-trend up">↑ Excellent</div>
+          <div class="stat-val" style="font-size:20px;color:var(--green-600);margin-top:4px;">OPEN</div>
+          <div class="stat-label">Clinic Status</div>
+          <div class="stat-trend up">Closes at 16:30</div>
         </div>
 
       </div>
-      <!-- ── END STAT CARDS ──────────────────── -->
 
+      <!-- ── IOT LIVE COUNTDOWN CARDS ── -->
+      <div class="iot-grid fade-up-1">
 
-      <!-- ── TWO-COL: Appointments + Announcements ── -->
-      <div class="two-col mb-22 fade-up-1">
+        <!-- Appointments Remaining -->
+        <div class="iot-card accent-teal">
+          <div class="iot-card-header">
+            <div class="iot-card-title">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Appointments Remaining Today
+            </div>
+            <div class="sensor-live"><div class="pulse-dot"></div>LIVE</div>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:16px;">
+            <div>
+              <div class="iot-number teal" id="apptRemaining">7</div>
+              <div class="iot-sublabel">of <strong id="apptTotal">12</strong> scheduled slots</div>
+            </div>
+            <div class="iot-ring-wrap" style="position:relative;">
+              <svg width="64" height="64" viewBox="0 0 64 64"><circle class="iot-ring-bg" cx="32" cy="32" r="28"/><circle class="iot-ring-fg teal" id="apptRing" cx="32" cy="32" r="28" stroke-dasharray="175.9" stroke-dashoffset="102.1"/></svg>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:13px;font-weight:800;color:var(--teal-600);"><span id="apptPct">58%</span></div>
+            </div>
+          </div>
+          <div class="iot-progress-bar-wrap">
+            <div class="iot-bar-label">
+              <span>Checked in: <strong id="apptCheckedIn">5</strong></span>
+              <span>Remaining: <strong id="apptRem2">7</strong></span>
+            </div>
+            <div class="iot-bar-track"><div class="iot-bar-fill teal" id="apptBar" style="width:42%;"></div></div>
+          </div>
+        </div>
 
-        <!-- Upcoming Appointments -->
+        <!-- Walk-in Slots Remaining -->
+        <div class="iot-card accent-orange">
+          <div class="iot-card-header">
+            <div class="iot-card-title">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Walk-in Slots Remaining
+            </div>
+            <div class="sensor-live"><div class="pulse-dot"></div>LIVE</div>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:16px;">
+            <div>
+              <div class="iot-number orange" id="walkinRemaining">4</div>
+              <div class="iot-sublabel">of <strong id="walkinTotal">10</strong> daily walk-in slots</div>
+            </div>
+            <div class="iot-ring-wrap" style="position:relative;">
+              <svg width="64" height="64" viewBox="0 0 64 64"><circle class="iot-ring-bg" cx="32" cy="32" r="28"/><circle class="iot-ring-fg orange" id="walkinRing" cx="32" cy="32" r="28" stroke-dasharray="175.9" stroke-dashoffset="105.5"/></svg>
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:13px;font-weight:800;color:#ea580c;"><span id="walkinPct">40%</span></div>
+            </div>
+          </div>
+          <div class="iot-progress-bar-wrap">
+            <div class="iot-bar-label">
+              <span>Served today: <strong id="walkinServed">6</strong></span>
+              <span>Slots left: <strong id="walkinLeft">4</strong></span>
+            </div>
+            <div class="iot-bar-track"><div class="iot-bar-fill orange" id="walkinBar" style="width:60%;"></div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── APPOINTMENTS + ANNOUNCEMENTS ── -->
+      <div class="two-col mb-22 fade-up-2">
         <div class="card">
           <div class="card-header">
-            <div>
-              <div class="card-title">Upcoming Appointments</div>
-              <div class="card-sub">Your next scheduled clinic visits</div>
-            </div>
+            <div><div class="card-title">Upcoming Appointments</div><div class="card-sub">Your next scheduled visits</div></div>
             <a href="booking.html" class="btn btn-outline btn-sm">+ Book New</a>
           </div>
           <div class="card-body">
             <div class="appt-list">
-
               <div class="appt-item">
                 <div class="appt-bar teal"></div>
-                <div class="appt-info">
-                  <div class="appt-service">HIV Testing</div>
-                  <div class="appt-meta">Mon, 19 May 2025 &nbsp;·&nbsp; 09:00</div>
-                </div>
+                <div class="appt-info"><div class="appt-service">HIV Testing</div><div class="appt-meta">Mon, 19 May 2025 · 09:00</div></div>
                 <span class="badge badge-green">Confirmed</span>
               </div>
-
               <div class="appt-item">
                 <div class="appt-bar blue"></div>
-                <div class="appt-info">
-                  <div class="appt-service">Flu and Fever</div>
-                  <div class="appt-meta">Wed, 21 May 2025 &nbsp;·&nbsp; 10:30</div>
-                </div>
+                <div class="appt-info"><div class="appt-service">Flu and Fever</div><div class="appt-meta">Wed, 21 May 2025 · 10:30</div></div>
                 <span class="badge badge-yellow">Pending</span>
               </div>
-
               <div class="appt-item">
                 <div class="appt-bar purple"></div>
-                <div class="appt-info">
-                  <div class="appt-service">Pap Smear</div>
-                  <div class="appt-meta">Fri, 23 May 2025 &nbsp;·&nbsp; 13:00</div>
-                </div>
+                <div class="appt-info"><div class="appt-service">Pap Smear</div><div class="appt-meta">Fri, 23 May 2025 · 13:00</div></div>
                 <span class="badge badge-green">Confirmed</span>
               </div>
-
             </div>
           </div>
         </div>
 
-        <!-- Announcements -->
+        <div class="card">
+          <div class="card-header"><div><div class="card-title">Clinic Announcements</div><div class="card-sub">Latest updates</div></div></div>
+          <div class="card-body">
+            <div class="announce-item"><div class="announce-dot"></div><div><div class="announce-title">Extended Hours This Week</div><div class="announce-body">Clinic open until 18:00 Mon–Thu due to high demand.</div><div class="announce-date">May 10, 2025</div></div></div>
+            <div class="announce-item"><div class="announce-dot"></div><div><div class="announce-title">Online Prescription Renewals</div><div class="announce-body">Renew chronic medication prescriptions through the booking system.</div><div class="announce-date">May 8, 2025</div></div></div>
+            <div class="announce-item"><div class="announce-dot"></div><div><div class="announce-title">Flu Vaccine Drive — Book Now</div><div class="announce-body">Free flu vaccinations for all registered students and staff.</div><div class="announce-date">May 5, 2025</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SCAN LOG + QUICK ACTIONS ── -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;" class="fade-up-3">
+
         <div class="card">
           <div class="card-header">
-            <div>
-              <div class="card-title">Clinic Announcements</div>
-              <div class="card-sub">Latest updates from the clinic</div>
-            </div>
+            <div><div class="card-title">IoT Card Scan Log</div><div class="card-sub">Live sensor check-ins &amp; check-outs</div></div>
+            <div class="sensor-live"><div class="pulse-dot"></div>SENSOR ACTIVE</div>
           </div>
           <div class="card-body">
-
-            <div class="announce-item">
-              <div class="announce-dot"></div>
-              <div>
-                <div class="announce-title">Extended Hours This Week</div>
-                <div class="announce-body">The clinic will operate until 18:00 Mon–Thu due to high demand.</div>
-                <div class="announce-date">May 10, 2025</div>
-              </div>
+            <div class="scan-log" id="scanLog">
+              <div class="scan-row"><div class="scan-dot in"></div><div class="scan-name">S. Dlamini · 202412001</div><div class="scan-time">10:42</div><div class="scan-type in">CHECK-IN</div></div>
+              <div class="scan-row"><div class="scan-dot out"></div><div class="scan-name">N. Zulu · 202312845</div><div class="scan-time">10:38</div><div class="scan-type out">CHECK-OUT</div></div>
+              <div class="scan-row"><div class="scan-dot in"></div><div class="scan-name">L. Mthembu · 202511032</div><div class="scan-time">10:35</div><div class="scan-type in">CHECK-IN</div></div>
+              <div class="scan-row"><div class="scan-dot in"></div><div class="scan-name">P. Khumalo · 202413760</div><div class="scan-time">10:29</div><div class="scan-type in">CHECK-IN</div></div>
+              <div class="scan-row"><div class="scan-dot out"></div><div class="scan-name">T. Nkosi · 202512345</div><div class="scan-time">10:15</div><div class="scan-type out">CHECK-OUT</div></div>
             </div>
+          </div>
+        </div>
 
-            <div class="announce-item">
-              <div class="announce-dot"></div>
-              <div>
-                <div class="announce-title">Online Prescription Renewals</div>
-                <div class="announce-body">Renew chronic medication prescriptions directly through the booking system.</div>
-                <div class="announce-date">May 8, 2025</div>
-              </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">Quick Actions</div></div>
+          <div class="card-body">
+            <div class="quick-grid" style="grid-template-columns:repeat(2,1fr);">
+              <a href="booking.html" class="quick-btn"><div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg></div><span class="quick-label">Book Appointment</span></a>
+              <a href="booking.html" class="quick-btn"><div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></div><span class="quick-label">Collect Medication</span></a>
+              <a href="profile.html" class="quick-btn"><div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><span class="quick-label">View Profile</span></a>
+              <a href="#" class="quick-btn"><div class="quick-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13 19.79 19.79 0 0 1 1.05 4.4 2 2 0 0 1 3 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17"/></svg></div><span class="quick-label">Contact Clinic</span></a>
             </div>
-
-            <div class="announce-item">
-              <div class="announce-dot"></div>
-              <div>
-                <div class="announce-title">Flu Vaccine Drive — Book Now</div>
-                <div class="announce-body">Free flu vaccinations available to all registered students and staff. Limited slots.</div>
-                <div class="announce-date">May 5, 2025</div>
-              </div>
-            </div>
-
           </div>
         </div>
 
       </div>
-      <!-- ── END TWO-COL ─────────────────────── -->
-
-
-      <!-- ── QUICK ACTIONS ───────────────────── -->
-      <div class="card fade-up-2">
-        <div class="card-header">
-          <div class="card-title">Quick Actions</div>
-        </div>
-        <div class="card-body">
-          <div class="quick-grid">
-
-            <a href="booking.html" class="quick-btn">
-              <div class="quick-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              </div>
-              <span class="quick-label">Book Appointment</span>
-            </a>
-
-            <a href="booking.html" class="quick-btn">
-              <div class="quick-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-              </div>
-              <span class="quick-label">Collect Medication</span>
-            </a>
-
-            <a href="profile.html" class="quick-btn">
-              <div class="quick-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </div>
-              <span class="quick-label">View Profile</span>
-            </a>
-
-            <a href="#" class="quick-btn">
-              <div class="quick-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13 19.79 19.79 0 0 1 1.05 4.4 2 2 0 0 1 3 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17"/></svg>
-              </div>
-              <span class="quick-label">Contact Clinic</span>
-            </a>
-
-          </div>
-        </div>
-      </div>
-      <!-- ── END QUICK ACTIONS ───────────────── -->
 
     </div>
-    <!-- end page-body -->
-
   </div>
-  <!-- end main-content -->
-
 </div>
-<!-- end app-shell -->
+
+<script>
+  /* Live date */
+  (function(){
+    const d = new Date();
+    const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('dateSub').textContent =
+      'Welcome back, Thabo 👋 — '+days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();
+  })();
+
+  /* State */
+  const state = { apptTotal:12, apptCheckedIn:5, walkinTotal:10, walkinServed:6 };
+  const CIRC = 175.9;
+
+  function updateUI(){
+    const aRem = state.apptTotal - state.apptCheckedIn;
+    const aPct = Math.round((state.apptCheckedIn / state.apptTotal)*100);
+    const wRem = state.walkinTotal - state.walkinServed;
+    const wPct = Math.round((state.walkinServed / state.walkinTotal)*100);
+
+    document.getElementById('apptRemaining').textContent = aRem;
+    document.getElementById('apptTotal').textContent     = state.apptTotal;
+    document.getElementById('apptCheckedIn').textContent = state.apptCheckedIn;
+    document.getElementById('apptRem2').textContent      = aRem;
+    document.getElementById('apptPct').textContent       = aPct+'%';
+    document.getElementById('apptBar').style.width       = aPct+'%';
+    document.getElementById('apptRing').style.strokeDashoffset = (CIRC*(1-aPct/100)).toFixed(1);
+    document.getElementById('apptRemaining').style.color = aRem<=2 ? '#dc2626' : 'var(--teal-600)';
+
+    document.getElementById('walkinRemaining').textContent = wRem;
+    document.getElementById('walkinTotal').textContent     = state.walkinTotal;
+    document.getElementById('walkinServed').textContent    = state.walkinServed;
+    document.getElementById('walkinLeft').textContent      = wRem;
+    document.getElementById('walkinPct').textContent       = wPct+'%';
+    document.getElementById('walkinBar').style.width       = wPct+'%';
+    document.getElementById('walkinRing').style.strokeDashoffset = (CIRC*(1-wPct/100)).toFixed(1);
+    document.getElementById('walkinRemaining').style.color = wRem<=2 ? '#dc2626' : '#ea580c';
+  }
+
+  const NAMES = [
+    'A. Nkosi · 202512345','B. Dlamini · 202312001','C. Zulu · 202413760',
+    'D. Mthembu · 202511032','E. Khumalo · 202512900','F. Sithole · 202410005',
+    'G. Ndlovu · 202311847','H. Mkhize · 202513100','I. Mabaso · 202412773',
+  ];
+
+  function addScan(name, type){
+    const log = document.getElementById('scanLog');
+    const now = new Date();
+    const t   = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+    const row = document.createElement('div');
+    row.className = 'scan-row';
+    row.style.cssText = 'opacity:0;transition:opacity .5s';
+    row.innerHTML = `<div class="scan-dot ${type}"></div><div class="scan-name">${name}</div><div class="scan-time">${t}</div><div class="scan-type ${type}">${type==='in'?'CHECK-IN':'CHECK-OUT'}</div>`;
+    log.insertBefore(row, log.firstChild);
+    while(log.children.length>5) log.removeChild(log.lastChild);
+    requestAnimationFrame(()=>{ row.style.opacity='1'; });
+  }
+
+  function simulate(){
+    const name = NAMES[Math.floor(Math.random()*NAMES.length)];
+    const type = Math.random()>.35 ? 'in' : 'out';
+    if(type==='in'){
+      if(state.apptCheckedIn < state.apptTotal) state.apptCheckedIn++;
+      else if(state.walkinServed < state.walkinTotal) state.walkinServed++;
+    }
+    addScan(name, type);
+    updateUI();
+    setTimeout(simulate, 7000+Math.random()*6000);
+  }
+
+  updateUI();
+  setTimeout(simulate, 3500);
+</script>
 
 </body>
 </html>
