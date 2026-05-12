@@ -14,43 +14,33 @@
   <!-- ═══ LEFT PANEL ═══ -->
   <div class="auth-left">
     <div class="auth-left-inner">
-
       <div class="auth-logo-box">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
       </div>
-
       <div class="auth-brand">UniClinic</div>
-      <div class="auth-tagline">
-        Your campus health partner.<br>
-        Access quality healthcare services anytime, anywhere.
-      </div>
-
+      <div class="auth-tagline">Your campus health partner.<br>Access quality healthcare services anytime, anywhere.</div>
       <div class="auth-stats">
         <div class="auth-stat">
           <span class="auth-stat-val">5,000+</span>
           <span class="auth-stat-label">Students Served</span>
         </div>
-
         <div class="auth-stat">
           <span class="auth-stat-val">15+</span>
           <span class="auth-stat-label">Health Services</span>
         </div>
-
         <div class="auth-stat">
           <span class="auth-stat-val">24/7</span>
           <span class="auth-stat-label">Support</span>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- ═══ RIGHT PANEL ═══ -->
   <div class="auth-right">
     <div class="auth-card">
-
       <div class="auth-card-title">Create Account</div>
       <div class="auth-card-sub">Join UniClinic to manage your health</div>
 
@@ -84,7 +74,6 @@
 
       <!-- Email + Contact -->
       <div class="field-row">
-
         <div class="field" style="margin-bottom:0;">
           <label class="field-label">Email</label>
           <div class="input-wrap">
@@ -96,37 +85,33 @@
             <input type="email" placeholder="name@uni.ac.za" />
           </div>
         </div>
-
         <div class="field" style="margin-bottom:0;">
           <label class="field-label">Contact Number</label>
           <div class="input-wrap">
             <span class="input-icon">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2"/>
+                <path d="M16.46 12.4l1.41-1.41a2 2 0 0 1 2.83 0l2.12 2.12a2 2 0 0 1 0 2.83l-3.54 3.54a2 2 0 0 1-2.83 0l-5.66-5.66a2 2 0 0 1 0-2.83l2.83-2.83"/>
               </svg>
             </span>
             <input type="tel" placeholder="012 345 6789" />
           </div>
         </div>
-
       </div>
 
       <!-- ROLE SELECTION -->
-      <div class="field" style="margin-top:18px;">
+      <div class="field" style="margin-top:24px;">
         <label class="field-label">Register As</label>
-
         <div class="role-selector">
-
           <label class="role-card active-role">
             <input type="radio" name="role" checked>
-
+            <div class="role-badge"></div>
             <div class="role-icon patient-role">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                 <circle cx="12" cy="7" r="4"/>
               </svg>
             </div>
-
             <div>
               <div class="role-title">Patient</div>
               <div class="role-sub">Students & Staff</div>
@@ -135,7 +120,7 @@
 
           <label class="role-card">
             <input type="radio" name="role">
-
+            <div class="role-badge"></div>
             <div class="role-icon nurse-role">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M8 2h8"/>
@@ -143,7 +128,6 @@
                 <path d="M5 12h14"/>
               </svg>
             </div>
-
             <div>
               <div class="role-title">Nurse</div>
               <div class="role-sub">Clinic Staff</div>
@@ -152,55 +136,70 @@
 
           <label class="role-card">
             <input type="radio" name="role">
-
+            <div class="role-badge"></div>
             <div class="role-icon admin-role">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m6.08 0l4.24-4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m6.08 0l4.24 4.24"/>
               </svg>
             </div>
-
             <div>
               <div class="role-title">Admin</div>
               <div class="role-sub">System Manager</div>
             </div>
           </label>
-
         </div>
       </div>
 
       <!-- Passwords -->
-      <div class="field-row" style="margin-top:18px;">
-
+      <div class="field-row" style="margin-top:24px;">
         <div class="field" style="margin-bottom:0;">
           <label class="field-label">Password</label>
           <div class="input-wrap">
-            <input type="password" id="pw1" placeholder="Create password" class="no-icon" />
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input type="password" id="pw1" placeholder="Create password" />
           </div>
         </div>
-
         <div class="field" style="margin-bottom:0;">
           <label class="field-label">Confirm Password</label>
           <div class="input-wrap">
-            <input type="password" id="pw2" placeholder="Confirm password" class="no-icon" />
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input type="password" id="pw2" placeholder="Confirm password" />
           </div>
         </div>
-
       </div>
 
       <!-- Submit -->
-      <div style="margin-top:26px;">
+      <div style="margin-top:28px;">
         <a href="dashboard.html" class="btn btn-primary btn-full">Create Account</a>
       </div>
 
       <div class="auth-footer-text">
-        Already have an account?
-        <a href="login.html">Sign In</a>
+        Already have an account? <a href="login.html">Sign In</a>
       </div>
-
     </div>
   </div>
 
 </div>
+
+<script>
+  document.querySelectorAll('input[name="role"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.role-card').forEach(card => card.classList.remove('active-role'));
+      radio.closest('.role-card').classList.add('active-role');
+    });
+  });
+</script>
 
 </body>
 </html>
