@@ -40,7 +40,7 @@ The system will simulate a sensor that scans student cards and validates appoint
 - Sthembele Shamase
 - Zipho Khanyile
 - Xoliswa Cele
-- Nontando Hlongwane
+- Nonthando Hlongwane
 - Nkosinathi Ngobese
 - Olwethu Mnyayi
 - Skhumbuzo Hlongwane
