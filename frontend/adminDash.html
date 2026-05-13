@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UniClinic — Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="sidebar-logo-text">UniClinic</div>
+        <div class="sidebar-logo-sub">Admin Portal</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" onclick="showPage('dashboard',this);return false;">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('appointments',this);return false;">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Appointments
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('nurses',this);return false;">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Manage Nurses
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('patients',this);return false;">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Manage Patients
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('records',this);return false;">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Medical Records
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('announcements',this);return false;">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Announcements
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('reports',this);return false;">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Reports
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('inventory',this);return false;">
+        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        Inventory
+      </a>
+      <a href="#" class="nav-item" onclick="showPage('settings',this);return false;">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">AD</div>
+        <div>
+          <div class="sidebar-user-name">Admin User</div>
+          <div class="sidebar-user-role">System Administrator</div>
+        </div>
+      </div>
+      <a href="login.html" class="nav-item logout-btn">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <div class="main-content">
+
+    <div class="topbar">
+      <div>
+        <div class="topbar-title" id="pageTitle">Admin Dashboard</div>
+        <div class="topbar-sub" id="pageSub">Monitor clinic system performance</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="topbar-avatar">AD</div>
+      </div>
+    </div>
+
+    <div class="page-body">
+
+      <!-- ══════════ DASHBOARD PAGE ══════════ -->
+      <div id="page-dashboard">
+
+        <!-- Stats Row -->
+        <div class="stats-grid mb-22">
+          <div class="stat-card">
+            <div class="stat-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="stat-val">1,284</div>
+            <div class="stat-label">Registered Patients</div>
+            <div class="stat-trend up">↑ 42 this month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="stat-val">15</div>
+            <div class="stat-label">Clinic Staff</div>
+            <div class="stat-trend neutral">3 nurses on duty</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="stat-val">324</div>
+            <div class="stat-label">Appointments This Month</div>
+            <div class="stat-trend up">↑ 12% vs last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="stat-val" style="color:var(--green-600);font-size:20px;">ACTIVE</div>
+            <div class="stat-label">System Status</div>
+            <div class="stat-trend up">All services running</div>
+          </div>
+        </div>
+
+        <!-- Live Trackers -->
+        <div class="iot-grid mb-22">
+          <!-- Booked Appointments Today -->
+          <div class="iot-card accent-teal">
+            <div class="iot-card-header">
+              <div class="iot-card-title">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Booked Appointments Today
+              </div>
+              <div class="sensor-live"><div class="pulse-dot"></div>LIVE</div>
+            </div>
+            <div class="iot-counter-body">
+              <div>
+                <div class="iot-number teal" id="adm-apptCheckedInDisplay">5</div>
+                <div class="iot-sublabel">checked in of <strong id="adm-apptTotal">12</strong> booked</div>
+              </div>
+              <div style="position:relative;width:64px;height:64px;">
+                <svg width="64" height="64" viewBox="0 0 64 64" style="transform:rotate(-90deg)"><circle class="iot-ring-bg" cx="32" cy="32" r="28"/><circle class="iot-ring-fg teal" id="adm-apptRing" cx="32" cy="32" r="28" stroke-dasharray="175.9" stroke-dashoffset="102.1"/></svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:13px;font-weight:800;color:var(--teal-600);"><span id="adm-apptPct">42%</span></div>
+              </div>
+            </div>
+            <div class="iot-progress-bar-wrap">
+              <div class="iot-bar-label">
+                <span>Checked in: <strong id="adm-apptCheckedIn">5</strong></span>
+                <span>Remaining: <strong id="adm-apptRem">7</strong></span>
+              </div>
+              <div class="iot-bar-track"><div class="iot-bar-fill teal" id="adm-apptBar" style="width:42%;"></div></div>
+            </div>
+          </div>
+
+          <!-- Walk-in Counter -->
+          <div class="iot-card accent-orange">
+            <div class="iot-card-header">
+              <div class="iot-card-title">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Walk-in Slots Today
+              </div>
+              <div class="sensor-live"><div class="pulse-dot"></div>LIVE</div>
+            </div>
+            <div class="iot-counter-body">
+              <div>
+                <div class="iot-number orange" id="adm-walkinRemaining">4</div>
+                <div class="iot-sublabel">slots remaining of <strong id="adm-walkinTotal">10</strong></div>
+              </div>
+              <div style="position:relative;width:64px;height:64px;">
+                <svg width="64" height="64" viewBox="0 0 64 64" style="transform:rotate(-90deg)"><circle class="iot-ring-bg" cx="32" cy="32" r="28"/><circle class="iot-ring-fg orange" id="adm-walkinRing" cx="32" cy="32" r="28" stroke-dasharray="175.9" stroke-dashoffset="105.5"/></svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:13px;font-weight:800;color:#ea580c;"><span id="adm-walkinPct">40%</span></div>
+              </div>
+            </div>
+            <div class="iot-progress-bar-wrap">
+              <div class="iot-bar-label">
+                <span>Served today: <strong id="adm-walkinServed">6</strong></span>
+                <span>Available: <strong id="adm-walkinLeft">4</strong></span>
+              </div>
+              <div class="iot-bar-track"><div class="iot-bar-fill orange" id="adm-walkinBar" style="width:60%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Activity + Announcements Preview -->
+        <div class="two-col">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Recent Staff Activity</div>
+                <div class="card-sub">Latest clinic system activity</div>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="addActivityRow()">+ Add Entry</button>
+            </div>
+            <div class="card-body">
+              <div class="table-toolbar">
+                <input class="tbl-search" type="text" placeholder="Search activity…" oninput="filterTable('activityTable',this.value)">
+              </div>
+              <table class="modern-table" id="activityTable">
+                <thead>
+                  <tr><th>Staff Member</th><th>Role</th><th>Activity</th><th>Time</th><th style="width:130px;">Actions</th></tr>
+                </thead>
+                <tbody id="activityBody">
+                  <tr data-id="1"><td>Nurse Mthembu</td><td>Nurse</td><td>Checked in patient</td><td>10:45 AM</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                  <tr data-id="2"><td>Admin User</td><td>Administrator</td><td>Updated inventory</td><td>10:30 AM</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                  <tr data-id="3"><td>Dr Khumalo</td><td>Doctor</td><td>Completed consultation</td><td>09:50 AM</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Announcements Preview -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Announcements</div>
+                <div class="card-sub">Visible to all patients</div>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="showPage('announcements',null)">Manage</button>
+            </div>
+            <div class="card-body" id="dashAnnouncementsPreview">
+              <!-- filled by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ APPOINTMENTS PAGE ══════════ -->
+      <div id="page-appointments" style="display:none;">
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">All Appointments</div><div class="card-sub">View and manage clinic appointments</div></div>
+            <button class="btn btn-primary btn-sm" onclick="addApptRow()">+ Add Appointment</button>
+          </div>
+          <div class="card-body">
+            <div class="table-toolbar">
+              <input class="tbl-search" type="text" placeholder="Search appointments…" oninput="filterTable('apptTable',this.value)">
+              <div style="display:flex;gap:8px;">
+                <select class="tbl-search" style="min-width:140px;" onchange="filterApptStatus(this.value)">
+                  <option value="">All Statuses</option>
+                  <option value="Confirmed">Confirmed</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </div>
+            </div>
+            <table class="modern-table" id="apptTable">
+              <thead>
+                <tr><th>Patient</th><th>Student No.</th><th>Service</th><th>Date</th><th>Time</th><th>Nurse</th><th>Status</th><th style="width:130px;">Actions</th></tr>
+              </thead>
+              <tbody id="apptBody">
+                <tr data-id="1"><td>Sipho Dlamini</td><td>STU-2241</td><td>HIV Testing</td><td>19 May 2025</td><td>09:00</td><td>Nurse Mthembu</td><td><span class="badge badge-green">Confirmed</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="2"><td>Ayanda Mkhize</td><td>STU-2242</td><td>Flu &amp; Fever</td><td>21 May 2025</td><td>10:30</td><td>Nurse Dlamini</td><td><span class="badge badge-yellow">Pending</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="3"><td>Thandeka Nzama</td><td>STU-2243</td><td>Pap Smear</td><td>23 May 2025</td><td>13:00</td><td>Nurse Mthembu</td><td><span class="badge badge-green">Confirmed</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="4"><td>Lwazi Cele</td><td>STU-2244</td><td>Mental Health</td><td>24 May 2025</td><td>11:00</td><td>Nurse Zulu</td><td><span class="badge badge-teal">Completed</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="5"><td>Nomvula Khumalo</td><td>STU-2245</td><td>Vaccination</td><td>26 May 2025</td><td>14:00</td><td>Nurse Dlamini</td><td><span class="badge badge-yellow">Pending</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ MANAGE NURSES PAGE ══════════ -->
+      <div id="page-nurses" style="display:none;">
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Clinic Nurses</div><div class="card-sub">Add, edit or remove nursing staff</div></div>
+            <button class="btn btn-primary btn-sm" onclick="addNurseRow()">+ Add Nurse</button>
+          </div>
+          <div class="card-body">
+            <div class="table-toolbar">
+              <input class="tbl-search" type="text" placeholder="Search nurses…" oninput="filterTable('nurseTable',this.value)">
+            </div>
+            <table class="modern-table" id="nurseTable">
+              <thead>
+                <tr><th>Name</th><th>Employee ID</th><th>Specialisation</th><th>Status</th><th>Shift</th><th style="width:130px;">Actions</th></tr>
+              </thead>
+              <tbody id="nurseBody">
+                <tr data-id="1"><td>Nurse Mthembu</td><td>EMP-001</td><td>General</td><td><span class="inv-badge ok">Active</span></td><td>Morning</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="2"><td>Nurse Dlamini</td><td>EMP-002</td><td>Paediatrics</td><td><span class="inv-badge ok">Active</span></td><td>Afternoon</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="3"><td>Nurse Nkosi</td><td>EMP-003</td><td>Emergency</td><td><span class="inv-badge low">On Leave</span></td><td>Night</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="4"><td>Nurse Zulu</td><td>EMP-004</td><td>General</td><td><span class="inv-badge ok">Active</span></td><td>Morning</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ MANAGE PATIENTS PAGE ══════════ -->
+      <div id="page-patients" style="display:none;">
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Registered Patients</div><div class="card-sub">View and manage patient records</div></div>
+            <button class="btn btn-primary btn-sm" onclick="addPatientRow()">+ Add Patient</button>
+          </div>
+          <div class="card-body">
+            <div class="table-toolbar">
+              <input class="tbl-search" type="text" placeholder="Search patients…" oninput="filterTable('patientTable',this.value)">
+            </div>
+            <table class="modern-table" id="patientTable">
+              <thead>
+                <tr><th>Name</th><th>Student No.</th><th>Faculty</th><th>Email</th><th>Status</th><th style="width:130px;">Actions</th></tr>
+              </thead>
+              <tbody id="patientBody">
+                <tr data-id="1"><td>Sipho Dlamini</td><td>STU-2241</td><td>Engineering</td><td>sipho@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="2"><td>Ayanda Mkhize</td><td>STU-2242</td><td>Commerce</td><td>ayanda@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="3"><td>Thandeka Nzama</td><td>STU-2243</td><td>Health Sciences</td><td>thandeka@uni.ac.za</td><td><span class="inv-badge low">Suspended</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="4"><td>Lwazi Cele</td><td>STU-2244</td><td>Law</td><td>lwazi@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="5"><td>Nomvula Khumalo</td><td>STU-2245</td><td>Arts</td><td>nomvula@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ MEDICAL RECORDS PAGE (read-only, send to nurse) ══════════ -->
+      <div id="page-records" style="display:none;">
+        <div class="info-banner">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Medical records are <strong style="margin:0 4px;">read-only</strong> for admins. Use <strong style="margin:0 4px;">Send to Nurse</strong> to forward a record to the nurse dashboard for editing.
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Patient Medical Records</div><div class="card-sub">View-only — edits are performed by nursing staff</div></div>
+            <input class="tbl-search" type="text" placeholder="Search records…" oninput="filterTable('recordsTable',this.value)" style="max-width:240px;">
+          </div>
+          <div class="card-body">
+            <table class="modern-table" id="recordsTable">
+              <thead>
+                <tr><th>Patient</th><th>Student No.</th><th>Diagnosis</th><th>Medication</th><th>Nurse</th><th>Date</th><th style="width:150px;">Actions</th></tr>
+              </thead>
+              <tbody id="recordsBody">
+                <tr data-id="1">
+                  <td>Sipho Dlamini</td><td>STU-2241</td><td>Upper Respiratory Infection</td><td>Amoxicillin 500mg</td><td>Nurse Mthembu</td><td>15 May 2025</td>
+                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
+                </tr>
+                <tr data-id="2">
+                  <td>Ayanda Mkhize</td><td>STU-2242</td><td>Influenza</td><td>Ibuprofen 400mg, Rest</td><td>Nurse Dlamini</td><td>14 May 2025</td>
+                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
+                </tr>
+                <tr data-id="3">
+                  <td>Thandeka Nzama</td><td>STU-2243</td><td>Routine Pap Smear – Normal</td><td>N/A</td><td>Nurse Mthembu</td><td>12 May 2025</td>
+                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
+                </tr>
+                <tr data-id="4">
+                  <td>Lwazi Cele</td><td>STU-2244</td><td>Anxiety – Generalised</td><td>Referred to counsellor</td><td>Nurse Zulu</td><td>10 May 2025</td>
+                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
+                </tr>
+                <tr data-id="5">
+                  <td>Nomvula Khumalo</td><td>STU-2245</td><td>Flu Vaccination</td><td>Influenza Vaccine – administered</td><td>Nurse Dlamini</td><td>08 May 2025</td>
+                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ ANNOUNCEMENTS PAGE ══════════ -->
+      <div id="page-announcements" style="display:none;">
+        <div class="two-col">
+          <!-- Compose -->
+          <div class="card" style="align-self:start;">
+            <div class="card-header"><div class="card-title">New Announcement</div><div class="card-sub" style="margin-top:2px;">Posts to patient dashboard immediately</div></div>
+            <div class="card-body">
+              <div class="field">
+                <label class="field-label">Title</label>
+                <div class="input-wrap"><input type="text" id="annTitle" class="no-icon" style="padding-left:14px;" placeholder="e.g. Flu Vaccine Drive"></div>
+              </div>
+              <div class="field">
+                <label class="field-label">Message</label>
+                <textarea id="annBody" rows="4" style="width:100%;padding:10px 14px;border:1.5px solid var(--slate-200);border-radius:var(--r-md);font-size:14px;font-family:var(--font-body);resize:vertical;background:var(--slate-50);outline:none;transition:border-color .2s;" placeholder="Write the announcement body…"></textarea>
+              </div>
+              <div class="field" style="margin-bottom:0;">
+                <label class="field-label">Category</label>
+                <div class="input-wrap">
+                  <select id="annCategory" class="no-icon" style="padding-left:14px;">
+                    <option>General</option>
+                    <option>Health Alert</option>
+                    <option>Clinic Hours</option>
+                    <option>Services</option>
+                    <option>Urgent</option>
+                  </select>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-full" style="margin-top:18px;" onclick="postAnnouncement()">Post Announcement</button>
+            </div>
+          </div>
+
+          <!-- List -->
+          <div class="card" style="align-self:start;">
+            <div class="card-header"><div class="card-title">Posted Announcements</div><div class="card-sub">Manage existing announcements</div></div>
+            <div class="card-body" id="announcementsList">
+              <!-- filled by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ REPORTS PAGE ══════════ -->
+      <div id="page-reports" style="display:none;">
+        <div class="report-grid">
+          <div class="report-card">
+            <div class="card-title">Appointments by Service</div>
+            <div class="card-sub">This month</div>
+            <div class="report-bar-wrap">
+              <div class="report-bar-row"><span class="report-bar-label">General Consult</span><div class="report-bar-track"><div class="report-bar-fill" style="width:85%"></div></div><span class="report-bar-val">124</span></div>
+              <div class="report-bar-row"><span class="report-bar-label">Mental Health</span><div class="report-bar-track"><div class="report-bar-fill" style="width:52%"></div></div><span class="report-bar-val">76</span></div>
+              <div class="report-bar-row"><span class="report-bar-label">Pharmacy</span><div class="report-bar-track"><div class="report-bar-fill" style="width:68%"></div></div><span class="report-bar-val">98</span></div>
+              <div class="report-bar-row"><span class="report-bar-label">Physio</span><div class="report-bar-track"><div class="report-bar-fill" style="width:18%"></div></div><span class="report-bar-val">26</span></div>
+            </div>
+          </div>
+          <div class="report-card">
+            <div class="card-title">Patients by Faculty</div>
+            <div class="card-sub">Year to date</div>
+            <div class="report-bar-wrap">
+              <div class="report-bar-row"><span class="report-bar-label">Engineering</span><div class="report-bar-track"><div class="report-bar-fill" style="width:72%"></div></div><span class="report-bar-val">312</span></div>
+              <div class="report-bar-row"><span class="report-bar-label">Commerce</span><div class="report-bar-track"><div class="report-bar-fill" style="width:60%"></div></div><span class="report-bar-val">258</span></div>
+              <div class="report-bar-row"><span class="report-bar-label">Health Sciences</span><div class="report-bar-track"><div class="report-bar-fill" style="width:45%"></div></div><span class="report-bar-val">194</span></div>
+              <div class="report-bar-row"><span class="report-bar-label">Arts</span><div class="report-bar-track"><div class="report-bar-fill" style="width:30%"></div></div><span class="report-bar-val">130</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Monthly Summary</div><div class="card-sub">Key metrics at a glance</div></div>
+            <button class="btn btn-outline btn-sm" onclick="alert('Exporting report…')">Export CSV</button>
+          </div>
+          <div class="card-body">
+            <table class="modern-table">
+              <thead><tr><th>Month</th><th>Appointments</th><th>New Patients</th><th>Avg Wait (min)</th><th>Satisfaction</th></tr></thead>
+              <tbody>
+                <tr><td>January</td><td>287</td><td>42</td><td>12</td><td><span class="inv-badge ok">92%</span></td></tr>
+                <tr><td>February</td><td>301</td><td>38</td><td>10</td><td><span class="inv-badge ok">94%</span></td></tr>
+                <tr><td>March</td><td>318</td><td>55</td><td>14</td><td><span class="inv-badge low">87%</span></td></tr>
+                <tr><td>April</td><td>324</td><td>61</td><td>11</td><td><span class="inv-badge ok">91%</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ INVENTORY PAGE ══════════ -->
+      <div id="page-inventory" style="display:none;">
+        <div class="info-banner">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Items marked <strong style="margin:0 4px;">Low Stock</strong> should be reordered soon. Items marked <strong style="margin:0 4px;">Out of Stock</strong> need immediate attention.
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div><div class="card-title">Medical Inventory</div><div class="card-sub">Track and manage clinic supplies</div></div>
+            <button class="btn btn-primary btn-sm" onclick="addInvRow()">+ Add Item</button>
+          </div>
+          <div class="card-body">
+            <div class="table-toolbar">
+              <input class="tbl-search" type="text" placeholder="Search inventory…" oninput="filterTable('invTable',this.value)">
+            </div>
+            <table class="modern-table" id="invTable">
+              <thead>
+                <tr><th>Item</th><th>Category</th><th>Qty</th><th>Unit</th><th>Status</th><th style="width:130px;">Actions</th></tr>
+              </thead>
+              <tbody id="invBody">
+                <tr data-id="1"><td>Paracetamol 500mg</td><td>Medication</td><td>240</td><td>Tablets</td><td><span class="inv-badge ok">In Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="2"><td>Surgical Gloves</td><td>PPE</td><td>12</td><td>Boxes</td><td><span class="inv-badge low">Low Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="3"><td>Bandages (5cm)</td><td>Wound Care</td><td>0</td><td>Rolls</td><td><span class="inv-badge out">Out of Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="4"><td>Ibuprofen 200mg</td><td>Medication</td><td>180</td><td>Tablets</td><td><span class="inv-badge ok">In Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="5"><td>Thermometers</td><td>Equipment</td><td>8</td><td>Units</td><td><span class="inv-badge low">Low Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                <tr data-id="6"><td>Antiseptic Wipes</td><td>Hygiene</td><td>400</td><td>Packs</td><td><span class="inv-badge ok">In Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ SETTINGS PAGE ══════════ -->
+      <div id="page-settings" style="display:none;">
+        <div class="two-col">
+          <div>
+            <div class="card mb-22">
+              <div class="card-header"><div class="card-title">Clinic Information</div></div>
+              <div class="card-body">
+                <div class="field"><label class="field-label">Clinic Name</label><div class="input-wrap"><input type="text" class="no-icon" style="padding-left:14px;" value="UniClinic Health Centre"></div></div>
+                <div class="field"><label class="field-label">Contact Email</label><div class="input-wrap"><input type="email" class="no-icon" style="padding-left:14px;" value="clinic@university.ac.za"></div></div>
+                <div class="field"><label class="field-label">Phone Number</label><div class="input-wrap"><input type="tel" class="no-icon" style="padding-left:14px;" value="+27 31 000 1234"></div></div>
+                <div class="field" style="margin-bottom:0;"><label class="field-label">Physical Address</label><textarea style="width:100%;padding:10px 14px;border:1.5px solid var(--slate-200);border-radius:var(--r-md);font-size:14px;font-family:var(--font-body);resize:vertical;background:var(--slate-50);" rows="2">Campus Health Building, University Road, Durban</textarea></div>
+                <button class="btn btn-primary btn-sm" style="margin-top:14px;" onclick="alert('Settings saved!')">Save Changes</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><div class="card-title">Operating Hours</div></div>
+              <div class="card-body">
+                <div class="hours-grid">
+                  <div class="hours-row"><span class="hours-day">Monday – Friday</span><span class="hours-time">07:30 – 16:30</span><span class="hours-note">Open</span></div>
+                  <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">08:00 – 13:00</span><span class="hours-note">Open</span></div>
+                  <div class="hours-row closed"><span class="hours-day">Sunday</span><span class="hours-time">Closed</span></div>
+                  <div class="hours-row closed"><span class="hours-day">Public Holidays</span><span class="hours-time">Closed</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card mb-22">
+              <div class="card-header"><div class="card-title">System Notifications</div></div>
+              <div class="card-body">
+                <div class="settings-section">
+                  <div class="toggle-row"><div><div class="toggle-label">Email Appointment Reminders</div><div class="toggle-sub">Send reminders 24hrs before appointments</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label></div>
+                  <div class="toggle-row"><div><div class="toggle-label">Low Stock Alerts</div><div class="toggle-sub">Notify admin when inventory runs low</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label></div>
+                  <div class="toggle-row"><div><div class="toggle-label">New Patient Notifications</div><div class="toggle-sub">Alert nurses when a patient checks in</div></div><label class="toggle"><input type="checkbox"><span class="toggle-track"></span></label></div>
+                  <div class="toggle-row"><div><div class="toggle-label">Weekly Summary Report</div><div class="toggle-sub">Auto-send weekly stats to admin email</div></div><label class="toggle"><input type="checkbox" checked><span class="toggle-track"></span></label></div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><div class="card-title">Admin Account</div></div>
+              <div class="card-body">
+                <div class="field"><label class="field-label">Full Name</label><div class="input-wrap"><input type="text" class="no-icon" style="padding-left:14px;" value="Admin User"></div></div>
+                <div class="field"><label class="field-label">Email</label><div class="input-wrap"><input type="email" class="no-icon" style="padding-left:14px;" value="admin@uniclinic.ac.za"></div></div>
+                <div class="field" style="margin-bottom:0;"><label class="field-label">New Password</label><div class="input-wrap"><input type="password" class="no-icon" style="padding-left:14px;" placeholder="Leave blank to keep current"></div></div>
+                <button class="btn btn-primary btn-sm" style="margin-top:14px;" onclick="alert('Account updated!')">Update Account</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end page-body -->
+  </div><!-- end main-content -->
+</div><!-- end app-shell -->
+
+<!-- ═══ DELETE CONFIRM MODAL ═══ -->
+<div class="modal-overlay" id="delModal">
+  <div class="modal-box" style="max-width:360px;">
+    <div class="modal-header">
+      <div><div class="modal-title">Delete Record</div><div class="modal-sub">This action cannot be undone. Are you sure?</div></div>
+      <button class="modal-close" onclick="closeDelModal()">&#215;</button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeDelModal()">Cancel</button>
+      <button class="btn btn-danger btn-sm" onclick="confirmDelete()">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RECORD VIEW MODAL ═══ -->
+<div class="modal-overlay" id="recordModal">
+  <div class="modal-box" style="max-width:480px;">
+    <div class="modal-header">
+      <div><div class="modal-title" id="recordModalTitle">Patient Record</div><div class="modal-sub" id="recordModalSub"></div></div>
+      <button class="modal-close" onclick="closeRecordModal()">&#215;</button>
+    </div>
+    <div id="recordModalBody" style="margin-top:18px;"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeRecordModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SEND TO NURSE CONFIRM MODAL ═══ -->
+<div class="modal-overlay" id="nurseModal">
+  <div class="modal-box" style="max-width:380px;">
+    <div class="modal-header">
+      <div><div class="modal-title">Send to Nurse Dashboard</div><div class="modal-sub" id="nurseModalSub">This record will appear in the nurse's queue for editing.</div></div>
+      <button class="modal-close" onclick="document.getElementById('nurseModal').classList.remove('open')">&#215;</button>
+    </div>
+    <div style="margin-top:14px;">
+      <label class="field-label" style="display:block;margin-bottom:7px;">Assign to Nurse</label>
+      <select id="nurseSelect" class="tbl-search" style="width:100%;min-width:0;">
+        <option>Nurse Mthembu</option>
+        <option>Nurse Dlamini</option>
+        <option>Nurse Zulu</option>
+      </select>
+      <label class="field-label" style="display:block;margin:14px 0 7px;">Note (optional)</label>
+      <textarea id="nurseNote" rows="2" style="width:100%;padding:10px 14px;border:1.5px solid var(--slate-200);border-radius:var(--r-md);font-size:14px;font-family:var(--font-body);resize:none;background:var(--slate-50);outline:none;" placeholder="Add a note for the nurse…"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="document.getElementById('nurseModal').classList.remove('open')">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="confirmSendToNurse()">Send</button>
+    </div>
+    <div class="modal-success" id="nurseSent" style="display:none;margin-top:10px;padding:10px 14px;background:var(--green-100);border-radius:var(--r-md);font-size:13px;font-weight:600;color:var(--green-700);">
+      ✓ Record sent to nurse dashboard successfully.
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── PAGE ROUTING ─────────────────────────── */
+const pageMeta = {
+  dashboard:     { title:'Admin Dashboard',       sub:'Monitor clinic system performance' },
+  appointments:  { title:'Appointments',           sub:'View and manage all clinic appointments' },
+  nurses:        { title:'Manage Nurses',           sub:'Add, edit or remove nursing staff' },
+  patients:      { title:'Manage Patients',         sub:'View and manage patient records' },
+  records:       { title:'Medical Records',         sub:'Read-only view — send to nurse for edits' },
+  announcements: { title:'Announcements',           sub:'Post announcements visible to all patients' },
+  reports:       { title:'Reports',                 sub:'Analytics and clinic performance' },
+  inventory:     { title:'Inventory',               sub:'Track and manage clinic supplies' },
+  settings:      { title:'Settings',                sub:'Configure system and clinic details' },
+};
+
+function showPage(id, linkEl) {
+  document.querySelectorAll('[id^="page-"]').forEach(p => p.style.display = 'none');
+  document.getElementById('page-' + id).style.display = '';
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (linkEl) {
+    linkEl.classList.add('active');
+  } else {
+    document.querySelectorAll('.nav-item').forEach(n => {
+      if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'"+id+"'")) n.classList.add('active');
+    });
+  }
+  document.getElementById('pageTitle').textContent = pageMeta[id].title;
+  document.getElementById('pageSub').textContent   = pageMeta[id].sub;
+  if (id === 'announcements') renderAnnouncementsList();
+  if (id === 'dashboard') renderDashAnnouncementsPreview();
+}
+
+/* ─── LIVE TRACKERS ────────────────────────── */
+const admState = { apptTotal:12, apptCheckedIn:5, walkinTotal:10, walkinServed:6 };
+const CIRC = 175.9;
+
+function updateAdmUI() {
+  const aRem = admState.apptTotal - admState.apptCheckedIn;
+  const aPct = Math.round((admState.apptCheckedIn / admState.apptTotal)*100);
+  const wRem = admState.walkinTotal - admState.walkinServed;
+  const wPct = Math.round((admState.walkinServed / admState.walkinTotal)*100);
+
+  document.getElementById('adm-apptCheckedInDisplay').textContent = admState.apptCheckedIn;
+  document.getElementById('adm-apptCheckedIn').textContent = admState.apptCheckedIn;
+  document.getElementById('adm-apptTotal').textContent     = admState.apptTotal;
+  document.getElementById('adm-apptRem').textContent       = aRem;
+  document.getElementById('adm-apptPct').textContent       = aPct+'%';
+  document.getElementById('adm-apptBar').style.width       = aPct+'%';
+  document.getElementById('adm-apptRing').style.strokeDashoffset = (CIRC*(1-aPct/100)).toFixed(1);
+
+  document.getElementById('adm-walkinRemaining').textContent = wRem;
+  document.getElementById('adm-walkinTotal').textContent     = admState.walkinTotal;
+  document.getElementById('adm-walkinServed').textContent    = admState.walkinServed;
+  document.getElementById('adm-walkinLeft').textContent      = wRem;
+  document.getElementById('adm-walkinPct').textContent       = wPct+'%';
+  document.getElementById('adm-walkinBar').style.width       = wPct+'%';
+  document.getElementById('adm-walkinRing').style.strokeDashoffset = (CIRC*(1-wPct/100)).toFixed(1);
+  document.getElementById('adm-walkinRemaining').style.color = wRem<=2 ? '#dc2626' : '#ea580c';
+}
+
+function simulateAdm() {
+  if (admState.apptCheckedIn < admState.apptTotal) admState.apptCheckedIn++;
+  else if (admState.walkinServed < admState.walkinTotal) admState.walkinServed++;
+  updateAdmUI();
+  setTimeout(simulateAdm, 9000+Math.random()*8000);
+}
+
+updateAdmUI();
+setTimeout(simulateAdm, 5000);
+
+/* ─── ANNOUNCEMENTS ────────────────────────── */
+let announcements = [
+  { id:1, title:'Extended Hours This Week', body:'Clinic open until 18:00 Mon–Thu due to high demand.', category:'Clinic Hours', date:'10 May 2025' },
+  { id:2, title:'Online Prescription Renewals', body:'Renew chronic medication prescriptions through the booking system.', category:'Services', date:'8 May 2025' },
+  { id:3, title:'Flu Vaccine Drive — Book Now', body:'Free flu vaccinations for all registered students and staff. Limited slots available.', category:'Health Alert', date:'5 May 2025' },
+];
+let annIdCounter = 10;
+
+const catColors = {
+  'General':      'badge-teal',
+  'Health Alert': 'badge-green',
+  'Clinic Hours': 'badge-blue',
+  'Services':     'badge-teal',
+  'Urgent':       'badge-yellow',
+};
+
+function renderAnnouncementsList() {
+  const el = document.getElementById('announcementsList');
+  if (!announcements.length) {
+    el.innerHTML = '<p style="color:var(--slate-400);font-size:13px;text-align:center;padding:20px 0;">No announcements posted yet.</p>';
+    return;
+  }
+  el.innerHTML = announcements.map(a => `
+    <div class="announce-item" data-ann-id="${a.id}" style="margin-bottom:10px;">
+      <div class="announce-dot"></div>
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span class="announce-title">${escHtml(a.title)}</span>
+          <span class="badge ${catColors[a.category]||'badge-teal'}" style="font-size:10px;">${escHtml(a.category)}</span>
+        </div>
+        <div class="announce-body">${escHtml(a.body)}</div>
+        <div class="announce-date">${a.date}</div>
+      </div>
+      <button class="tbl-btn del" style="flex-shrink:0;align-self:center;" onclick="deleteAnnouncement(${a.id})">Delete</button>
+    </div>
+  `).join('');
+}
+
+function renderDashAnnouncementsPreview() {
+  const el = document.getElementById('dashAnnouncementsPreview');
+  if (!el) return;
+  if (!announcements.length) {
+    el.innerHTML = '<p style="color:var(--slate-400);font-size:13px;text-align:center;padding:20px 0;">No announcements yet.</p>';
+    return;
+  }
+  el.innerHTML = announcements.slice(0,3).map(a => `
+    <div class="announce-item">
+      <div class="announce-dot"></div>
+      <div>
+        <div class="announce-title">${escHtml(a.title)}</div>
+        <div class="announce-body">${escHtml(a.body)}</div>
+        <div class="announce-date">${a.date}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function postAnnouncement() {
+  const title = document.getElementById('annTitle').value.trim();
+  const body  = document.getElementById('annBody').value.trim();
+  const cat   = document.getElementById('annCategory').value;
+  if (!title || !body) { alert('Please fill in both title and message.'); return; }
+  const today = new Date();
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dateStr = today.getDate()+' '+months[today.getMonth()]+' '+today.getFullYear();
+  announcements.unshift({ id: ++annIdCounter, title, body, category: cat, date: dateStr });
+  document.getElementById('annTitle').value = '';
+  document.getElementById('annBody').value  = '';
+  renderAnnouncementsList();
+}
+
+function deleteAnnouncement(id) {
+  announcements = announcements.filter(a => a.id !== id);
+  renderAnnouncementsList();
+}
+
+// Init preview on load
+renderDashAnnouncementsPreview();
+
+/* ─── APPOINTMENT FILTER ───────────────────── */
+function filterApptStatus(val) {
+  const rows = document.querySelectorAll('#apptTable tbody tr');
+  rows.forEach(r => {
+    const status = r.querySelector('.badge') ? r.querySelector('.badge').textContent.trim() : '';
+    r.style.display = (!val || status === val) ? '' : 'none';
+  });
+}
+
+/* ─── SEARCH / FILTER ──────────────────────── */
+function filterTable(tableId, q) {
+  const rows = document.querySelectorAll('#'+tableId+' tbody tr');
+  q = q.toLowerCase();
+  rows.forEach(r => { r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none'; });
+}
+
+/* ─── GENERIC CRUD ─────────────────────────── */
+let rowIdCounter = 100;
+
+function editRow(btn) {
+  const tr = btn.closest('tr');
+  const tds = Array.from(tr.querySelectorAll('td')).slice(0,-1);
+  tds.forEach(td => {
+    const badge = td.querySelector('.inv-badge,.badge');
+    const val = badge ? badge.textContent.trim() : td.textContent.trim();
+    td.innerHTML = '<input class="td-input" value="'+escHtml(val)+'">';
+  });
+  tr.classList.add('editing');
+  tr.querySelector('td:last-child').innerHTML = '<div class="tbl-actions"><button class="tbl-btn save" onclick="saveRow(this)">Save</button><button class="tbl-btn cancel" onclick="cancelRow(this)">Cancel</button></div>';
+}
+
+function saveRow(btn) {
+  const tr = btn.closest('tr');
+  Array.from(tr.querySelectorAll('td')).slice(0,-1).forEach(td => {
+    const input = td.querySelector('.td-input');
+    if (input) td.textContent = input.value;
+  });
+  tr.classList.remove('editing');
+  tr.querySelector('td:last-child').innerHTML = '<div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div>';
+}
+
+function cancelRow(btn) {
+  const tr = btn.closest('tr');
+  tr.classList.remove('editing');
+  Array.from(tr.querySelectorAll('.td-input')).forEach(inp => { inp.parentElement.textContent = inp.value; });
+  tr.querySelector('td:last-child').innerHTML = '<div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div>';
+}
+
+/* DELETE */
+let pendingDelRow = null;
+function delRow(btn) { pendingDelRow = btn.closest('tr'); document.getElementById('delModal').classList.add('open'); }
+function closeDelModal() { document.getElementById('delModal').classList.remove('open'); pendingDelRow = null; }
+function confirmDelete() { if (pendingDelRow) pendingDelRow.remove(); closeDelModal(); }
+
+/* ADD ROWS */
+function makeNewRow(cols, bodyId) {
+  const tr = document.createElement('tr');
+  tr.dataset.id = ++rowIdCounter;
+  tr.classList.add('editing');
+  cols.forEach(p => {
+    const td = document.createElement('td');
+    td.innerHTML = '<input class="td-input" placeholder="'+p+'">';
+    tr.appendChild(td);
+  });
+  const actionTd = document.createElement('td');
+  actionTd.innerHTML = '<div class="tbl-actions"><button class="tbl-btn save" onclick="saveRow(this)">Save</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div>';
+  tr.appendChild(actionTd);
+  document.getElementById(bodyId).prepend(tr);
+  tr.querySelector('.td-input').focus();
+}
+
+function addActivityRow() { makeNewRow(['Staff name','Role','Activity','HH:MM AM'], 'activityBody'); }
+function addNurseRow()    { makeNewRow(['Full name','EMP-XXX','Specialisation','Active','Morning'], 'nurseBody'); }
+function addPatientRow()  { makeNewRow(['Full name','STU-XXXX','Faculty','email@uni.ac.za','Active'], 'patientBody'); }
+function addApptRow()     { makeNewRow(['Patient name','STU-XXXX','Service','DD Mon YYYY','HH:MM','Nurse Name','Pending'], 'apptBody'); }
+function addInvRow()      { makeNewRow(['Item name','Category','Qty','Unit','In Stock'], 'invBody'); }
+
+/* ─── RECORDS MODALS ───────────────────────── */
+function viewRecord(btn) {
+  const tr = btn.closest('tr');
+  const cells = tr.querySelectorAll('td');
+  document.getElementById('recordModalTitle').textContent = cells[0].textContent.trim();
+  document.getElementById('recordModalSub').textContent = cells[1].textContent.trim() + ' · ' + cells[5].textContent.trim();
+  document.getElementById('recordModalBody').innerHTML = `
+    <div style="display:grid;gap:12px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div><div class="info-label">Patient</div><div class="info-val">${escHtml(cells[0].textContent.trim())}</div></div>
+        <div><div class="info-label">Student No.</div><div class="info-val">${escHtml(cells[1].textContent.trim())}</div></div>
+        <div><div class="info-label">Diagnosis</div><div class="info-val">${escHtml(cells[2].textContent.trim())}</div></div>
+        <div><div class="info-label">Medication</div><div class="info-val">${escHtml(cells[3].textContent.trim())}</div></div>
+        <div><div class="info-label">Attending Nurse</div><div class="info-val">${escHtml(cells[4].textContent.trim())}</div></div>
+        <div><div class="info-label">Date</div><div class="info-val">${escHtml(cells[5].textContent.trim())}</div></div>
+      </div>
+    </div>`;
+  document.getElementById('recordModal').classList.add('open');
+}
+function closeRecordModal() { document.getElementById('recordModal').classList.remove('open'); }
+
+let pendingSendRow = null;
+function sendToNurse(btn) {
+  pendingSendRow = btn.closest('tr');
+  const cells = pendingSendRow.querySelectorAll('td');
+  document.getElementById('nurseModalSub').textContent = 'Record for '+cells[0].textContent.trim()+' will appear in the nurse queue for editing.';
+  document.getElementById('nurseSent').style.display = 'none';
+  document.getElementById('nurseModal').classList.add('open');
+}
+function confirmSendToNurse() {
+  const sent = document.getElementById('nurseSent');
+  sent.style.display = 'flex';
+  setTimeout(() => { document.getElementById('nurseModal').classList.remove('open'); sent.style.display='none'; }, 1800);
+}
+
+/* ─── HELPERS ──────────────────────────────── */
+function escHtml(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniClinic — Sign In</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-body">
+
+<div class="auth-shell">
+
+  <!-- ═══ LEFT PANEL ═══ -->
+  <div class="auth-left">
+    <div class="auth-left-inner">
+      <div class="auth-logo-box">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="white">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <div class="auth-brand">UniClinic</div>
+      <div class="auth-tagline">Your campus health partner.<br>Access quality healthcare services anytime, anywhere.</div>
+      <div class="auth-stats">
+        <div class="auth-stat">
+          <span class="auth-stat-val">5,000+</span>
+          <span class="auth-stat-label">Students Served</span>
+        </div>
+        <div class="auth-stat">
+          <span class="auth-stat-val">15+</span>
+          <span class="auth-stat-label">Health Services</span>
+        </div>
+        <div class="auth-stat">
+          <span class="auth-stat-val">24/7</span>
+          <span class="auth-stat-label">Support</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ RIGHT PANEL ═══ -->
+  <div class="auth-right">
+    <div class="auth-form-wrap">
+
+      <div class="auth-card-title">Welcome Back</div>
+      <div class="auth-card-sub">Sign in to access your UniClinic dashboard</div>
+
+      <!-- ROLE -->
+      <div class="field">
+        <label class="field-label">Sign in as</label>
+        <div class="role-selector-plain">
+          <label class="role-plain-item">
+            <input type="radio" name="role" value="patient" checked>
+            <span class="role-plain-label">Patient</span>
+          </label>
+          <label class="role-plain-item">
+            <input type="radio" name="role" value="nurse">
+            <span class="role-plain-label">Nurse</span>
+          </label>
+          <label class="role-plain-item">
+            <input type="radio" name="role" value="admin">
+            <span class="role-plain-label">Admin</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="field">
+        <label class="field-label">Email or Student Number</label>
+        <div class="input-wrap">
+          <span class="input-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </span>
+          <input type="text" autocomplete="off" />
+        </div>
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="field">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;">
+          <label class="field-label" style="margin-bottom:0;">Password</label>
+          <button class="btn-ghost" type="button" onclick="openForgot()">Forgot Password?</button>
+        </div>
+        <div class="input-wrap">
+          <span class="input-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </span>
+          <input type="password" id="pw" autocomplete="current-password" />
+          <button class="input-icon-right" onclick="togglePw('pw','eyeIcon')" type="button">
+            <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- REMEMBER -->
+      <label class="remember-box" style="margin-bottom:20px;">
+        <input type="checkbox">
+        <span>Remember me</span>
+      </label>
+
+      <button class="btn btn-primary btn-full" onclick="handleSignIn()">Sign In</button>
+
+      <div class="auth-divider">or</div>
+
+      <div class="auth-footer-text">
+        Don't have an account? <a href="signup.html">Create Account</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FORGOT PASSWORD MODAL ═══ -->
+<div class="modal-overlay" id="forgotModal" onclick="handleOverlayClick(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Reset Password</div>
+        <div class="modal-sub">Enter your email or student number and we'll send you a reset link.</div>
+      </div>
+      <button class="modal-close" onclick="closeForgot()">&#215;</button>
+    </div>
+    <div class="field" style="margin-top:20px;margin-bottom:0;">
+      <label class="field-label">Email or Student Number</label>
+      <div class="input-wrap">
+        <span class="input-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </span>
+        <input type="text" id="resetInput" />
+      </div>
+    </div>
+    <div class="modal-success" id="resetSuccess">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Reset link sent! Check your email.
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeForgot()">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="sendReset()">Send Reset Link</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function handleSignIn() {
+    const role = document.querySelector('input[name="role"]:checked').value;
+    if (role === 'nurse')  { window.location.href = 'nurseDash.html'; }
+    else if (role === 'admin') { window.location.href = 'adminDash.html'; }
+    else { window.location.href = 'dashboard.html'; }
+  }
+
+  function togglePw(inputId, iconId) {
+    const input = document.getElementById(inputId);
+    const icon  = document.getElementById(iconId);
+    const isHidden = input.type === 'password';
+    input.type = isHidden ? 'text' : 'password';
+    icon.innerHTML = isHidden
+      ? '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>'
+      : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  }
+
+  function openForgot() {
+    document.getElementById('forgotModal').classList.add('open');
+    document.getElementById('resetSuccess').style.display = 'none';
+    document.getElementById('resetInput').value = '';
+  }
+  function closeForgot() {
+    document.getElementById('forgotModal').classList.remove('open');
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('forgotModal')) closeForgot();
+  }
+  function sendReset() {
+    if (!document.getElementById('resetInput').value.trim()) {
+      document.getElementById('resetInput').focus(); return;
+    }
+    document.getElementById('resetSuccess').style.display = 'flex';
+    setTimeout(closeForgot, 2200);
+  }
+</script>
+
+</body>
+</html>
