@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UniClinic — Book Appointment</title>
+
+  <link rel="stylesheet" href="../css/sBooking.css" />
+</head>
+
+
+
+<body>
+
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-logo">
+
+      <div class="sidebar-logo-icon">
+        <svg viewBox="0 0 24 24" fill="white">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+
+      <div>
+        <div class="sidebar-logo-text">UniClinic</div>
+        <div class="sidebar-logo-sub">
+          University Health
+        </div>
+      </div>
+
+    </div>
+
+    <nav class="sidebar-nav">
+
+      <a href="sDashboard.html" class="nav-item">
+        Dashboard
+      </a>
+
+      <a href="sBooking.html" class="nav-item active">
+        Appointments
+      </a>
+
+      <a href="sProfile.html" class="nav-item">
+        Profile
+      </a>
+
+    </nav>
+
+    <div class="sidebar-footer">
+
+      <div class="sidebar-user">
+
+        <div class="sidebar-avatar" id="avatarInitial">
+          U
+        </div>
+
+        <div>
+          <div class="sidebar-user-name" id="studentName">
+            Loading...
+          </div>
+
+          <div class="sidebar-user-role">
+            Student
+          </div>
+        </div>
+
+      </div>
+
+      <a href="login.html"
+         class="nav-item logout-btn"
+         id="logoutBtn">
+
+        Logout
+
+      </a>
+
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+
+    <div class="topbar">
+
+      <div>
+
+        <div class="topbar-title">
+          Book Appointment
+        </div>
+
+        <div class="topbar-sub">
+          Schedule a clinic visit
+        </div>
+
+      </div>
+
+      <div class="topbar-right">
+
+        <div class="topbar-avatar" id="topAvatar">
+          U
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="page-body">
+
+      <div class="booking-grid">
+
+        <!-- LEFT -->
+        <div class="flex-col">
+
+          <!-- SERVICES -->
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">
+                Select Service
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <div id="chips">
+                <!-- dynamic -->
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- DATE -->
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">
+                Select Date
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <label class="field-label">
+                Preferred Date
+              </label>
+
+              <input
+                type="date"
+                id="dateInput"
+              />
+
+            </div>
+
+          </div>
+
+          <!-- NOTES -->
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">
+                Additional Notes
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <textarea
+                id="notesInput"
+                rows="4"
+                placeholder="Any symptoms or information..."
+              ></textarea>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="flex-col">
+
+          <!-- TIME -->
+          <div class="card">
+
+            <div class="card-header">
+
+              <div class="card-title">
+                Available Time Slots
+              </div>
+
+              <div class="card-sub">
+                Select a convenient time
+              </div>
+
+            </div>
+
+            <div class="card-body">
+
+              <div class="time-grid" id="timeGrid">
+                <!-- dynamic -->
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- SUMMARY -->
+          <div class="card">
+
+            <div class="card-header">
+              <div class="card-title">
+                Booking Summary
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <div id="summary-empty">
+                Select a service, date and time.
+              </div>
+
+              <div
+                id="summary-box"
+                class="confirm-box"
+                style="display:none;"
+              >
+
+                <div class="confirm-row">
+                  <span class="confirm-key">
+                    Patient
+                  </span>
+
+                  <span
+                    class="confirm-val"
+                    id="summaryPatient">
+                  </span>
+                </div>
+
+                <div class="confirm-row">
+                  <span class="confirm-key">
+                    Service
+                  </span>
+
+                  <span
+                    class="confirm-val"
+                    id="s-service">
+                  </span>
+                </div>
+
+                <div class="confirm-row">
+                  <span class="confirm-key">
+                    Date
+                  </span>
+
+                  <span
+                    class="confirm-val"
+                    id="s-date">
+                  </span>
+                </div>
+
+                <div class="confirm-row">
+                  <span class="confirm-key">
+                    Time
+                  </span>
+
+                  <span
+                    class="confirm-val"
+                    id="s-time">
+                  </span>
+                </div>
+
+              </div>
+
+              <button
+                class="btn btn-primary btn-full mt-20"
+                id="bookBtn"
+                disabled>
+
+                Book Appointment
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- HISTORY -->
+      <!-- HISTORY -->
+<div class="card mt-20">
+
+  <div class="card-header">
+
+    <div class="card-title">
+      My Appointment History
+    </div>
+
+  </div>
+
+  <div class="card-body">
+
+    <div class="history-topbar">
+
+      <input
+        type="text"
+        id="searchAppointment"
+        class="field"
+        placeholder="Search appointments..."
+      />
+
+      <select id="filterStatus" class="field">
+
+        <option value="All">
+          All Status
+        </option>
+
+        <option value="Booked">
+          Booked
+        </option>
+
+        <option value="Cancelled">
+          Cancelled
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="appt-list" id="historyList">
+      <!-- dynamic -->
+    </div>
+
+  </div>
+
+</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  
+</div>
+
+<!-- TOAST -->
+<div id="toast">
+  Appointment booked successfully!
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../JavaScript/supabase.js"></script>
+
+<script src="../JavaScript/auth-session.js"></script>
+
+<script src="../JavaScript/sBooking.js"></script>
+
+</body>
+</html>

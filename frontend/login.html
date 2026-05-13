@@ -1,18 +1,294 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>UniClinic — Sign In</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="css/login.css"/>
+
 </head>
 
-<body style="background:#eef2f7;">
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,sans-serif;
+}
+
+body{
+  background:#eef2f7;
+  min-height:100vh;
+}
+
+.auth-shell{
+  display:flex;
+  min-height:100vh;
+}
+
+.auth-left{
+  width:42%;
+  background:linear-gradient(135deg,#0f766e,#14b8a6);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:50px;
+}
+
+.auth-left-inner{
+  max-width:420px;
+}
+
+.auth-logo-box{
+  width:72px;
+  height:72px;
+  border-radius:22px;
+  background:rgba(255,255,255,.15);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:30px;
+  backdrop-filter:blur(12px);
+}
+
+.auth-brand{
+  font-size:42px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+
+.auth-tagline{
+  line-height:1.7;
+  color:rgba(255,255,255,.9);
+  font-size:16px;
+  margin-bottom:45px;
+}
+
+.auth-stats{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.auth-stat{
+  padding:18px;
+  border-radius:20px;
+  background:rgba(255,255,255,.1);
+  min-width:120px;
+}
+
+.auth-stat-val{
+  display:block;
+  font-size:22px;
+  font-weight:700;
+}
+
+.auth-stat-label{
+  font-size:13px;
+}
+
+.auth-right{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+}
+
+.auth-card{
+  width:100%;
+  max-width:560px;
+  background:white;
+  border-radius:32px;
+  padding:45px;
+  box-shadow:0 10px 40px rgba(15,23,42,.08);
+}
+
+.auth-card-title{
+  font-size:34px;
+  font-weight:800;
+  color:#0f172a;
+  margin-bottom:10px;
+}
+
+.auth-card-sub{
+  color:#64748b;
+  margin-bottom:35px;
+}
+
+.field{
+  margin-bottom:22px;
+}
+
+.field-label{
+  display:block;
+  margin-bottom:10px;
+  font-size:14px;
+  font-weight:600;
+  color:#334155;
+}
+
+.input-wrap{
+  position:relative;
+}
+
+.input-icon{
+  position:absolute;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#94a3b8;
+}
+
+.input-icon-right{
+  position:absolute;
+  right:14px;
+  top:50%;
+  transform:translateY(-50%);
+  border:none;
+  background:none;
+  cursor:pointer;
+  color:#94a3b8;
+}
+
+.input-wrap input{
+  width:100%;
+  height:58px;
+  border-radius:16px;
+  border:1.5px solid #dbe4ee;
+  background:#f8fafc;
+  padding:0 48px;
+  font-size:15px;
+}
+
+.input-wrap input:focus,
+.select-wrap select:focus{
+  outline:none;
+  border-color:#14b8a6;
+  background:white;
+  box-shadow:0 0 0 4px rgba(20,184,166,.12);
+}
+
+.select-wrap select{
+  width:100%;
+  height:58px;
+  border-radius:16px;
+  border:1.5px solid #dbe4ee;
+  background:#f8fafc;
+  padding:0 18px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.remember-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:24px 0;
+}
+
+.remember-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+}
+
+.btn{
+  border:none;
+  cursor:pointer;
+}
+
+.btn-primary{
+  background:#14b8a6;
+  color:white;
+}
+
+.btn-primary:hover{
+  background:#0f766e;
+}
+
+.btn-full{
+  width:100%;
+  height:58px;
+  border-radius:16px;
+  font-size:16px;
+  font-weight:700;
+}
+
+.btn-ghost{
+  border:none;
+  background:none;
+  color:#14b8a6;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.auth-footer-text{
+  margin-top:28px;
+  text-align:center;
+  font-size:14px;
+  color:#64748b;
+}
+
+.auth-footer-text a{
+  color:#14b8a6;
+  text-decoration:none;
+  font-weight:700;
+}
+
+.popup{
+  position:fixed;
+  top:30px;
+  right:30px;
+  background:white;
+  border-radius:16px;
+  padding:18px 22px;
+  min-width:280px;
+  box-shadow:0 10px 35px rgba(0,0,0,.1);
+  transform:translateX(120%);
+  transition:.35s;
+  z-index:9999;
+}
+
+.popup.show{
+  transform:translateX(0);
+}
+
+.popup.success{
+  border-left:5px solid #10b981;
+}
+
+.popup.error{
+  border-left:5px solid #ef4444;
+}
+
+@media(max-width:980px){
+
+  .auth-left{
+    display:none;
+  }
+
+  .auth-right{
+    padding:20px;
+  }
+
+  .auth-card{
+    padding:30px;
+  }
+
+}
+</style>
+
+<body>
 
 <div class="auth-shell">
 
-  <!-- ═════════════════ LEFT PANEL ═════════════════ -->
+  <!-- LEFT -->
   <div class="auth-left">
 
     <div class="auth-left-inner">
@@ -24,7 +300,9 @@
         </svg>
       </div>
 
-      <div class="auth-brand">UniClinic</div>
+      <div class="auth-brand">
+        UniClinic
+      </div>
 
       <div class="auth-tagline">
         Your campus health partner.<br>
@@ -54,202 +332,140 @@
 
   </div>
 
-  <!-- ═════════════════ RIGHT PANEL ═════════════════ -->
+  <!-- RIGHT -->
   <div class="auth-right">
 
     <div class="auth-card">
 
-      <div class="auth-card-title">Welcome Back</div>
+      <div class="auth-card-title">
+        Welcome Back
+      </div>
 
       <div class="auth-card-sub">
         Sign in to access your UniClinic dashboard
       </div>
 
-      <!-- EMAIL -->
-      <div class="field">
+      <form id="loginForm">
 
-        <label class="field-label">
-          Email or Student Number
-        </label>
+        <!-- LOGIN -->
+        <div class="field">
 
-        <div class="input-wrap">
+          <label class="field-label">
+            Email or Student Number
+          </label>
 
-          <span class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4
-              c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            </svg>
-          </span>
+          <div class="input-wrap">
 
-          <input
-            type="text"
-            placeholder="name@uni.ac.za or 202512345"
-          />
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4
+                c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              </svg>
+            </span>
+
+            <input
+              type="text"
+              id="loginInput"
+              placeholder="name@uni.ac.za or 202512345"
+              required
+            />
+
+          </div>
 
         </div>
 
-      </div>
+        <!-- PASSWORD -->
+        <div class="field">
 
-      <!-- PASSWORD -->
-      <div class="field">
-
-        <label class="field-label">Password</label>
-
-        <div class="input-wrap">
-
-          <span class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="11" width="18" height="11"
-                rx="2" ry="2"/>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-            </svg>
-          </span>
-
-          <input
-            type="password"
-            id="pw"
-            placeholder="Enter your password"
-          />
-
-          <button
-            class="input-icon-right"
-            onclick="togglePw('pw','eyeIcon')"
-            type="button">
-
-            <svg id="eyeIcon" width="16" height="16"
-              viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2">
-
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
-
-            </svg>
-
-          </button>
-
-        </div>
-
-      </div>
-
-      <!-- ROLE SELECTION -->
-      <div class="field">
-
-        <label class="field-label">
-          Login As
-        </label>
-
-        <div class="role-selector">
-
-          <!-- PATIENT -->
-          <label class="role-card active-role">
-
-            <input type="radio" name="role" checked>
-
-            <div class="role-icon patient-role">
-
-              <svg width="20" height="20" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor"
-                stroke-width="2">
-
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8
-                a4 4 0 0 0-4 4v2"/>
-
-                <circle cx="12" cy="7" r="4"/>
-
-              </svg>
-
-            </div>
-
-            <div>
-              <div class="role-title">Patient</div>
-              <div class="role-sub">
-                Students & Staff
-              </div>
-            </div>
-
+          <label class="field-label">
+            Password
           </label>
 
-          <!-- NURSE -->
-          <label class="role-card">
+          <div class="input-wrap">
 
-            <input type="radio" name="role">
-
-            <div class="role-icon nurse-role">
-
-              <svg width="20" height="20" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor"
-                stroke-width="2">
-
-                <path d="M8 2h8"/>
-                <path d="M12 2v20"/>
-                <path d="M5 12h14"/>
-
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11"
+                  rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
+            </span>
 
-            </div>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            />
 
-            <div>
-              <div class="role-title">Nurse</div>
-              <div class="role-sub">
-                Clinic Staff
-              </div>
-            </div>
+            <button
+              class="input-icon-right"
+              type="button"
+              id="togglePassword">
 
-          </label>
-
-          <!-- ADMIN -->
-          <label class="role-card">
-
-            <input type="radio" name="role">
-
-            <div class="role-icon admin-role">
-
-              <svg width="20" height="20" viewBox="0 0 24 24"
-                fill="none" stroke="currentColor"
+              <svg id="eyeIcon" width="16" height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
                 stroke-width="2">
 
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
                 <circle cx="12" cy="12" r="3"/>
 
               </svg>
 
-            </div>
+            </button>
 
-            <div>
-              <div class="role-title">Admin</div>
-              <div class="role-sub">
-                System Manager
-              </div>
-            </div>
-
-          </label>
+          </div>
 
         </div>
 
-      </div>
+        <!-- ROLE -->
+        <div class="field">
 
-      <!-- REMEMBER -->
-      <div class="remember-row">
+          <label class="field-label">
+            Login As
+          </label>
 
-        <label class="remember-box">
-          <input type="checkbox">
-          <span>Remember me</span>
-        </label>
+          <div class="select-wrap">
 
-        <button class="btn-ghost">
-          Forgot Password?
+            <select id="roleSelect" required>
+              <option value="">
+                Loading roles...
+              </option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <!-- REMEMBER -->
+        <div class="remember-row">
+
+          <label class="remember-box">
+            <input type="checkbox">
+            <span>Remember me</span>
+          </label>
+
+          <button class="btn-ghost" type="button">
+            Forgot Password?
+          </button>
+
+        </div>
+
+        <!-- BUTTON -->
+        <button
+          type="submit"
+          class="btn btn-primary btn-full"
+          id="loginBtn">
+
+          Sign In
+
         </button>
 
-      </div>
-
-      <!-- BUTTON -->
-      <a href="dashboard.html"
-        class="btn btn-primary btn-full">
-
-        Sign In
-
-      </a>
+      </form>
 
       <!-- FOOTER -->
       <div class="auth-footer-text">
@@ -268,27 +484,11 @@
 
 </div>
 
-<script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-function togglePw(inputId, iconId) {
+<script src="../JavaScript/supabase.js"></script>
 
-  const input = document.getElementById(inputId);
-  const icon  = document.getElementById(iconId);
-
-  const isHidden = input.type === 'password';
-
-  input.type = isHidden ? 'text' : 'password';
-
-  icon.innerHTML = isHidden
-
-  ? '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8"/><line x1="1" y1="1" x2="23" y2="23"/>'
-
-  : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
-
-}
-
-</script>
+<script src="../JavaScript/login.js"></script>
 
 </body>
 </html>
-

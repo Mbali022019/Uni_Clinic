@@ -1,33 +1,611 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>UniClinic — Create Account</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/signup.css"/>
 </head>
-<body style="background:#eef2f7;">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --primary:#14b8a6;
+  --primary-dark:#0f766e;
+  --primary-light:#ccfbf1;
+
+  --bg:#edf2f7;
+  --card:#ffffff;
+
+  --text:#0f172a;
+  --muted:#64748b;
+
+  --border:#dbe3ec;
+
+  --shadow:
+    0 20px 45px rgba(15,23,42,.08);
+
+  --radius-xl:32px;
+  --radius-lg:22px;
+  --radius-md:16px;
+  --radius-sm:12px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:var(--bg);
+  font-family:'Outfit',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ================================================= */
+/* SHELL */
+/* ================================================= */
+
+.auth-shell{
+  display:grid;
+  grid-template-columns: 42% 58%;
+  min-height:100vh;
+}
+
+/* ================================================= */
+/* LEFT */
+/* ================================================= */
+
+.auth-left{
+  position:relative;
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      180deg,
+      #0f766e 0%,
+      #14b8a6 55%,
+      #2dd4bf 100%
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:60px;
+}
+
+.bg-circle{
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+}
+
+.circle-1{
+  width:320px;
+  height:320px;
+  top:-140px;
+  left:-90px;
+}
+
+.circle-2{
+  width:240px;
+  height:240px;
+  bottom:-100px;
+  right:-80px;
+}
+
+.auth-left-inner{
+  position:relative;
+  z-index:5;
+  width:100%;
+  max-width:420px;
+  text-align:center;
+  color:white;
+}
+
+.auth-logo-box{
+  width:86px;
+  height:86px;
+  margin:auto;
+
+  border-radius:28px;
+
+  background:rgba(255,255,255,.16);
+
+  backdrop-filter:blur(10px);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.14),
+    0 15px 35px rgba(0,0,0,.15);
+}
+
+.auth-brand{
+  margin-top:34px;
+  font-size:58px;
+  font-weight:800;
+  letter-spacing:-2px;
+}
+
+.auth-tagline{
+  margin-top:18px;
+  line-height:1.8;
+  font-size:19px;
+  opacity:.94;
+}
+
+.auth-stats{
+  margin-top:55px;
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  border:1px solid rgba(255,255,255,.16);
+
+  background:rgba(255,255,255,.08);
+
+  backdrop-filter:blur(10px);
+
+  border-radius:24px;
+  overflow:hidden;
+}
+
+.auth-stat{
+  padding:24px 10px;
+}
+
+.auth-stat:not(:last-child){
+  border-right:1px solid rgba(255,255,255,.14);
+}
+
+.auth-stat-val{
+  display:block;
+  font-size:32px;
+  font-weight:800;
+}
+
+.auth-stat-label{
+  display:block;
+  margin-top:8px;
+  font-size:13px;
+  opacity:.88;
+}
+
+/* ================================================= */
+/* RIGHT */
+/* ================================================= */
+
+.auth-right{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:50px;
+}
+
+.auth-card{
+  width:100%;
+  max-width:760px;
+
+  background:rgba(255,255,255,.78);
+
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,.65);
+
+  border-radius:var(--radius-xl);
+
+  padding:50px;
+
+  box-shadow:var(--shadow);
+}
+
+.auth-top{
+  margin-bottom:34px;
+}
+
+.auth-card-title{
+  font-size:46px;
+  font-weight:800;
+  color:var(--text);
+  letter-spacing:-1.6px;
+}
+
+.auth-card-sub{
+  margin-top:10px;
+  font-size:17px;
+  color:var(--muted);
+}
+
+/* ================================================= */
+/* FORM */
+/* ================================================= */
+
+.field{
+  margin-bottom:24px;
+}
+
+.field-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.field-label{
+  display:block;
+  margin-bottom:10px;
+
+  font-size:15px;
+  font-weight:600;
+
+  color:#1e293b;
+}
+
+.input-wrap{
+  position:relative;
+}
+
+.input-icon{
+  position:absolute;
+  top:50%;
+  left:18px;
+  transform:translateY(-50%);
+
+  color:#94a3b8;
+}
+
+.input-wrap input{
+  width:100%;
+  height:58px;
+
+  border-radius:18px;
+  border:1.5px solid var(--border);
+
+  background:#f8fafc;
+
+  padding:0 18px 0 52px;
+
+  font-family:'Outfit',sans-serif;
+  font-size:15px;
+
+  transition:.25s ease;
+}
+
+.no-icon{
+  padding-left:18px !important;
+}
+
+.input-wrap input:focus{
+  outline:none;
+
+  border-color:var(--primary);
+
+  background:white;
+
+  box-shadow:
+    0 0 0 4px rgba(20,184,166,.12);
+}
+
+.input-wrap input::placeholder{
+  color:#94a3b8;
+}
+
+/* ================================================= */
+/* ROLE */
+/* ================================================= */
+
+.role-selector{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.role-card{
+  position:relative;
+
+  border:1.5px solid var(--border);
+  background:#f8fafc;
+
+  border-radius:22px;
+
+  padding:22px 20px;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+}
+
+.role-card:hover{
+  transform:translateY(-3px);
+
+  border-color:var(--primary);
+
+  box-shadow:
+    0 15px 35px rgba(15,118,110,.08);
+}
+
+.role-card input{
+  position:absolute;
+  top:18px;
+  right:18px;
+
+  transform:scale(1.1);
+}
+
+.active-role{
+  border-color:var(--primary);
+  background:white;
+
+  box-shadow:
+    0 12px 30px rgba(20,184,166,.12);
+}
+
+.role-icon{
+  width:52px;
+  height:52px;
+
+  border-radius:16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:24px;
+  margin-bottom:16px;
+
+  color:white;
+}
+
+.patient-role{
+  background:linear-gradient(135deg,#14b8a6,#2dd4bf);
+}
+
+.nurse-role{
+  background:linear-gradient(135deg,#3b82f6,#60a5fa);
+}
+
+.admin-role{
+  background:linear-gradient(135deg,#8b5cf6,#a78bfa);
+}
+
+.role-title{
+  font-size:18px;
+  font-weight:700;
+  color:var(--text);
+}
+
+.role-sub{
+  margin-top:4px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+/* ================================================= */
+/* BUTTON */
+/* ================================================= */
+
+.submit-wrap{
+  margin-top:32px;
+}
+
+.btn{
+  border:none;
+  cursor:pointer;
+
+  font-family:'Outfit',sans-serif;
+}
+
+.btn-full{
+  width:100%;
+}
+
+.btn-primary{
+  height:60px;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0f766e,
+      #14b8a6
+    );
+
+  color:white;
+
+  font-size:17px;
+  font-weight:700;
+
+  transition:.25s ease;
+
+  box-shadow:
+    0 15px 30px rgba(20,184,166,.22);
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 18px 40px rgba(20,184,166,.3);
+}
+
+/* ================================================= */
+/* FOOTER */
+/* ================================================= */
+
+.auth-footer-text{
+  margin-top:28px;
+
+  text-align:center;
+
+  font-size:15px;
+  color:var(--muted);
+}
+
+.auth-footer-text a{
+  color:var(--primary-dark);
+  font-weight:700;
+  text-decoration:none;
+}
+
+.auth-footer-text a:hover{
+  text-decoration:underline;
+}
+
+/* ================================================= */
+/* ERROR */
+/* ================================================= */
+
+.error-msg{
+  display:none;
+  margin-top:18px;
+
+  padding:14px 16px;
+
+  border-radius:14px;
+
+  background:#fee2e2;
+  color:#dc2626;
+
+  font-size:14px;
+  font-weight:500;
+}
+
+/* ================================================= */
+/* RESPONSIVE */
+/* ================================================= */
+
+@media(max-width:1100px){
+
+  .auth-shell{
+    grid-template-columns:1fr;
+  }
+
+  .auth-left{
+    display:none;
+  }
+
+  .auth-right{
+    padding:30px 18px;
+  }
+
+  .auth-card{
+    padding:34px 24px;
+  }
+}
+
+@media(max-width:720px){
+
+  .field-row{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+
+  .role-selector{
+    grid-template-columns:1fr;
+  }
+
+  .auth-card-title{
+    font-size:36px;
+  }
+
+  /* ==========================================
+POPUP NOTIFICATIONS
+========================================== */
+
+.popup {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  min-width: 320px;
+  padding: 18px 22px;
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 9999;
+
+  transform: translateY(-30px);
+  opacity: 0;
+
+  transition: all 0.35s ease;
+}
+
+.popup.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.popup.success {
+  background: linear-gradient(
+    135deg,
+    #10b981,
+    #059669
+  );
+
+  box-shadow:
+    0 12px 30px rgba(16,185,129,.25);
+}
+
+.popup.error {
+  background: linear-gradient(
+    135deg,
+    #ef4444,
+    #dc2626
+  );
+
+  box-shadow:
+    0 12px 30px rgba(239,68,68,.25);
+}
+
+.popup-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+}
+
+</style>
+
+<body>
 
 <div class="auth-shell">
 
-  <!-- ═══ LEFT PANEL ═══ -->
+  <!-- ═════════════════ LEFT PANEL ═════════════════ -->
   <div class="auth-left">
+
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+
     <div class="auth-left-inner">
 
       <div class="auth-logo-box">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="white">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
       </div>
 
-      <div class="auth-brand">UniClinic</div>
+      <div class="auth-brand">
+        UniClinic
+      </div>
+
       <div class="auth-tagline">
-        Your campus health partner.<br>
+        Your campus health partner.<br/>
         Access quality healthcare services anytime, anywhere.
       </div>
 
       <div class="auth-stats">
+
         <div class="auth-stat">
           <span class="auth-stat-val">5,000+</span>
           <span class="auth-stat-label">Students Served</span>
@@ -42,165 +620,320 @@
           <span class="auth-stat-val">24/7</span>
           <span class="auth-stat-label">Support</span>
         </div>
+
       </div>
 
     </div>
   </div>
 
-  <!-- ═══ RIGHT PANEL ═══ -->
+  <!-- ═════════════════ RIGHT PANEL ═════════════════ -->
   <div class="auth-right">
+
     <div class="auth-card">
 
-      <div class="auth-card-title">Create Account</div>
-      <div class="auth-card-sub">Join UniClinic to manage your health</div>
+      <div class="auth-top">
+        <div class="auth-card-title">
+          Create Account
+        </div>
 
-      <!-- Full Name -->
-      <div class="field">
-        <label class="field-label">Full Name</label>
-        <div class="input-wrap">
-          <span class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-          </span>
-          <input type="text" placeholder="John Doe" />
+        <div class="auth-card-sub">
+          Join UniClinic to manage your health
         </div>
       </div>
 
-      <!-- Student / Staff Number -->
-      <div class="field">
-        <label class="field-label">Student / Staff Number</label>
-        <div class="input-wrap">
-          <span class="input-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="4" y1="9" x2="20" y2="9"/>
-              <line x1="4" y1="15" x2="20" y2="15"/>
-            </svg>
-          </span>
-          <input type="text" placeholder="e.g. 202512345" />
-        </div>
-      </div>
+      <!-- FORM -->
+      <form id="signupForm">
 
-      <!-- Email + Contact -->
-      <div class="field-row">
+        <!-- FULL NAME -->
+        <div class="field">
 
-        <div class="field" style="margin-bottom:0;">
-          <label class="field-label">Email</label>
+          <label class="field-label">
+            Full Name
+          </label>
+
           <div class="input-wrap">
+
             <span class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              </svg>
-            </span>
-            <input type="email" placeholder="name@uni.ac.za" />
-          </div>
-        </div>
-
-        <div class="field" style="margin-bottom:0;">
-          <label class="field-label">Contact Number</label>
-          <div class="input-wrap">
-            <span class="input-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2"/>
-              </svg>
-            </span>
-            <input type="tel" placeholder="012 345 6789" />
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ROLE SELECTION -->
-      <div class="field" style="margin-top:18px;">
-        <label class="field-label">Register As</label>
-
-        <div class="role-selector">
-
-          <label class="role-card active-role">
-            <input type="radio" name="role" checked>
-
-            <div class="role-icon patient-role">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg width="16" height="16" viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="2">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                 <circle cx="12" cy="7" r="4"/>
               </svg>
-            </div>
+            </span>
 
-            <div>
-              <div class="role-title">Patient</div>
-              <div class="role-sub">Students & Staff</div>
-            </div>
-          </label>
+            <input
+              type="text"
+              id="full_name"
+              placeholder="John Doe"
+              required
+            />
 
-          <label class="role-card">
-            <input type="radio" name="role">
-
-            <div class="role-icon nurse-role">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M8 2h8"/>
-                <path d="M12 2v20"/>
-                <path d="M5 12h14"/>
-              </svg>
-            </div>
-
-            <div>
-              <div class="role-title">Nurse</div>
-              <div class="role-sub">Clinic Staff</div>
-            </div>
-          </label>
-
-          <label class="role-card">
-            <input type="radio" name="role">
-
-            <div class="role-icon admin-role">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3"/>
-              </svg>
-            </div>
-
-            <div>
-              <div class="role-title">Admin</div>
-              <div class="role-sub">System Manager</div>
-            </div>
-          </label>
-
-        </div>
-      </div>
-
-      <!-- Passwords -->
-      <div class="field-row" style="margin-top:18px;">
-
-        <div class="field" style="margin-bottom:0;">
-          <label class="field-label">Password</label>
-          <div class="input-wrap">
-            <input type="password" id="pw1" placeholder="Create password" class="no-icon" />
           </div>
         </div>
 
-        <div class="field" style="margin-bottom:0;">
-          <label class="field-label">Confirm Password</label>
+        <!-- STUDENT NUMBER -->
+        <div class="field">
+
+          <label class="field-label">
+            Student / Staff Number
+          </label>
+
           <div class="input-wrap">
-            <input type="password" id="pw2" placeholder="Confirm password" class="no-icon" />
+
+            <span class="input-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24"
+                   fill="none"
+                   stroke="currentColor"
+                   stroke-width="2">
+                <line x1="4" y1="9" x2="20" y2="9"/>
+                <line x1="4" y1="15" x2="20" y2="15"/>
+              </svg>
+            </span>
+
+            <input
+              type="text"
+              id="student_number"
+              placeholder="e.g. 202512345"
+              required
+            />
+
           </div>
         </div>
 
-      </div>
+        <!-- EMAIL + PHONE -->
+        <div class="field-row">
 
-      <!-- Submit -->
-      <div style="margin-top:26px;">
-        <a href="dashboard.html" class="btn btn-primary btn-full">Create Account</a>
-      </div>
+          <div class="field">
 
+            <label class="field-label">
+              Email
+            </label>
+
+            <div class="input-wrap">
+
+              <span class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                </svg>
+              </span>
+
+              <input
+                type="email"
+                id="email"
+                placeholder="name@uni.ac.za"
+                required
+              />
+
+            </div>
+          </div>
+
+          <div class="field">
+
+            <label class="field-label">
+              Contact Number
+            </label>
+
+            <div class="input-wrap">
+
+              <span class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2"/>
+                </svg>
+              </span>
+
+              <input
+                type="tel"
+                id="phone"
+                placeholder="0712345678"
+              />
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ROLE -->
+        <div class="field">
+
+          <label class="field-label">
+            Register As
+          </label>
+
+          <div class="role-selector">
+
+            <!-- PATIENT -->
+            <label class="role-card active-role">
+
+              <input
+                type="radio"
+                name="role"
+                value="student"
+                data-patient-type="student"
+                checked
+              />
+
+              <div class="role-icon patient-role">
+                👤
+              </div>
+
+              <div>
+                <div class="role-title">
+                  Patient
+                </div>
+
+                <div class="role-sub">
+                  Students & Staff
+                </div>
+              </div>
+
+            </label>
+
+            <!-- NURSE -->
+            <label class="role-card">
+
+              <input
+                type="radio"
+                name="role"
+                value="nurse"
+                data-patient-type="staff"
+              />
+
+              <div class="role-icon nurse-role">
+                ✚
+              </div>
+
+              <div>
+                <div class="role-title">
+                  Nurse
+                </div>
+
+                <div class="role-sub">
+                  Clinic Staff
+                </div>
+              </div>
+
+            </label>
+
+            <!-- ADMIN -->
+            <label class="role-card">
+
+              <input
+                type="radio"
+                name="role"
+                value="admin"
+                data-patient-type="staff"
+              />
+
+              <div class="role-icon admin-role">
+                ⚙
+              </div>
+
+              <div>
+                <div class="role-title">
+                  Admin
+                </div>
+
+                <div class="role-sub">
+                  System Manager
+                </div>
+              </div>
+
+            </label>
+
+          </div>
+        </div>
+
+        <!-- PASSWORDS -->
+        <div class="field-row">
+
+          <div class="field">
+
+            <label class="field-label">
+              Password
+            </label>
+
+            <div class="input-wrap">
+
+              <input
+                type="password"
+                id="password"
+                class="no-icon"
+                placeholder="Create password"
+                required
+              />
+
+            </div>
+
+          </div>
+
+          <div class="field">
+
+            <label class="field-label">
+              Confirm Password
+            </label>
+
+            <div class="input-wrap">
+
+              <input
+                type="password"
+                id="confirm_password"
+                class="no-icon"
+                placeholder="Confirm password"
+                required
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ERROR -->
+        <div id="signupMessage" class="error-msg"></div>
+
+        <!-- SUBMIT -->
+        <div class="submit-wrap">
+
+          <button
+            type="submit"
+            class="btn btn-primary btn-full"
+            id="signupBtn"
+          >
+            Create Account
+          </button>
+
+        </div>
+
+      </form>
+
+      <!-- FOOTER -->
       <div class="auth-footer-text">
         Already have an account?
-        <a href="login.html">Sign In</a>
+        <a href="login.html">
+          Sign In
+        </a>
       </div>
 
     </div>
   </div>
-
 </div>
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<!-- SUPABASE -->
+<script src="js/supabase.js"></script>
+
+<!-- SIGNUP -->
+<script src="js/signup.js"></script>
 
 </body>
 </html>
