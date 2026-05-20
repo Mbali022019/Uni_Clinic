@@ -12,8 +12,10 @@ export async function getAppointments() {
     `)
     .order("appointment_date", { ascending: false });
 
-  if (error) throw error;
-  return data;
+  if (error) {
+  console.error("Supabase Error:", error);
+  return [];
+}
 }
 
 // ===============================
@@ -25,8 +27,10 @@ export async function getPatients() {
     .select("*")
     .order("created_at", { ascending: false });
 
-  if (error) throw error;
-  return data;
+  if (error) {
+  console.error("Supabase Error:", error);
+  return [];
+}
 }
 
 // ===============================
@@ -38,6 +42,35 @@ export async function updateAppointment(id, status) {
     .update({ status })
     .eq("appointment_id", id);
 
-  if (error) throw error;
-  return data;
+  if (error) {
+  console.error("Supabase Error:", error);
+  return [];
+}
+}
+
+//Get Stats
+export async function getStats() {
+
+  const { data: patients } = await db
+    .from("patient")
+    .select("patient_id");
+
+  const { data: appointments } = await db
+    .from("appointments")
+    .select("appointment_id, status");
+
+  const totalPatients = patients?.length || 0;
+  const totalAppointments = appointments?.length || 0;
+
+  const approved = appointments?.filter(a => a.status === "Approved").length || 0;
+  const rejected = appointments?.filter(a => a.status === "Rejected").length || 0;
+  const booked = appointments?.filter(a => a.status === "Booked").length || 0;
+
+  return {
+    totalPatients,
+    totalAppointments,
+    approved,
+    rejected,
+    booked
+  };
 }

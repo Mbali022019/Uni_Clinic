@@ -336,6 +336,27 @@
           </div>
         </div>
       </div>
+    <div>
+  <input type="text" id="patientSearch" placeholder="Search patients..." />
+  <select id="patientFilter">
+    <option value="All">All</option>
+    <option value="student">Student</option>
+    <option value="staff">Staff</option>
+  </select>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Type</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody id="patientsTable"></tbody>
+</table>
 
       <!-- ══════════ MEDICAL RECORDS PAGE (read-only, send to nurse) ══════════ -->
       <div id="page-records" style="display:none;">
@@ -872,6 +893,15 @@ function escHtml(str) {
   return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 </script>
-<script type="module" src="../JS/adminDashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<script src="../JavaScript/supabase.js"></script>
+
+<script type="module" src="../JavaScript/adminDashboard.js"></script>
 </body>
 </html>
+<span id="totalPatients"></span>
+<span id="totalAppointments"></span>
+<span id="approvedCount"></span>
+<span id="rejectedCount"></span>
+<span id="bookedCount"></span>
