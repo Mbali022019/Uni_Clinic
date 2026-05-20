@@ -234,6 +234,21 @@
       </div>
 
       <!-- ══════════ APPOINTMENTS PAGE ══════════ -->
+       <table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Patient</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Service</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody id="appointmentsTable"></tbody>
+</table>
       <div id="page-appointments" style="display:none;">
         <div class="card">
           <div class="card-header">
@@ -857,5 +872,6 @@ function escHtml(str) {
   return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 </script>
+<script type="module" src="../JS/adminDashboard.js"></script>
 </body>
 </html>
