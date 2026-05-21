@@ -93,145 +93,117 @@
     <div class="page-body">
 
       <!-- ══════════ DASHBOARD PAGE ══════════ -->
-      <div id="page-dashboard">
+<div id="page-dashboard">
 
-        <!-- Stats Row -->
-        <div class="stats-grid mb-22">
-          <div class="stat-card">
-            <div class="stat-icon teal">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div class="stat-val">1,284</div>
-            <div class="stat-label">Registered Patients</div>
-            <div class="stat-trend up">↑ 42 this month</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <div class="stat-val">15</div>
-            <div class="stat-label">Clinic Staff</div>
-            <div class="stat-trend neutral">3 nurses on duty</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon green">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <div class="stat-val">324</div>
-            <div class="stat-label">Appointments This Month</div>
-            <div class="stat-trend up">↑ 12% vs last month</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon teal">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <div class="stat-val" style="color:var(--green-600);font-size:20px;">ACTIVE</div>
-            <div class="stat-label">System Status</div>
-            <div class="stat-trend up">All services running</div>
-          </div>
-        </div>
+  <!-- Stats Row -->
+  <div class="stats-grid mb-22">
 
-        <!-- Live Trackers -->
-        <div class="iot-grid mb-22">
-          <!-- Booked Appointments Today -->
-          <div class="iot-card accent-teal">
-            <div class="iot-card-header">
-              <div class="iot-card-title">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                Booked Appointments Today
-              </div>
-              <div class="sensor-live"><div class="pulse-dot"></div>LIVE</div>
-            </div>
-            <div class="iot-counter-body">
-              <div>
-                <div class="iot-number teal" id="adm-apptCheckedInDisplay">5</div>
-                <div class="iot-sublabel">checked in of <strong id="adm-apptTotal">12</strong> booked</div>
-              </div>
-              <div style="position:relative;width:64px;height:64px;">
-                <svg width="64" height="64" viewBox="0 0 64 64" style="transform:rotate(-90deg)"><circle class="iot-ring-bg" cx="32" cy="32" r="28"/><circle class="iot-ring-fg teal" id="adm-apptRing" cx="32" cy="32" r="28" stroke-dasharray="175.9" stroke-dashoffset="102.1"/></svg>
-                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:13px;font-weight:800;color:var(--teal-600);"><span id="adm-apptPct">42%</span></div>
-              </div>
-            </div>
-            <div class="iot-progress-bar-wrap">
-              <div class="iot-bar-label">
-                <span>Checked in: <strong id="adm-apptCheckedIn">5</strong></span>
-                <span>Remaining: <strong id="adm-apptRem">7</strong></span>
-              </div>
-              <div class="iot-bar-track"><div class="iot-bar-fill teal" id="adm-apptBar" style="width:42%;"></div></div>
-            </div>
-          </div>
-
-          <!-- Walk-in Counter -->
-          <div class="iot-card accent-orange">
-            <div class="iot-card-header">
-              <div class="iot-card-title">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                Walk-in Slots Today
-              </div>
-              <div class="sensor-live"><div class="pulse-dot"></div>LIVE</div>
-            </div>
-            <div class="iot-counter-body">
-              <div>
-                <div class="iot-number orange" id="adm-walkinRemaining">4</div>
-                <div class="iot-sublabel">slots remaining of <strong id="adm-walkinTotal">10</strong></div>
-              </div>
-              <div style="position:relative;width:64px;height:64px;">
-                <svg width="64" height="64" viewBox="0 0 64 64" style="transform:rotate(-90deg)"><circle class="iot-ring-bg" cx="32" cy="32" r="28"/><circle class="iot-ring-fg orange" id="adm-walkinRing" cx="32" cy="32" r="28" stroke-dasharray="175.9" stroke-dashoffset="105.5"/></svg>
-                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:13px;font-weight:800;color:#ea580c;"><span id="adm-walkinPct">40%</span></div>
-              </div>
-            </div>
-            <div class="iot-progress-bar-wrap">
-              <div class="iot-bar-label">
-                <span>Served today: <strong id="adm-walkinServed">6</strong></span>
-                <span>Available: <strong id="adm-walkinLeft">4</strong></span>
-              </div>
-              <div class="iot-bar-track"><div class="iot-bar-fill orange" id="adm-walkinBar" style="width:60%;"></div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Recent Activity + Announcements Preview -->
-        <div class="two-col">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-title">Recent Staff Activity</div>
-                <div class="card-sub">Latest clinic system activity</div>
-              </div>
-              <button class="btn btn-primary btn-sm" onclick="addActivityRow()">+ Add Entry</button>
-            </div>
-            <div class="card-body">
-              <div class="table-toolbar">
-                <input class="tbl-search" type="text" placeholder="Search activity…" oninput="filterTable('activityTable',this.value)">
-              </div>
-              <table class="modern-table" id="activityTable">
-                <thead>
-                  <tr><th>Staff Member</th><th>Role</th><th>Activity</th><th>Time</th><th style="width:130px;">Actions</th></tr>
-                </thead>
-                <tbody id="activityBody">
-                  <tr data-id="1"><td>Nurse Mthembu</td><td>Nurse</td><td>Checked in patient</td><td>10:45 AM</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                  <tr data-id="2"><td>Admin User</td><td>Administrator</td><td>Updated inventory</td><td>10:30 AM</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                  <tr data-id="3"><td>Dr Khumalo</td><td>Doctor</td><td>Completed consultation</td><td>09:50 AM</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- Announcements Preview -->
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-title">Announcements</div>
-                <div class="card-sub">Visible to all patients</div>
-              </div>
-              <button class="btn btn-primary btn-sm" onclick="showPage('announcements',null)">Manage</button>
-            </div>
-            <div class="card-body" id="dashAnnouncementsPreview">
-              <!-- filled by JS -->
-            </div>
-          </div>
-        </div>
+    <div class="stat-card">
+      <div class="stat-icon teal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
       </div>
+
+      <!-- FIX: added ID -->
+      <div class="stat-val" id="totalPatients">0</div>
+      <div class="stat-label">Registered Patients</div>
+      <div class="stat-trend up">↑ Live data</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+
+      <!-- FIX: added ID -->
+      <div class="stat-val" id="clinicStaff">15</div>
+      <div class="stat-label">Clinic Staff</div>
+      <div class="stat-trend neutral">System users</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+
+      <!-- FIX: added ID -->
+      <div class="stat-val" id="totalAppointments">0</div>
+      <div class="stat-label">Appointments This Month</div>
+      <div class="stat-trend up">Live updates</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon teal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+
+      <div class="stat-val" style="color:var(--green-600);font-size:20px;">ACTIVE</div>
+      <div class="stat-label">System Status</div>
+      <div class="stat-trend up">All services running</div>
+    </div>
+
+  </div>
+
+  <!-- Live Trackers -->
+  <div class="iot-grid mb-22">
+
+    <!-- Booked Appointments -->
+    <div class="iot-card accent-teal">
+      <div class="iot-card-header">
+        <div class="iot-card-title">Booked Appointments Today</div>
+        <div class="sensor-live"><div class="pulse-dot"></div>LIVE</div>
+      </div>
+
+      <div class="iot-counter-body">
+
+        <div>
+          <!-- FIX IDs -->
+          <div class="iot-number teal" id="bookedCount">0</div>
+          <div class="iot-sublabel">
+            checked in of <strong id="adm-apptTotal">0</strong> booked
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Walk-in -->
+    <div class="iot-card accent-orange">
+      <div class="iot-card-header">
+        <div class="iot-card-title">Walk-in Slots Today</div>
+        <div class="sensor-live"><div class="pulse-dot"></div>LIVE</div>
+      </div>
+
+      <div class="iot-counter-body">
+
+        <div>
+          <!-- FIX IDs -->
+          <div class="iot-number orange" id="waitlistedCount">0</div>
+          <div class="iot-sublabel">
+            slots remaining of <strong id="adm-walkinTotal">0</strong>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
 
       <!-- ══════════ APPOINTMENTS PAGE ══════════ -->
        <table>
@@ -664,27 +636,51 @@ const admState = { apptTotal:12, apptCheckedIn:5, walkinTotal:10, walkinServed:6
 const CIRC = 175.9;
 
 function updateAdmUI() {
-  const aRem = admState.apptTotal - admState.apptCheckedIn;
-  const aPct = Math.round((admState.apptCheckedIn / admState.apptTotal)*100);
-  const wRem = admState.walkinTotal - admState.walkinServed;
-  const wPct = Math.round((admState.walkinServed / admState.walkinTotal)*100);
+  const aTotal = admState.apptTotal || 0;
+  const aChecked = admState.apptCheckedIn || 0;
 
-  document.getElementById('adm-apptCheckedInDisplay').textContent = admState.apptCheckedIn;
-  document.getElementById('adm-apptCheckedIn').textContent = admState.apptCheckedIn;
-  document.getElementById('adm-apptTotal').textContent     = admState.apptTotal;
-  document.getElementById('adm-apptRem').textContent       = aRem;
-  document.getElementById('adm-apptPct').textContent       = aPct+'%';
-  document.getElementById('adm-apptBar').style.width       = aPct+'%';
-  document.getElementById('adm-apptRing').style.strokeDashoffset = (CIRC*(1-aPct/100)).toFixed(1);
+  const wTotal = admState.walkinTotal || 0;
+  const wServed = admState.walkinServed || 0;
 
-  document.getElementById('adm-walkinRemaining').textContent = wRem;
-  document.getElementById('adm-walkinTotal').textContent     = admState.walkinTotal;
-  document.getElementById('adm-walkinServed').textContent    = admState.walkinServed;
-  document.getElementById('adm-walkinLeft').textContent      = wRem;
-  document.getElementById('adm-walkinPct').textContent       = wPct+'%';
-  document.getElementById('adm-walkinBar').style.width       = wPct+'%';
-  document.getElementById('adm-walkinRing').style.strokeDashoffset = (CIRC*(1-wPct/100)).toFixed(1);
-  document.getElementById('adm-walkinRemaining').style.color = wRem<=2 ? '#dc2626' : '#ea580c';
+  const aRem = aTotal - aChecked;
+  const wRem = wTotal - wServed;
+
+  const aPct = aTotal ? Math.round((aChecked / aTotal) * 100) : 0;
+  const wPct = wTotal ? Math.round((wServed / wTotal) * 100) : 0;
+
+  // Helper to safely update elements
+  const set = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  };
+
+  const setStyle = (id, prop, value) => {
+    const el = document.getElementById(id);
+    if (el) el.style[prop] = value;
+  };
+
+  set('adm-apptCheckedInDisplay', aChecked);
+  set('adm-apptCheckedIn', aChecked);
+  set('adm-apptTotal', aTotal);
+  set('adm-apptRem', aRem);
+  set('adm-apptPct', aPct + '%');
+
+  setStyle('adm-apptBar', 'width', aPct + '%');
+  setStyle('adm-apptRing', 'strokeDashoffset', (CIRC * (1 - aPct / 100)).toFixed(1));
+
+  set('adm-walkinRemaining', wRem);
+  set('adm-walkinTotal', wTotal);
+  set('adm-walkinServed', wServed);
+  set('adm-walkinLeft', wRem);
+  set('adm-walkinPct', wPct + '%');
+
+  setStyle('adm-walkinBar', 'width', wPct + '%');
+  setStyle('adm-walkinRing', 'strokeDashoffset', (CIRC * (1 - wPct / 100)).toFixed(1));
+
+  const walkEl = document.getElementById('adm-walkinRemaining');
+  if (walkEl) {
+    walkEl.style.color = wRem <= 2 ? '#dc2626' : '#ea580c';
+  }
 }
 
 function simulateAdm() {
@@ -902,6 +898,6 @@ function escHtml(str) {
 </html>
 <span id="totalPatients"></span>
 <span id="totalAppointments"></span>
-<span id="approvedCount"></span>
-<span id="rejectedCount"></span>
-<span id="bookedCount"></span>
+<div id="bookedCount"></div>
+<div id="cancelledCount"></div>
+<div id="waitlistedCount"></div>

@@ -19,18 +19,21 @@ export async function getAppointments() {
 }
 
 // ===============================
-// GET ALL PATIENTS
+// GET PATIENTS
 // ===============================
 export async function getPatients() {
+
   const { data, error } = await db
-    .from("Patient")
+    .from("users")
     .select("*")
     .order("created_at", { ascending: false });
 
   if (error) {
-  console.error("Supabase Error:", error);
-  return [];
-}
+    console.error("Supabase Error:", error);
+    throw error;
+  }
+
+  return data;
 }
 
 // ===============================
@@ -48,29 +51,24 @@ export async function updateAppointment(id, status) {
 }
 }
 
-//Get Stats
+// ===============================
+// GET STATS
+// ===============================
 export async function getStats() {
 
-  const { data: patients } = await db
-    .from("patient")
-    .select("patient_id");
+  const { data: users } = await db
+    .from("users")
+    .select("user_id");
 
   const { data: appointments } = await db
     .from("appointments")
     .select("appointment_id, status");
 
-  const totalPatients = patients?.length || 0;
-  const totalAppointments = appointments?.length || 0;
-
-  const approved = appointments?.filter(a => a.status === "Approved").length || 0;
-  const rejected = appointments?.filter(a => a.status === "Rejected").length || 0;
-  const booked = appointments?.filter(a => a.status === "Booked").length || 0;
-
   return {
-    totalPatients,
-    totalAppointments,
-    approved,
-    rejected,
-    booked
-  };
+  totalPatients: users?.length || 0,
+  totalAppointments: appointments?.length || 0,
+  booked: appointments?.filter(a => a.status === "Booked").length || 0,
+  cancelled: appointments?.filter(a => a.status === "Cancelled").length || 0,
+  waitlisted: appointments?.filter(a => a.status === "Waitlisted").length || 0
+};
 }

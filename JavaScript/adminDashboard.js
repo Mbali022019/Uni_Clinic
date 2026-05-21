@@ -4,7 +4,20 @@ import {
   getStats,
   updateAppointment
 } from "./adminApi.js";
+// ===============================
+// LOAD STATS  ← move this UP first
+// ===============================
+async function loadStats() {
+  const stats = await getStats();
 
+  document.getElementById("totalPatients").innerText = stats.totalPatients;
+  document.getElementById("totalAppointments").innerText = stats.totalAppointments;
+  document.getElementById("bookedCount").innerText = stats.booked;
+  document.getElementById("cancelledCount").innerText = stats.cancelled;
+  document.getElementById("waitlistedCount").innerText = stats.waitlisted;
+}
+window.loadStats = loadStats;
+window.getStats = getStats; // optional for console testing
 // ===============================
 // LOAD APPOINTMENTS
 // ===============================
@@ -53,23 +66,34 @@ window.reject = async (id) => {
 // INIT
 // ===============================
 loadAppointments();
+
+
 //==============================
 //loadpatients
 
-let patientsCache = [];
-
 async function loadPatients() {
-  const table = document.getElementById("patientsTable");
 
-  const data = await getPatients();
+  const table =
+    document.getElementById("patientsTable");
 
-  patientsCache = data;
+  const patients =
+    await getPatients();
 
-  renderPatients(data);
+  table.innerHTML = "";
 
-  // search + filter listeners
-  document.getElementById("patientSearch").addEventListener("input", filterPatients);
-  document.getElementById("patientFilter").addEventListener("change", filterPatients);
+  patients.forEach(patient => {
+
+    table.innerHTML += `
+      <tr>
+        <td>${patient.full_name}</td>
+        <td>${patient.email}</td>
+        <td>${patient.phone || "N/A"}</td>
+        <td>${patient.patient_type || "student"}</td>
+      </tr>
+    `;
+
+  });
+
 }
 
 //Render Patients
@@ -81,11 +105,11 @@ function renderPatients(data) {
   data.forEach(p => {
     table.innerHTML += `
       <tr>
-        <td>${p.patient_id}</td>
+        <td>${p.user_id}</td>
         <td>${p.full_name}</td>
         <td>${p.email}</td>
-        <td>${p.patient_type}</td>
         <td>${p.phone || "N/A"}</td>
+        <td>${p.patient_type}</td>
       </tr>
     `;
   });
@@ -111,15 +135,9 @@ function filterPatients() {
 }
 loadPatients();
 
-//loadStats
-async function loadStats() {
-  const stats = await getStats();
 
-  document.getElementById("totalPatients").innerText = stats.totalPatients;
-  document.getElementById("totalAppointments").innerText = stats.totalAppointments;
-  document.getElementById("approvedCount").innerText = stats.approved;
-  document.getElementById("rejectedCount").innerText = stats.rejected;
-  document.getElementById("bookedCount").innerText = stats.booked;
-}
 
-loadStats();
+window.loadStats = loadStats;
+document.addEventListener("DOMContentLoaded", () => {
+  loadStats();
+});
