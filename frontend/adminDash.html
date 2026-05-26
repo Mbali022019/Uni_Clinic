@@ -202,11 +202,39 @@
     </div>
 
   </div>
-
+<!-- SENSOR CHECK-INS -->
+<div class="card mb-22">
+  <div class="card-header">
+    <div>
+      <div class="card-title">Sensor Check-ins</div>
+      <div class="card-sub">Students checked in via sensor today</div>
+    </div>
+    <div class="sensor-live">
+      <div class="pulse-dot"></div>LIVE
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="modern-table" id="checkinsTable">
+      <thead>
+        <tr>
+          <th>Queue No.</th>
+          <th>Student</th>
+          <th>Student No.</th>
+          <th>Appointment Date</th>
+          <th>Appointment Time</th>
+          <th>Check-in Time</th>
+        </tr>
+      </thead>
+      <tbody id="checkinsBody"></tbody>
+    </table>
+  </div>
+</div>
 </div>
 
       <!-- ══════════ APPOINTMENTS PAGE ══════════ -->
-       <table>
+       
+      <div id="page-appointments" style="display:none;">
+        <table>
   <thead>
     <tr>
       <th>ID</th>
@@ -221,7 +249,6 @@
 
   <tbody id="appointmentsTable"></tbody>
 </table>
-      <div id="page-appointments" style="display:none;">
         <div class="card">
           <div class="card-header">
             <div><div class="card-title">All Appointments</div><div class="card-sub">View and manage clinic appointments</div></div>
@@ -245,11 +272,7 @@
                 <tr><th>Patient</th><th>Student No.</th><th>Service</th><th>Date</th><th>Time</th><th>Nurse</th><th>Status</th><th style="width:130px;">Actions</th></tr>
               </thead>
               <tbody id="apptBody">
-                <tr data-id="1"><td>Sipho Dlamini</td><td>STU-2241</td><td>HIV Testing</td><td>19 May 2025</td><td>09:00</td><td>Nurse Mthembu</td><td><span class="badge badge-green">Confirmed</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="2"><td>Ayanda Mkhize</td><td>STU-2242</td><td>Flu &amp; Fever</td><td>21 May 2025</td><td>10:30</td><td>Nurse Dlamini</td><td><span class="badge badge-yellow">Pending</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="3"><td>Thandeka Nzama</td><td>STU-2243</td><td>Pap Smear</td><td>23 May 2025</td><td>13:00</td><td>Nurse Mthembu</td><td><span class="badge badge-green">Confirmed</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="4"><td>Lwazi Cele</td><td>STU-2244</td><td>Mental Health</td><td>24 May 2025</td><td>11:00</td><td>Nurse Zulu</td><td><span class="badge badge-teal">Completed</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="5"><td>Nomvula Khumalo</td><td>STU-2245</td><td>Vaccination</td><td>26 May 2025</td><td>14:00</td><td>Nurse Dlamini</td><td><span class="badge badge-yellow">Pending</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                
               </tbody>
             </table>
           </div>
@@ -272,10 +295,7 @@
                 <tr><th>Name</th><th>Employee ID</th><th>Specialisation</th><th>Status</th><th>Shift</th><th style="width:130px;">Actions</th></tr>
               </thead>
               <tbody id="nurseBody">
-                <tr data-id="1"><td>Nurse Mthembu</td><td>EMP-001</td><td>General</td><td><span class="inv-badge ok">Active</span></td><td>Morning</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="2"><td>Nurse Dlamini</td><td>EMP-002</td><td>Paediatrics</td><td><span class="inv-badge ok">Active</span></td><td>Afternoon</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="3"><td>Nurse Nkosi</td><td>EMP-003</td><td>Emergency</td><td><span class="inv-badge low">On Leave</span></td><td>Night</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="4"><td>Nurse Zulu</td><td>EMP-004</td><td>General</td><td><span class="inv-badge ok">Active</span></td><td>Morning</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                
               </tbody>
             </table>
           </div>
@@ -298,37 +318,13 @@
                 <tr><th>Name</th><th>Student No.</th><th>Faculty</th><th>Email</th><th>Status</th><th style="width:130px;">Actions</th></tr>
               </thead>
               <tbody id="patientBody">
-                <tr data-id="1"><td>Sipho Dlamini</td><td>STU-2241</td><td>Engineering</td><td>sipho@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="2"><td>Ayanda Mkhize</td><td>STU-2242</td><td>Commerce</td><td>ayanda@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="3"><td>Thandeka Nzama</td><td>STU-2243</td><td>Health Sciences</td><td>thandeka@uni.ac.za</td><td><span class="inv-badge low">Suspended</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="4"><td>Lwazi Cele</td><td>STU-2244</td><td>Law</td><td>lwazi@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="5"><td>Nomvula Khumalo</td><td>STU-2245</td><td>Arts</td><td>nomvula@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
+                
               </tbody>
             </table>
           </div>
         </div>
       </div>
-    <div>
-  <input type="text" id="patientSearch" placeholder="Search patients..." />
-  <select id="patientFilter">
-    <option value="All">All</option>
-    <option value="student">Student</option>
-    <option value="staff">Staff</option>
-  </select>
-</div>
-
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Type</th>
-      <th>Phone</th>
-    </tr>
-  </thead>
-  <tbody id="patientsTable"></tbody>
-</table>
+    
 
       <!-- ══════════ MEDICAL RECORDS PAGE (read-only, send to nurse) ══════════ -->
       <div id="page-records" style="display:none;">
@@ -347,26 +343,7 @@
                 <tr><th>Patient</th><th>Student No.</th><th>Diagnosis</th><th>Medication</th><th>Nurse</th><th>Date</th><th style="width:150px;">Actions</th></tr>
               </thead>
               <tbody id="recordsBody">
-                <tr data-id="1">
-                  <td>Sipho Dlamini</td><td>STU-2241</td><td>Upper Respiratory Infection</td><td>Amoxicillin 500mg</td><td>Nurse Mthembu</td><td>15 May 2025</td>
-                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
-                </tr>
-                <tr data-id="2">
-                  <td>Ayanda Mkhize</td><td>STU-2242</td><td>Influenza</td><td>Ibuprofen 400mg, Rest</td><td>Nurse Dlamini</td><td>14 May 2025</td>
-                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
-                </tr>
-                <tr data-id="3">
-                  <td>Thandeka Nzama</td><td>STU-2243</td><td>Routine Pap Smear – Normal</td><td>N/A</td><td>Nurse Mthembu</td><td>12 May 2025</td>
-                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
-                </tr>
-                <tr data-id="4">
-                  <td>Lwazi Cele</td><td>STU-2244</td><td>Anxiety – Generalised</td><td>Referred to counsellor</td><td>Nurse Zulu</td><td>10 May 2025</td>
-                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
-                </tr>
-                <tr data-id="5">
-                  <td>Nomvula Khumalo</td><td>STU-2245</td><td>Flu Vaccination</td><td>Influenza Vaccine – administered</td><td>Nurse Dlamini</td><td>08 May 2025</td>
-                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
-                </tr>
+                
               </tbody>
             </table>
           </div>
@@ -478,13 +455,7 @@
                 <tr><th>Item</th><th>Category</th><th>Qty</th><th>Unit</th><th>Status</th><th style="width:130px;">Actions</th></tr>
               </thead>
               <tbody id="invBody">
-                <tr data-id="1"><td>Paracetamol 500mg</td><td>Medication</td><td>240</td><td>Tablets</td><td><span class="inv-badge ok">In Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="2"><td>Surgical Gloves</td><td>PPE</td><td>12</td><td>Boxes</td><td><span class="inv-badge low">Low Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="3"><td>Bandages (5cm)</td><td>Wound Care</td><td>0</td><td>Rolls</td><td><span class="inv-badge out">Out of Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="4"><td>Ibuprofen 200mg</td><td>Medication</td><td>180</td><td>Tablets</td><td><span class="inv-badge ok">In Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="5"><td>Thermometers</td><td>Equipment</td><td>8</td><td>Units</td><td><span class="inv-badge low">Low Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="6"><td>Antiseptic Wipes</td><td>Hygiene</td><td>400</td><td>Packs</td><td><span class="inv-badge ok">In Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-              </tbody>
+                
             </table>
           </div>
         </div>
@@ -632,15 +603,18 @@ function showPage(id, linkEl) {
 }
 
 /* ─── LIVE TRACKERS ────────────────────────── */
-const admState = { apptTotal:12, apptCheckedIn:5, walkinTotal:10, walkinServed:6 };
+ // ✅ Start at 0, real data fills it in
+var admState = { apptTotal: 0, apptCheckedIn: 0, walkinTotal: 0, walkinServed: 0 };
+window.admState = admState;
 const CIRC = 175.9;
 
 function updateAdmUI() {
-  const aTotal = admState.apptTotal || 0;
-  const aChecked = admState.apptCheckedIn || 0;
+  console.log("updateAdmUI called, admState:", window.admState); // 👈 add this
+  const aTotal = window.admState.apptTotal || 0;
+  const aChecked = window.admState.apptCheckedIn || 0;
 
-  const wTotal = admState.walkinTotal || 0;
-  const wServed = admState.walkinServed || 0;
+  const wTotal = window.admState.walkinTotal || 0;
+  const wServed = window.admState.walkinServed || 0;
 
   const aRem = aTotal - aChecked;
   const wRem = wTotal - wServed;
@@ -853,19 +827,29 @@ function addInvRow()      { makeNewRow(['Item name','Category','Qty','Unit','In 
 function viewRecord(btn) {
   const tr = btn.closest('tr');
   const cells = tr.querySelectorAll('td');
+
   document.getElementById('recordModalTitle').textContent = cells[0].textContent.trim();
-  document.getElementById('recordModalSub').textContent = cells[1].textContent.trim() + ' · ' + cells[5].textContent.trim();
+  document.getElementById('recordModalSub').textContent = 
+    cells[1].textContent.trim() + ' · ' + cells[5].textContent.trim();
+
   document.getElementById('recordModalBody').innerHTML = `
     <div style="display:grid;gap:12px;">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-        <div><div class="info-label">Patient</div><div class="info-val">${escHtml(cells[0].textContent.trim())}</div></div>
-        <div><div class="info-label">Student No.</div><div class="info-val">${escHtml(cells[1].textContent.trim())}</div></div>
-        <div><div class="info-label">Diagnosis</div><div class="info-val">${escHtml(cells[2].textContent.trim())}</div></div>
-        <div><div class="info-label">Medication</div><div class="info-val">${escHtml(cells[3].textContent.trim())}</div></div>
-        <div><div class="info-label">Attending Nurse</div><div class="info-val">${escHtml(cells[4].textContent.trim())}</div></div>
-        <div><div class="info-label">Date</div><div class="info-val">${escHtml(cells[5].textContent.trim())}</div></div>
+        <div><div class="info-label">Patient</div>
+          <div class="info-val">${escHtml(cells[0].textContent.trim())}</div></div>
+        <div><div class="info-label">Student No.</div>
+          <div class="info-val">${escHtml(cells[1].textContent.trim())}</div></div>
+        <div><div class="info-label">Diagnosis</div>
+          <div class="info-val">${escHtml(cells[2].textContent.trim())}</div></div>
+        <div><div class="info-label">Notes</div>
+          <div class="info-val">${escHtml(cells[3].textContent.trim())}</div></div>
+        <div><div class="info-label">Attending Nurse</div>
+          <div class="info-val">${escHtml(cells[4].textContent.trim())}</div></div>
+        <div><div class="info-label">Date</div>
+          <div class="info-val">${escHtml(cells[5].textContent.trim())}</div></div>
       </div>
     </div>`;
+
   document.getElementById('recordModal').classList.add('open');
 }
 function closeRecordModal() { document.getElementById('recordModal').classList.remove('open'); }

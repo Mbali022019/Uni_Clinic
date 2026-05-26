@@ -238,9 +238,23 @@ if (loginForm) {
       );
 
       setTimeout(() => {
-        window.location.href =
-          "sDashboard.html";
-      }, 1500);
+
+  const userRole =
+    data.roles.role_name.toLowerCase();
+
+  if (userRole === "admin") {
+    window.location.href = "adminDash.html";
+  }
+
+  else if (userRole === "nurse") {
+    window.location.href = "nurseDash.html";
+  }
+
+  else {
+    window.location.href = "sDashboard.html";
+  }
+
+}, 1500);
     }
     catch (err) {
       console.error("Login error:", err);
