@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Supabase Test</title>
+</head>
+
+<body>
+
+<h1>Supabase Connection Test</h1>
+
+<button id="testBtn">
+  Test Connection
+</button>
+
+<pre id="output"></pre>
+
+<!-- SUPABASE CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- LOAD YOUR SUPABASE CONFIG FIRST -->
+<script src="../JavaScript/supabase.js"></script>
+
+<script>
+
+const output =
+  document.getElementById("output");
+
+console.log("SUPABASE OBJECT:", window.supabase);
+
+console.log(
+  "SUPABASE CLIENT:",
+  window.supabaseClient
+);
+
+document
+.getElementById("testBtn")
+.addEventListener("click", async () => {
+
+  try {
+
+    // CHECK IF CLIENT EXISTS
+    if (!window.supabaseClient) {
+
+      output.innerText =
+        "ERROR: supabaseClient is not loaded.";
+
+      return;
+    }
+
+    // TEST DATABASE QUERY
+    const { data, error } =
+      await window.supabaseClient
+      .from("users")
+      .select("*");
+
+    if (error) {
+
+      output.innerText =
+        JSON.stringify(error, null, 2);
+
+      console.error(error);
+
+      return;
+    }
+
+    output.innerText =
+      JSON.stringify(data, null, 2);
+
+    console.log(data);
+
+  }
+
+  catch(err){
+
+    output.innerText =
+      err.message;
+
+    console.error(err);
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>

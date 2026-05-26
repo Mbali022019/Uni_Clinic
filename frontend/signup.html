@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniClinic — Create Account</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/signup.css" />
+</head>
+
+<body class="auth-body">
+
+  <div class="auth-shell">
+
+    <!-- LEFT PANEL -->
+    <div class="auth-left">
+
+      <div class="bg-circle circle-1"></div>
+      <div class="bg-circle circle-2"></div>
+
+      <div class="auth-left-inner">
+
+        <div class="auth-logo-box">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="white">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+        </div>
+
+        <div class="auth-brand">
+          UniClinic
+        </div>
+
+        <div class="auth-tagline">
+          Your campus health partner.<br />
+          Access quality healthcare services anytime, anywhere.
+        </div>
+
+        <div class="auth-stats">
+
+          <div class="auth-stat">
+            <span class="auth-stat-val">5,000+</span>
+            <span class="auth-stat-label">Students Served</span>
+          </div>
+
+          <div class="auth-stat">
+            <span class="auth-stat-val">15+</span>
+            <span class="auth-stat-label">Health Services</span>
+          </div>
+
+          <div class="auth-stat">
+            <span class="auth-stat-val">24/7</span>
+            <span class="auth-stat-label">Support</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="auth-right">
+
+      <div class="auth-card">
+        <div class="auth-form-wrap">
+
+          <div class="auth-top">
+            <div class="auth-card-title">
+              Create Account
+            </div>
+          </div>
+
+          <!-- FORM -->
+          <form id="signupForm">
+
+            <!-- FULL NAME + STUDENT NUMBER -->
+            <div class="field-row">
+
+              <div class="field" style="margin-bottom:0;">
+                <label class="field-label">Full Name</label>
+                <div class="input-wrap">
+                  <span class="input-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </span>
+
+                  <input
+                    type="text"
+                    id="full_name"
+                    autocomplete="name"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="field" style="margin-bottom:0;">
+                <label class="field-label">Student / Staff Number</label>
+                <div class="input-wrap">
+                  <span class="input-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <rect x="2" y="7" width="20" height="14" rx="2" />
+                      <path d="M16 3H8" />
+                      <line x1="12" y1="7" x2="12" y2="21" />
+                    </svg>
+                  </span>
+
+                  <input
+                    type="text"
+                    id="student_number"
+                    autocomplete="off"
+                    placeholder="202512345"
+                    required
+                  />
+                </div>
+              </div>
+
+            </div>
+
+            <!-- EMAIL + PHONE -->
+            <div class="field-row" style="margin-top:16px;">
+
+              <div class="field" style="margin-bottom:0;">
+                <label class="field-label">Email</label>
+                <div class="input-wrap">
+                  <span class="input-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                  </span>
+
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="name@uni.ac.za"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="field" style="margin-bottom:0;">
+                <label class="field-label">Contact Number</label>
+                <div class="input-wrap">
+                  <span class="input-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13 19.79 19.79 0 0 1 1.05 4.4 2 2 0 0 1 3 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 17" />
+                    </svg>
+                  </span>
+
+                  <input
+                    type="tel"
+                    id="phone"
+                    autocomplete="tel"
+                    placeholder="0812345678"
+                  />
+                </div>
+              </div>
+
+            </div>
+
+            <!-- ROLE -->
+            <div class="field">
+
+              <label class="field-label">
+                Register As
+              </label>
+
+              <div class="role-selector">
+
+                <!-- PATIENT -->
+                <label class="role-card active-role">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="student"
+                    data-patient-type="student"
+                    checked
+                  />
+
+                  <div class="role-icon patient-role">👤</div>
+
+                  <div>
+                    <div class="role-title">Patient</div>
+                    <div class="role-sub">Students & Staff</div>
+                  </div>
+                </label>
+
+                <!-- NURSE -->
+                <label class="role-card">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="nurse"
+                    data-patient-type="staff"
+                  />
+
+                  <div class="role-icon nurse-role">✚</div>
+
+                  <div>
+                    <div class="role-title">Nurse</div>
+                    <div class="role-sub">Clinic Staff</div>
+                  </div>
+                </label>
+
+                <!-- ADMIN -->
+                <label class="role-card">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="admin"
+                    data-patient-type="staff"
+                  />
+
+                  <div class="role-icon admin-role">⚙</div>
+
+                  <div>
+                    <div class="role-title">Admin</div>
+                    <div class="role-sub">System Manager</div>
+                  </div>
+                </label>
+
+              </div>
+            </div>
+
+            <!-- PASSWORDS -->
+            <div class="field-row">
+
+              <div class="field">
+                <label class="field-label">Password</label>
+                <div class="input-wrap">
+                  <input
+                    type="password"
+                    id="password"
+                    class="no-icon"
+                    placeholder="Create password"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label">Confirm Password</label>
+                <div class="input-wrap">
+                  <input
+                    type="password"
+                    id="confirm_password"
+                    class="no-icon"
+                    placeholder="Confirm password"
+                    required
+                  />
+                </div>
+              </div>
+
+            </div>
+
+            <!-- MESSAGE -->
+            <div id="signupMessage" class="error-msg"></div>
+
+            <!-- SUBMIT -->
+            <div class="submit-wrap">
+              <button
+                type="submit"
+                class="btn btn-primary btn-full"
+                id="signupBtn"
+              >
+                Create Account
+              </button>
+            </div>
+
+          </form>
+
+          <!-- FOOTER -->
+          <div class="auth-footer-text">
+            Already have an account?
+            <a href="login.html">Sign In</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- SUPABASE CLIENT -->
+  <script src="../JavaScript/supabase.js"></script>
+
+  <!-- SIGNUP LOGIC -->
+  <script src="../JavaScript/signup.js"></script>
+
+</body>
+</html>
