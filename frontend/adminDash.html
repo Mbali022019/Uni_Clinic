@@ -44,6 +44,10 @@
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         Medical Records
       </a>
+      <a href="#" class="nav-item" onclick="showPage('ai',this);return false;">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+  AI Insights
+</a>
       <a href="#" class="nav-item" onclick="showPage('announcements',this);return false;">
         <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         Announcements
@@ -252,7 +256,7 @@
         <div class="card">
           <div class="card-header">
             <div><div class="card-title">All Appointments</div><div class="card-sub">View and manage clinic appointments</div></div>
-            <button class="btn btn-primary btn-sm" onclick="addApptRow()">+ Add Appointment</button>
+            
           </div>
           <div class="card-body">
             <div class="table-toolbar">
@@ -307,7 +311,7 @@
         <div class="card">
           <div class="card-header">
             <div><div class="card-title">Registered Patients</div><div class="card-sub">View and manage patient records</div></div>
-            <button class="btn btn-primary btn-sm" onclick="addPatientRow()">+ Add Patient</button>
+            
           </div>
           <div class="card-body">
             <div class="table-toolbar">
@@ -512,6 +516,324 @@
         </div>
       </div>
 
+      <!-- ══════════ AI INSIGHTS PAGE ══════════ -->
+<div id="page-ai" style="display:none;">
+
+  <!-- Congestion Risk Banner -->
+  <div id="aiCongestionBanner" class="info-banner mb-22">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" 
+      stroke="var(--teal-600)" stroke-width="2">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="12" y1="8" x2="12" y2="12"/>
+      <line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+    <span id="aiCongestionMessage">Loading predictions...</span>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="stats-grid mb-22">
+    <div class="stat-card">
+      <div class="stat-icon teal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+        </svg>
+      </div>
+      <div class="stat-val" id="aiRiskLevel">--</div>
+      <div class="stat-label">Congestion Risk Today</div>
+      <div class="stat-trend up">↑ Live prediction</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-600)" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div class="stat-val" id="aiBusiestDay">--</div>
+      <div class="stat-label">Busiest Day of Week</div>
+      <div class="stat-trend up">↑ Based on history</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <div class="stat-val" id="aiBusiestHour">--</div>
+      <div class="stat-label">Busiest Hour</div>
+      <div class="stat-trend up">↑ Based on history</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon teal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </div>
+      <div class="stat-val" id="aiTodayCount">--</div>
+      <div class="stat-label">Appointments Today</div>
+      <div class="stat-trend up">↑ Live count</div>
+    </div>
+  </div>
+  
+
+  <!-- Charts Row -->
+  <div class="two-col mb-22">
+
+    <!-- Busiest Days Chart -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Busiest Days of the Week</div>
+          <div class="card-sub">Based on appointment history</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="report-bar-wrap" id="aiBusiestDaysChart"></div>
+      </div>
+    </div>
+
+    <!-- Busiest Hours Chart -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Busiest Hours of the Day</div>
+          <div class="card-sub">Based on appointment history</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="report-bar-wrap" id="aiBusiestHoursChart"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- High Booking Days + Recommendations -->
+  <div class="two-col">
+
+    <!-- Top Booking Dates -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Top 5 High Booking Dates</div>
+          <div class="card-sub">Historically busiest dates</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="modern-table">
+          <thead>
+            <tr><th>Date</th><th>Appointments</th><th>Load</th></tr>
+          </thead>
+          <tbody id="aiHighBookingTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AI Recommendations -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">AI Recommendations</div>
+          <div class="card-sub">Smart suggestions based on predictions</div>
+        </div>
+      </div>
+      <div class="card-body" id="aiRecommendations"></div>
+    </div>
+
+  </div>
+<!-- AI WORKFLOW DIAGRAM -->
+<div class="card" style="margin-top:22px;">
+  <div class="card-header">
+    <div>
+      <div class="card-title">AI Prediction Workflow</div>
+      <div class="card-sub">How the prediction system works</div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div style="overflow-x:auto;">
+      <div style="display:flex;align-items:center;justify-content:center;
+        gap:0;padding:30px 10px;min-width:700px;flex-wrap:nowrap;">
+
+        <!-- STEP 1 -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="background:var(--teal-100);border:2px solid var(--teal-500);
+            border-radius:12px;padding:16px 20px;text-align:center;width:130px;">
+            <div style="font-size:28px;">🗄️</div>
+            <div style="font-weight:700;font-size:13px;color:var(--teal-700);
+              margin-top:6px;">Supabase</div>
+            <div style="font-size:11px;color:var(--slate-500);margin-top:3px;">
+              Database
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--slate-400);text-align:center;
+            width:130px;">
+            appointments<br>check_ins<br>sensor_logs
+          </div>
+        </div>
+
+        <!-- ARROW -->
+        <div style="display:flex;flex-direction:column;align-items:center;
+          padding:0 6px;margin-bottom:30px;">
+          <div style="font-size:11px;color:var(--slate-400);margin-bottom:2px;">
+            fetch
+          </div>
+          <div style="font-size:22px;color:var(--teal-400);">→</div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="background:var(--blue-100);border:2px solid var(--blue-500);
+            border-radius:12px;padding:16px 20px;text-align:center;width:130px;">
+            <div style="font-size:28px;">⚙️</div>
+            <div style="font-weight:700;font-size:13px;color:var(--blue-700);
+              margin-top:6px;">Data Processing</div>
+            <div style="font-size:11px;color:var(--slate-500);margin-top:3px;">
+              aiPrediction.js
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--slate-400);text-align:center;
+            width:130px;">
+            fetchAppointment<br>History()
+          </div>
+        </div>
+
+        <!-- ARROW -->
+        <div style="display:flex;flex-direction:column;align-items:center;
+          padding:0 6px;margin-bottom:30px;">
+          <div style="font-size:11px;color:var(--slate-400);margin-bottom:2px;">
+            analyse
+          </div>
+          <div style="font-size:22px;color:var(--blue-400);">→</div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="background:#fef9c3;border:2px solid #ca8a04;
+            border-radius:12px;padding:16px 20px;text-align:center;width:130px;">
+            <div style="font-size:28px;">🧠</div>
+            <div style="font-weight:700;font-size:13px;color:#854d0e;
+              margin-top:6px;">Pattern Analysis</div>
+            <div style="font-size:11px;color:var(--slate-500);margin-top:3px;">
+              Algorithm
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--slate-400);text-align:center;
+            width:130px;">
+            busy days · hours<br>congestion · bookings
+          </div>
+        </div>
+
+        <!-- ARROW -->
+        <div style="display:flex;flex-direction:column;align-items:center;
+          padding:0 6px;margin-bottom:30px;">
+          <div style="font-size:11px;color:var(--slate-400);margin-bottom:2px;">
+            predict
+          </div>
+          <div style="font-size:22px;color:#ca8a04;">→</div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="background:#dcfce7;border:2px solid #16a34a;
+            border-radius:12px;padding:16px 20px;text-align:center;width:130px;">
+            <div style="font-size:28px;">📊</div>
+            <div style="font-weight:700;font-size:13px;color:#14532d;
+              margin-top:6px;">Predictions</div>
+            <div style="font-size:11px;color:var(--slate-500);margin-top:3px;">
+              Generated
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--slate-400);text-align:center;
+            width:130px;">
+            runPredictions()<br>returns results
+          </div>
+        </div>
+
+        <!-- ARROW -->
+        <div style="display:flex;flex-direction:column;align-items:center;
+          padding:0 6px;margin-bottom:30px;">
+          <div style="font-size:11px;color:var(--slate-400);margin-bottom:2px;">
+            display
+          </div>
+          <div style="font-size:22px;color:#16a34a;">→</div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+          <div style="background:#f3e8ff;border:2px solid #9333ea;
+            border-radius:12px;padding:16px 20px;text-align:center;width:130px;">
+            <div style="font-size:28px;">🖥️</div>
+            <div style="font-weight:700;font-size:13px;color:#581c87;
+              margin-top:6px;">AI Dashboard</div>
+            <div style="font-size:11px;color:var(--slate-500);margin-top:3px;">
+              Admin View
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--slate-400);text-align:center;
+            width:130px;">
+            charts · cards<br>recommendations
+          </div>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM DETAIL ROW -->
+      <div style="display:flex;justify-content:center;gap:12px;
+        flex-wrap:wrap;padding:0 10px 10px;">
+
+        <div style="background:var(--slate-50);border:1px solid var(--slate-200);
+          border-radius:8px;padding:10px 16px;font-size:12px;text-align:center;">
+          <div style="font-weight:700;color:var(--teal-700);">
+            📅 Busiest Days
+          </div>
+          <div style="color:var(--slate-500);margin-top:3px;">
+            predictBusiestDays()
+          </div>
+        </div>
+
+        <div style="background:var(--slate-50);border:1px solid var(--slate-200);
+          border-radius:8px;padding:10px 16px;font-size:12px;text-align:center;">
+          <div style="font-weight:700;color:var(--blue-700);">
+            🕐 Busiest Hours
+          </div>
+          <div style="color:var(--slate-500);margin-top:3px;">
+            predictBusiestHours()
+          </div>
+        </div>
+
+        <div style="background:var(--slate-50);border:1px solid var(--slate-200);
+          border-radius:8px;padding:10px 16px;font-size:12px;text-align:center;">
+          <div style="font-weight:700;color:#854d0e;">
+            🚨 Congestion Risk
+          </div>
+          <div style="color:var(--slate-500);margin-top:3px;">
+            predictCongestionRisk()
+          </div>
+        </div>
+
+        <div style="background:var(--slate-50);border:1px solid var(--slate-200);
+          border-radius:8px;padding:10px 16px;font-size:12px;text-align:center;">
+          <div style="font-weight:700;color:#14532d;">
+            📈 High Booking Days
+          </div>
+          <div style="color:var(--slate-500);margin-top:3px;">
+            predictHighBookingDays()
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
     </div><!-- end page-body -->
   </div><!-- end main-content -->
 </div><!-- end app-shell -->
@@ -579,6 +901,7 @@ const pageMeta = {
   nurses:        { title:'Manage Nurses',           sub:'Add, edit or remove nursing staff' },
   patients:      { title:'Manage Patients',         sub:'View and manage patient records' },
   records:       { title:'Medical Records',         sub:'Read-only view — send to nurse for edits' },
+  ai: { title: 'AI Insights', sub: 'Predictive analytics and clinic forecasting' },
   announcements: { title:'Announcements',           sub:'Post announcements visible to all patients' },
   reports:       { title:'Reports',                 sub:'Analytics and clinic performance' },
   inventory:     { title:'Inventory',               sub:'Track and manage clinic supplies' },
@@ -609,7 +932,7 @@ window.admState = admState;
 const CIRC = 175.9;
 
 function updateAdmUI() {
-  console.log("updateAdmUI called, admState:", window.admState); // 👈 add this
+  console.log("updateAdmUI called, admState:", window.admState); // added
   const aTotal = window.admState.apptTotal || 0;
   const aChecked = window.admState.apptCheckedIn || 0;
 

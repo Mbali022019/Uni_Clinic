@@ -125,6 +125,92 @@ async function loadMedicalRecords() {
     `;
   });
 }
+
+// ================================
+//FUNCTION LOAD AI Predictions
+// ================================
+import { runPredictions } from "./aiPrediction.js";
+
+async function loadAI() {
+  const predictions = await runPredictions();
+
+  const { busiestDays, busiestHours, congestionRisk, highBookingDays } = predictions;
+
+  // ── Congestion banner
+  const banner = document.getElementById("aiCongestionBanner");
+  document.getElementById("aiCongestionMessage").innerText = congestionRisk.message;
+  if (congestionRisk.risk === "High") {
+    banner.style.borderColor = "#dc2626";
+    banner.style.background = "#fef2f2";
+  } else if (congestionRisk.risk === "Medium") {
+    banner.style.borderColor = "#ea580c";
+    banner.style.background = "#fff7ed";
+  }
+
+  // ── Stat cards
+  document.getElementById("aiRiskLevel").innerText = congestionRisk.risk;
+  document.getElementById("aiBusiestDay").innerText = busiestDays[0]?.day || "--";
+  document.getElementById("aiBusiestHour").innerText = busiestHours[0]?.hour || "--";
+  document.getElementById("aiTodayCount").innerText = congestionRisk.count;
+
+  // ── Busiest days chart
+  const maxDay = busiestDays[0]?.count || 1;
+  document.getElementById("aiBusiestDaysChart").innerHTML = busiestDays.map(d => `
+    <div class="report-bar-row">
+      <span class="report-bar-label">${d.day}</span>
+      <div class="report-bar-track">
+        <div class="report-bar-fill" style="width:${Math.round((d.count/maxDay)*100)}%"></div>
+      </div>
+      <span class="report-bar-val">${d.count}</span>
+    </div>
+  `).join("");
+
+  // ── Busiest hours chart
+  const maxHour = busiestHours[0]?.count || 1;
+  document.getElementById("aiBusiestHoursChart").innerHTML = busiestHours.map(h => `
+    <div class="report-bar-row">
+      <span class="report-bar-label">${h.hour}</span>
+      <div class="report-bar-track">
+        <div class="report-bar-fill" style="width:${Math.round((h.count/maxHour)*100)}%"></div>
+      </div>
+      <span class="report-bar-val">${h.count}</span>
+    </div>
+  `).join("");
+
+  // ── High booking dates table
+  const maxCount = highBookingDays[0]?.count || 1;
+  document.getElementById("aiHighBookingTable").innerHTML = highBookingDays.map(d => `
+    <tr>
+      <td>${d.date}</td>
+      <td>${d.count}</td>
+      <td>
+        <div class="report-bar-track" style="width:100px;">
+          <div class="report-bar-fill" 
+            style="width:${Math.round((d.count/maxCount)*100)}%">
+          </div>
+        </div>
+      </td>
+    </tr>
+  `).join("");
+
+  // ── AI Recommendations
+  const recs = [];
+  if (busiestDays[0]) recs.push(`📅 <strong>${busiestDays[0].day}</strong> is your busiest day — consider scheduling extra staff.`);
+  if (busiestHours[0]) recs.push(`🕐 Peak hour is <strong>${busiestHours[0].hour}</strong> — ensure nurses are available then.`);
+  if (congestionRisk.risk === "High") recs.push(`🚨 High congestion risk today — activate walk-in overflow protocol.`);
+  if (congestionRisk.risk === "Medium") recs.push(`⚠️ Moderate traffic today — monitor queue every 30 minutes.`);
+  if (congestionRisk.risk === "Low") recs.push(`✅ Low traffic today — good day for staff training or inventory checks.`);
+
+  document.getElementById("aiRecommendations").innerHTML = recs.map(r => `
+    <div style="padding:12px;margin-bottom:10px;background:var(--slate-50);
+      border-radius:var(--r-md);border-left:3px solid var(--teal-500);
+      font-size:14px;line-height:1.5;">
+      ${r}
+    </div>
+  `).join("");
+}
+
+
 // =========================
 //Function load INVENTORY
 // =========================
@@ -305,6 +391,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadNurses();
   loadPatients();
   loadMedicalRecords();
+  loadAI();
   loadInventory();
   loadCheckIns(); 
 });
