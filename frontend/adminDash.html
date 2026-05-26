@@ -93,7 +93,6 @@
     <div class="page-body">
 
       <!-- ══════════ DASHBOARD PAGE ══════════ -->
-<<<<<<< HEAD
 <div id="page-dashboard">
 
   <!-- Stats Row -->
@@ -250,150 +249,6 @@
 
   <tbody id="appointmentsTable"></tbody>
 </table>
-=======
-      <div id="page-dashboard">
-
-        <!-- Stats Row -->
-        <div class="stats-grid mb-22">
-          <div class="stat-card">
-            <div class="stat-icon teal">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div class="stat-val">1,284</div>
-            <div class="stat-label">Registered Patients</div>
-            <div class="stat-trend up">↑ 42 this month</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            </div>
-            <div class="stat-val">15</div>
-            <div class="stat-label">Clinic Staff</div>
-            <div class="stat-trend neutral">3 nurses on duty</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon green">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            </div>
-            <div class="stat-val">324</div>
-            <div class="stat-label">Appointments This Month</div>
-            <div class="stat-trend up">↑ 12% vs last month</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon teal">
-              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <div class="stat-val" style="color:var(--green-600);font-size:20px;">ACTIVE</div>
-            <div class="stat-label">System Status</div>
-            <div class="stat-trend up">All services running</div>
-          </div>
-        </div>
-
-        <!-- Live Trackers -->
-        <div class="iot-grid mb-22">
-          <!-- Booked Appointments Today -->
-          <div class="iot-card accent-teal">
-            <div class="iot-card-header">
-              <div class="iot-card-title">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                Booked Appointments Today
-              </div>
-              <div class="sensor-live"><div class="pulse-dot"></div>LIVE</div>
-            </div>
-            <div class="iot-counter-body">
-              <div>
-                <div class="iot-number teal" id="adm-apptCheckedInDisplay">5</div>
-                <div class="iot-sublabel">checked in of <strong id="adm-apptTotal">12</strong> booked</div>
-              </div>
-              <div style="position:relative;width:64px;height:64px;">
-                <svg width="64" height="64" viewBox="0 0 64 64" style="transform:rotate(-90deg)"><circle class="iot-ring-bg" cx="32" cy="32" r="28"/><circle class="iot-ring-fg teal" id="adm-apptRing" cx="32" cy="32" r="28" stroke-dasharray="175.9" stroke-dashoffset="102.1"/></svg>
-                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:13px;font-weight:800;color:var(--teal-600);"><span id="adm-apptPct">42%</span></div>
-              </div>
-            </div>
-            <div class="iot-progress-bar-wrap">
-              <div class="iot-bar-label">
-                <span>Checked in: <strong id="adm-apptCheckedIn">5</strong></span>
-                <span>Remaining: <strong id="adm-apptRem">7</strong></span>
-              </div>
-              <div class="iot-bar-track"><div class="iot-bar-fill teal" id="adm-apptBar" style="width:42%;"></div></div>
-            </div>
-          </div>
-
-          <!-- Walk-in Counter -->
-          <div class="iot-card accent-orange">
-            <div class="iot-card-header">
-              <div class="iot-card-title">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                Walk-in Slots Today
-              </div>
-              <div class="sensor-live"><div class="pulse-dot"></div>LIVE</div>
-            </div>
-            <div class="iot-counter-body">
-              <div>
-                <div class="iot-number orange" id="adm-walkinRemaining">4</div>
-                <div class="iot-sublabel">slots remaining of <strong id="adm-walkinTotal">10</strong></div>
-              </div>
-              <div style="position:relative;width:64px;height:64px;">
-                <svg width="64" height="64" viewBox="0 0 64 64" style="transform:rotate(-90deg)"><circle class="iot-ring-bg" cx="32" cy="32" r="28"/><circle class="iot-ring-fg orange" id="adm-walkinRing" cx="32" cy="32" r="28" stroke-dasharray="175.9" stroke-dashoffset="105.5"/></svg>
-                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:13px;font-weight:800;color:#ea580c;"><span id="adm-walkinPct">40%</span></div>
-              </div>
-            </div>
-            <div class="iot-progress-bar-wrap">
-              <div class="iot-bar-label">
-                <span>Served today: <strong id="adm-walkinServed">6</strong></span>
-                <span>Available: <strong id="adm-walkinLeft">4</strong></span>
-              </div>
-              <div class="iot-bar-track"><div class="iot-bar-fill orange" id="adm-walkinBar" style="width:60%;"></div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Recent Activity + Announcements Preview -->
-        <div class="two-col">
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-title">Recent Staff Activity</div>
-                <div class="card-sub">Latest clinic system activity</div>
-              </div>
-              <button class="btn btn-primary btn-sm" onclick="addActivityRow()">+ Add Entry</button>
-            </div>
-            <div class="card-body">
-              <div class="table-toolbar">
-                <input class="tbl-search" type="text" placeholder="Search activity…" oninput="filterTable('activityTable',this.value)">
-              </div>
-              <table class="modern-table" id="activityTable">
-                <thead>
-                  <tr><th>Staff Member</th><th>Role</th><th>Activity</th><th>Time</th><th style="width:130px;">Actions</th></tr>
-                </thead>
-                <tbody id="activityBody">
-                  <tr data-id="1"><td>Nurse Mthembu</td><td>Nurse</td><td>Checked in patient</td><td>10:45 AM</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                  <tr data-id="2"><td>Admin User</td><td>Administrator</td><td>Updated inventory</td><td>10:30 AM</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                  <tr data-id="3"><td>Dr Khumalo</td><td>Doctor</td><td>Completed consultation</td><td>09:50 AM</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- Announcements Preview -->
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <div class="card-title">Announcements</div>
-                <div class="card-sub">Visible to all patients</div>
-              </div>
-              <button class="btn btn-primary btn-sm" onclick="showPage('announcements',null)">Manage</button>
-            </div>
-            <div class="card-body" id="dashAnnouncementsPreview">
-              <!-- filled by JS -->
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══════════ APPOINTMENTS PAGE ══════════ -->
-      <div id="page-appointments" style="display:none;">
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70
         <div class="card">
           <div class="card-header">
             <div><div class="card-title">All Appointments</div><div class="card-sub">View and manage clinic appointments</div></div>
@@ -417,15 +272,7 @@
                 <tr><th>Patient</th><th>Student No.</th><th>Service</th><th>Date</th><th>Time</th><th>Nurse</th><th>Status</th><th style="width:130px;">Actions</th></tr>
               </thead>
               <tbody id="apptBody">
-<<<<<<< HEAD
                 
-=======
-                <tr data-id="1"><td>Sipho Dlamini</td><td>STU-2241</td><td>HIV Testing</td><td>19 May 2025</td><td>09:00</td><td>Nurse Mthembu</td><td><span class="badge badge-green">Confirmed</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="2"><td>Ayanda Mkhize</td><td>STU-2242</td><td>Flu &amp; Fever</td><td>21 May 2025</td><td>10:30</td><td>Nurse Dlamini</td><td><span class="badge badge-yellow">Pending</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="3"><td>Thandeka Nzama</td><td>STU-2243</td><td>Pap Smear</td><td>23 May 2025</td><td>13:00</td><td>Nurse Mthembu</td><td><span class="badge badge-green">Confirmed</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="4"><td>Lwazi Cele</td><td>STU-2244</td><td>Mental Health</td><td>24 May 2025</td><td>11:00</td><td>Nurse Zulu</td><td><span class="badge badge-teal">Completed</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="5"><td>Nomvula Khumalo</td><td>STU-2245</td><td>Vaccination</td><td>26 May 2025</td><td>14:00</td><td>Nurse Dlamini</td><td><span class="badge badge-yellow">Pending</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70
               </tbody>
             </table>
           </div>
@@ -448,14 +295,7 @@
                 <tr><th>Name</th><th>Employee ID</th><th>Specialisation</th><th>Status</th><th>Shift</th><th style="width:130px;">Actions</th></tr>
               </thead>
               <tbody id="nurseBody">
-<<<<<<< HEAD
                 
-=======
-                <tr data-id="1"><td>Nurse Mthembu</td><td>EMP-001</td><td>General</td><td><span class="inv-badge ok">Active</span></td><td>Morning</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="2"><td>Nurse Dlamini</td><td>EMP-002</td><td>Paediatrics</td><td><span class="inv-badge ok">Active</span></td><td>Afternoon</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="3"><td>Nurse Nkosi</td><td>EMP-003</td><td>Emergency</td><td><span class="inv-badge low">On Leave</span></td><td>Night</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="4"><td>Nurse Zulu</td><td>EMP-004</td><td>General</td><td><span class="inv-badge ok">Active</span></td><td>Morning</td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70
               </tbody>
             </table>
           </div>
@@ -478,24 +318,13 @@
                 <tr><th>Name</th><th>Student No.</th><th>Faculty</th><th>Email</th><th>Status</th><th style="width:130px;">Actions</th></tr>
               </thead>
               <tbody id="patientBody">
-<<<<<<< HEAD
                 
-=======
-                <tr data-id="1"><td>Sipho Dlamini</td><td>STU-2241</td><td>Engineering</td><td>sipho@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="2"><td>Ayanda Mkhize</td><td>STU-2242</td><td>Commerce</td><td>ayanda@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="3"><td>Thandeka Nzama</td><td>STU-2243</td><td>Health Sciences</td><td>thandeka@uni.ac.za</td><td><span class="inv-badge low">Suspended</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="4"><td>Lwazi Cele</td><td>STU-2244</td><td>Law</td><td>lwazi@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="5"><td>Nomvula Khumalo</td><td>STU-2245</td><td>Arts</td><td>nomvula@uni.ac.za</td><td><span class="inv-badge ok">Active</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70
               </tbody>
             </table>
           </div>
         </div>
       </div>
-<<<<<<< HEAD
     
-=======
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70
 
       <!-- ══════════ MEDICAL RECORDS PAGE (read-only, send to nurse) ══════════ -->
       <div id="page-records" style="display:none;">
@@ -514,30 +343,7 @@
                 <tr><th>Patient</th><th>Student No.</th><th>Diagnosis</th><th>Medication</th><th>Nurse</th><th>Date</th><th style="width:150px;">Actions</th></tr>
               </thead>
               <tbody id="recordsBody">
-<<<<<<< HEAD
                 
-=======
-                <tr data-id="1">
-                  <td>Sipho Dlamini</td><td>STU-2241</td><td>Upper Respiratory Infection</td><td>Amoxicillin 500mg</td><td>Nurse Mthembu</td><td>15 May 2025</td>
-                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
-                </tr>
-                <tr data-id="2">
-                  <td>Ayanda Mkhize</td><td>STU-2242</td><td>Influenza</td><td>Ibuprofen 400mg, Rest</td><td>Nurse Dlamini</td><td>14 May 2025</td>
-                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
-                </tr>
-                <tr data-id="3">
-                  <td>Thandeka Nzama</td><td>STU-2243</td><td>Routine Pap Smear – Normal</td><td>N/A</td><td>Nurse Mthembu</td><td>12 May 2025</td>
-                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
-                </tr>
-                <tr data-id="4">
-                  <td>Lwazi Cele</td><td>STU-2244</td><td>Anxiety – Generalised</td><td>Referred to counsellor</td><td>Nurse Zulu</td><td>10 May 2025</td>
-                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
-                </tr>
-                <tr data-id="5">
-                  <td>Nomvula Khumalo</td><td>STU-2245</td><td>Flu Vaccination</td><td>Influenza Vaccine – administered</td><td>Nurse Dlamini</td><td>08 May 2025</td>
-                  <td><div class="tbl-actions"><button class="tbl-btn edit" style="background:var(--teal-100);color:var(--teal-700);" onclick="viewRecord(this)">View</button><button class="tbl-btn save" onclick="sendToNurse(this)">Send to Nurse</button></div></td>
-                </tr>
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70
               </tbody>
             </table>
           </div>
@@ -649,17 +455,7 @@
                 <tr><th>Item</th><th>Category</th><th>Qty</th><th>Unit</th><th>Status</th><th style="width:130px;">Actions</th></tr>
               </thead>
               <tbody id="invBody">
-<<<<<<< HEAD
                 
-=======
-                <tr data-id="1"><td>Paracetamol 500mg</td><td>Medication</td><td>240</td><td>Tablets</td><td><span class="inv-badge ok">In Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="2"><td>Surgical Gloves</td><td>PPE</td><td>12</td><td>Boxes</td><td><span class="inv-badge low">Low Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="3"><td>Bandages (5cm)</td><td>Wound Care</td><td>0</td><td>Rolls</td><td><span class="inv-badge out">Out of Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="4"><td>Ibuprofen 200mg</td><td>Medication</td><td>180</td><td>Tablets</td><td><span class="inv-badge ok">In Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="5"><td>Thermometers</td><td>Equipment</td><td>8</td><td>Units</td><td><span class="inv-badge low">Low Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-                <tr data-id="6"><td>Antiseptic Wipes</td><td>Hygiene</td><td>400</td><td>Packs</td><td><span class="inv-badge ok">In Stock</span></td><td><div class="tbl-actions"><button class="tbl-btn edit" onclick="editRow(this)">Edit</button><button class="tbl-btn del" onclick="delRow(this)">Del</button></div></td></tr>
-              </tbody>
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70
             </table>
           </div>
         </div>
@@ -807,7 +603,6 @@ function showPage(id, linkEl) {
 }
 
 /* ─── LIVE TRACKERS ────────────────────────── */
-<<<<<<< HEAD
  // ✅ Start at 0, real data fills it in
 var admState = { apptTotal: 0, apptCheckedIn: 0, walkinTotal: 0, walkinServed: 0 };
 window.admState = admState;
@@ -860,33 +655,6 @@ function updateAdmUI() {
   if (walkEl) {
     walkEl.style.color = wRem <= 2 ? '#dc2626' : '#ea580c';
   }
-=======
-const admState = { apptTotal:12, apptCheckedIn:5, walkinTotal:10, walkinServed:6 };
-const CIRC = 175.9;
-
-function updateAdmUI() {
-  const aRem = admState.apptTotal - admState.apptCheckedIn;
-  const aPct = Math.round((admState.apptCheckedIn / admState.apptTotal)*100);
-  const wRem = admState.walkinTotal - admState.walkinServed;
-  const wPct = Math.round((admState.walkinServed / admState.walkinTotal)*100);
-
-  document.getElementById('adm-apptCheckedInDisplay').textContent = admState.apptCheckedIn;
-  document.getElementById('adm-apptCheckedIn').textContent = admState.apptCheckedIn;
-  document.getElementById('adm-apptTotal').textContent     = admState.apptTotal;
-  document.getElementById('adm-apptRem').textContent       = aRem;
-  document.getElementById('adm-apptPct').textContent       = aPct+'%';
-  document.getElementById('adm-apptBar').style.width       = aPct+'%';
-  document.getElementById('adm-apptRing').style.strokeDashoffset = (CIRC*(1-aPct/100)).toFixed(1);
-
-  document.getElementById('adm-walkinRemaining').textContent = wRem;
-  document.getElementById('adm-walkinTotal').textContent     = admState.walkinTotal;
-  document.getElementById('adm-walkinServed').textContent    = admState.walkinServed;
-  document.getElementById('adm-walkinLeft').textContent      = wRem;
-  document.getElementById('adm-walkinPct').textContent       = wPct+'%';
-  document.getElementById('adm-walkinBar').style.width       = wPct+'%';
-  document.getElementById('adm-walkinRing').style.strokeDashoffset = (CIRC*(1-wPct/100)).toFixed(1);
-  document.getElementById('adm-walkinRemaining').style.color = wRem<=2 ? '#dc2626' : '#ea580c';
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70
 }
 
 function simulateAdm() {
@@ -1059,7 +827,6 @@ function addInvRow()      { makeNewRow(['Item name','Category','Qty','Unit','In 
 function viewRecord(btn) {
   const tr = btn.closest('tr');
   const cells = tr.querySelectorAll('td');
-<<<<<<< HEAD
 
   document.getElementById('recordModalTitle').textContent = cells[0].textContent.trim();
   document.getElementById('recordModalSub').textContent = 
@@ -1083,21 +850,6 @@ function viewRecord(btn) {
       </div>
     </div>`;
 
-=======
-  document.getElementById('recordModalTitle').textContent = cells[0].textContent.trim();
-  document.getElementById('recordModalSub').textContent = cells[1].textContent.trim() + ' · ' + cells[5].textContent.trim();
-  document.getElementById('recordModalBody').innerHTML = `
-    <div style="display:grid;gap:12px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-        <div><div class="info-label">Patient</div><div class="info-val">${escHtml(cells[0].textContent.trim())}</div></div>
-        <div><div class="info-label">Student No.</div><div class="info-val">${escHtml(cells[1].textContent.trim())}</div></div>
-        <div><div class="info-label">Diagnosis</div><div class="info-val">${escHtml(cells[2].textContent.trim())}</div></div>
-        <div><div class="info-label">Medication</div><div class="info-val">${escHtml(cells[3].textContent.trim())}</div></div>
-        <div><div class="info-label">Attending Nurse</div><div class="info-val">${escHtml(cells[4].textContent.trim())}</div></div>
-        <div><div class="info-label">Date</div><div class="info-val">${escHtml(cells[5].textContent.trim())}</div></div>
-      </div>
-    </div>`;
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70
   document.getElementById('recordModal').classList.add('open');
 }
 function closeRecordModal() { document.getElementById('recordModal').classList.remove('open'); }
@@ -1121,7 +873,6 @@ function escHtml(str) {
   return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 </script>
-<<<<<<< HEAD
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
 <script src="../JavaScript/supabase.js"></script>
@@ -1134,7 +885,3 @@ function escHtml(str) {
 <div id="bookedCount"></div>
 <div id="cancelledCount"></div>
 <div id="waitlistedCount"></div>
-=======
-</body>
-</html>
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70

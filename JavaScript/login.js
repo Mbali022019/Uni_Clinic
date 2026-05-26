@@ -238,7 +238,6 @@ if (loginForm) {
       );
 
       setTimeout(() => {
-<<<<<<< HEAD
 
   const userRole =
     data.roles.role_name.toLowerCase();
@@ -256,11 +255,6 @@ if (loginForm) {
   }
 
 }, 1500);
-=======
-        window.location.href =
-          "sDashboard.html";
-      }, 1500);
->>>>>>> 428122594c3d278b4a07b4f0ff4edc558b395c70
     }
     catch (err) {
       console.error("Login error:", err);
