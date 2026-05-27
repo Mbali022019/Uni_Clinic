@@ -5,10 +5,176 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UniClinic — Profile</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── PROFILE PAGE EXTRAS ── */
+    .profile-hero {
+      background: linear-gradient(130deg, var(--teal-700) 0%, var(--teal-500) 100%);
+      border-radius: var(--r-lg);
+      padding: 32px 36px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-hero::before {
+      content: '';
+      position: absolute;
+      right: -50px; top: -50px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.07);
+      pointer-events: none;
+    }
+    .profile-hero::after {
+      content: '';
+      position: absolute;
+      left: -30px; bottom: -60px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+      pointer-events: none;
+    }
+    .profile-avatar-lg {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.22);
+      border: 3px solid rgba(255,255,255,.38);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head);
+      font-size: 26px; font-weight: 800;
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+    .profile-hero-info { flex: 1; position: relative; z-index: 1; }
+    .profile-hero-name {
+      font-family: var(--font-head);
+      font-size: 24px; font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .profile-hero-id { font-size: 14px; opacity: .78; margin-bottom: 10px; }
+    .profile-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(255,255,255,.15);
+      border-radius: var(--r-full);
+      font-size: 12px;
+      border: 1px solid rgba(255,255,255,.2);
+      margin: 4px 4px 0 0;
+    }
+    .btn-edit-hero {
+      background: rgba(255,255,255,.15);
+      border: 1.5px solid rgba(255,255,255,.3);
+      color: white;
+      padding: 10px 20px;
+      border-radius: var(--r-md);
+      font-family: var(--font-head);
+      font-size: 13px; font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+    .btn-edit-hero:hover { background: rgba(255,255,255,.28); }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .info-label {
+      font-size: 11px; font-weight: 700;
+      color: var(--slate-400);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 4px;
+    }
+    .info-val {
+      font-size: 15px; font-weight: 500;
+      color: var(--slate-800);
+    }
+    .info-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 24px;
+    }
+
+    /* field styles inside cards */
+    .card .field { margin-bottom: 16px; }
+    .card .field:last-of-type { margin-bottom: 0; }
+    .card .field-label {
+      display: block;
+      font-size: 12px; font-weight: 700;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin-bottom: 6px;
+      font-family: var(--font-head);
+    }
+    .card .field input,
+    .card .field select {
+      width: 100%; padding: 10px 14px;
+      background: var(--slate-50);
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--r-md);
+      font-size: 14px; color: var(--slate-800);
+      font-family: var(--font-body);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+    .card .field input:focus,
+    .card .field select:focus {
+      border-color: var(--teal-500);
+      box-shadow: 0 0 0 3px rgba(20,184,166,.14);
+      background: white;
+    }
+    .card .field input:disabled,
+    .card .field select:disabled {
+      opacity: .55; cursor: not-allowed; background: var(--slate-100);
+    }
+    .field-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .save-row {
+      display: flex; gap: 10px; margin-top: 18px;
+    }
+
+    /* status message */
+    .profile-msg {
+      display: none;
+      padding: 10px 14px;
+      border-radius: var(--r-md);
+      font-size: 13px; font-weight: 600;
+      margin-top: 14px;
+    }
+    .profile-msg.success { background: var(--green-100); color: var(--green-700); display: block; }
+    .profile-msg.error   { background: var(--red-100);   color: var(--red-600);   display: block; }
+
+    /* spinner inside button */
+    .btn-spin {
+      width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spinner .7s linear infinite;
+      display: none;
+    }
+    @keyframes spinner { to { transform: rotate(360deg); } }
+
+    @media (max-width: 960px) {
+      .profile-grid { grid-template-columns: 1fr; }
+      .profile-hero { flex-wrap: wrap; }
+      .info-grid-2  { grid-template-columns: 1fr; }
+      .field-row-2  { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
-
-
 <body>
 
 <div class="app-shell">
@@ -17,45 +183,47 @@
   <aside class="sidebar">
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon">
-        <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
       </div>
       <div>
         <div class="sidebar-logo-text">UniClinic</div>
-        <div class="sidebar-logo-sub">University Health</div>
+        <div class="sidebar-logo-sub">Student Portal</div>
       </div>
     </div>
 
     <nav class="sidebar-nav">
       <a href="sDashboard.html" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
         Dashboard
       </a>
       <a href="sBooking.html" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Appointments
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>
+        Book Appointment
       </a>
-      <a href="sProfile.html" class="nav-item active">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Profile
-      </a>
-      <a href="#" class="nav-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        Help & Support
+      <a href="services.html" class="nav-item">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Services
       </a>
     </nav>
 
     <div class="sidebar-footer">
-      <div class="sidebar-user">
-        <div class="sidebar-avatar">TN</div>
+      <a href="sProfile.html" class="sidebar-profile-btn">
+        <div class="sidebar-avatar" id="sidebarAvatar">U</div>
         <div>
-          <div class="sidebar-user-name">Thabo Nkosi</div>
-          <div class="sidebar-user-role">Student · 202512345</div>
+          <div class="sidebar-user-name" id="sidebarName">Loading…</div>
+          <div class="sidebar-user-role">Registered Student</div>
         </div>
-      </div>
-      <a href="login.html" class="nav-item logout-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <svg class="sidebar-profile-btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </a>
+      <a href="login.html" class="nav-item logout-btn" id="logoutBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
         Logout
       </a>
     </div>
@@ -64,152 +232,340 @@
   <!-- ═══ MAIN ═══ -->
   <div class="main-content">
 
+    <!-- TOPBAR -->
     <div class="topbar">
       <div>
         <div class="topbar-title">Profile</div>
         <div class="topbar-sub">Manage your account information</div>
       </div>
       <div class="topbar-right">
-        <button class="icon-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        </button>
-        <div class="topbar-avatar">TN</div>
+        <div class="topbar-avatar" id="topAvatar">U</div>
       </div>
     </div>
 
+    <!-- PAGE BODY -->
     <div class="page-body">
 
-      <!-- ── PROFILE HERO ─────────────────── -->
+      <!-- HERO -->
       <div class="profile-hero fade-up">
-        <div class="profile-avatar-lg">TN</div>
+        <div class="profile-avatar-lg" id="heroAvatar">U</div>
         <div class="profile-hero-info">
-          <div class="profile-hero-name">Thabo Nkosi</div>
-          <div class="profile-hero-id">Student Number: 202512345</div>
-          <div>
-            <span class="profile-tag">📧 t.nkosi@uni.ac.za</span>
-            <span class="profile-tag">📱 071 234 5678</span>
-            <span class="profile-tag">3rd Year</span>
+          <div class="profile-hero-name" id="heroName">Loading…</div>
+          <div class="profile-hero-id" id="heroStudentNo">Student Number: —</div>
+          <div id="heroTags">
+            <span class="profile-tag" id="heroEmail">—</span>
+            <span class="profile-tag" id="heroPhone">—</span>
           </div>
         </div>
-        <button class="btn btn-outline btn-sm" id="editBtn" onclick="toggleEdit()"
-          style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:white;position:relative;z-index:1;flex-shrink:0;">
-          Edit Profile
-        </button>
+        <button class="btn-edit-hero" id="heroEditBtn" onclick="toggleEdit()">Edit Profile</button>
       </div>
 
-      <!-- ── TWO-COL INFO ────────────────── -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;" class="fade-up-1">
+      <!-- TWO-COL GRID -->
+      <div class="profile-grid fade-up-1">
 
-        <!-- Personal Information -->
+        <!-- LEFT: Personal Information -->
         <div class="card">
           <div class="card-header">
             <div class="card-title">Personal Information</div>
           </div>
           <div class="card-body">
 
-            <!-- Read-only view -->
+            <!-- VIEW MODE -->
             <div id="view-mode">
               <div class="info-grid-2">
-                <div><div class="info-label">Full Name</div><div class="info-val">Thabo Nkosi</div></div>
-                <div><div class="info-label">Student Number</div><div class="info-val">202512345</div></div>
-                <div><div class="info-label">Email Address</div><div class="info-val">t.nkosi@uni.ac.za</div></div>
-                <div><div class="info-label">Contact Number</div><div class="info-val">071 234 5678</div></div>
-                <div><div class="info-label">Faculty</div><div class="info-val">Engineering & Built Env.</div></div>
-                <div><div class="info-label">Year of Study</div><div class="info-val">3rd Year</div></div>
+                <div><div class="info-label">Full Name</div><div class="info-val" id="v-name">—</div></div>
+                <div><div class="info-label">Student / Staff Number</div><div class="info-val" id="v-student-no">—</div></div>
+                <div><div class="info-label">Email Address</div><div class="info-val" id="v-email">—</div></div>
+                <div><div class="info-label">Contact Number</div><div class="info-val" id="v-phone">—</div></div>
+
               </div>
             </div>
 
-            <!-- Edit mode (hidden by default) -->
+            <!-- EDIT MODE -->
             <div id="edit-mode" style="display:none;">
-              <div class="field-row">
+              <div class="field-row-2">
                 <div class="field">
                   <label class="field-label">Full Name</label>
-                  <div class="input-wrap">
-                    <span class="input-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-                    <input type="text" value="Thabo Nkosi" />
-                  </div>
+                  <input type="text" id="e-name" placeholder="Full Name" />
                 </div>
                 <div class="field">
-                  <label class="field-label">Student Number</label>
-                  <div class="input-wrap">
-                    <span class="input-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></span>
-                    <input type="text" value="202512345" />
-                  </div>
+                  <label class="field-label">Student / Staff Number</label>
+                  <input type="text" id="e-student-no" placeholder="202512345" disabled />
                 </div>
               </div>
-              <div class="field-row">
+              <div class="field-row-2">
                 <div class="field">
                   <label class="field-label">Email</label>
-                  <div class="input-wrap">
-                    <span class="input-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
-                    <input type="email" value="t.nkosi@uni.ac.za" />
-                  </div>
+                  <input type="email" id="e-email" placeholder="name@uni.ac.za" />
                 </div>
                 <div class="field">
                   <label class="field-label">Contact Number</label>
-                  <div class="input-wrap">
-                    <span class="input-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13 19.79 19.79 0 0 1 1.05 4.4 2 2 0 0 1 3 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17"/></svg></span>
-                    <input type="tel" value="071 234 5678" />
-                  </div>
+                  <input type="tel" id="e-phone" placeholder="0812345678" />
                 </div>
               </div>
-              <button class="btn btn-primary" onclick="toggleEdit()">Save Changes</button>
-              <button class="btn btn-outline" onclick="toggleEdit()" style="margin-left:10px;">Cancel</button>
+
+
+              <div id="profileMsg" class="profile-msg"></div>
+
+              <div class="save-row">
+                <button class="btn btn-primary" id="saveBtn" onclick="saveProfile()">
+                  <div class="btn-spin" id="saveSpin"></div>
+                  Save Changes
+                </button>
+                <button class="btn btn-outline" onclick="toggleEdit()">Cancel</button>
+              </div>
             </div>
 
           </div>
         </div>
 
-        <!-- Right column -->
+        <!-- RIGHT col -->
         <div class="flex-col">
 
-          <!-- Health Summary -->
+          <!-- Change Password -->
           <div class="card">
-            <div class="card-header"><div class="card-title">Health Summary</div></div>
+            <div class="card-header">
+              <div class="card-title">Change Password</div>
+            </div>
             <div class="card-body">
-              <div class="info-grid-2">
-                <div><div class="info-label">Blood Type</div><div class="info-val">O+</div></div>
-                <div><div class="info-label">Allergies</div><div class="info-val">None recorded</div></div>
-                <div><div class="info-label">Chronic Conditions</div><div class="info-val">None</div></div>
-                <div><div class="info-label">Last Visit</div><div class="info-val">28 April 2025</div></div>
+              <div class="field">
+                <label class="field-label">New Password</label>
+                <input type="password" id="newPassword" placeholder="New password (min 6 chars)" />
+              </div>
+              <div class="field">
+                <label class="field-label">Confirm New Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm new password" />
+              </div>
+              <div id="pwMsg" class="profile-msg"></div>
+              <div class="save-row">
+                <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
               </div>
             </div>
           </div>
 
-          <!-- Account Settings -->
+          <!-- Account -->
           <div class="card">
-            <div class="card-header"><div class="card-title">Account Settings</div></div>
+            <div class="card-header">
+              <div class="card-title">Account</div>
+            </div>
             <div class="card-body flex-col" style="gap:10px;">
-              <button class="btn btn-outline btn-full">Change Password</button>
-              <button class="btn btn-danger btn-full">Delete Account</button>
+              <button class="btn btn-danger btn-full" onclick="confirmDelete()">Delete Account</button>
             </div>
           </div>
 
         </div>
 
       </div>
-      <!-- end two-col -->
+      <!-- end grid -->
 
     </div>
   </div>
-
 </div>
 
+<!-- ══════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../JavaScript/supabase.js"></script>
+<script src="../JavaScript/auth-session.js"></script>
+
 <script>
-  function toggleEdit() {
-    const view = document.getElementById('view-mode');
-    const edit = document.getElementById('edit-mode');
-    const btn  = document.getElementById('editBtn');
-    const isEditing = edit.style.display === 'block';
-    view.style.display = isEditing ? 'block' : 'none';
-    edit.style.display = isEditing ? 'none'  : 'block';
-    btn.textContent    = isEditing ? 'Edit Profile' : 'Cancel';
+// ─────────────────────────────────────────
+// GLOBALS
+// ─────────────────────────────────────────
+const db          = window.supabaseClient;
+let   currentUser = JSON.parse(localStorage.getItem("uniclinic_user")) || null;
+
+// ─────────────────────────────────────────
+// INIT — load fresh data from DB
+// ─────────────────────────────────────────
+async function init() {
+  if (!currentUser || !db) return;
+
+  const { data, error } = await db
+    .from("users")
+    .select("full_name, student_number, email, phone")
+    .eq("user_id", currentUser.user_id)
+    .single();
+
+  if (error || !data) {
+    console.warn("Could not load profile:", error?.message);
+    return;
   }
+
+  // merge fresh data into local copy
+  currentUser = { ...currentUser, ...data };
+  localStorage.setItem("uniclinic_user", JSON.stringify(currentUser));
+
+  renderProfile(data);
+}
+
+// ─────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────
+function renderProfile(u) {
+  const name      = u.full_name      || "—";
+  const stuNo     = u.student_number || "—";
+  const email     = u.email          || "—";
+  const phone     = u.phone          || "—";
+  const initials  = name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase();
+
+  // hero
+  document.getElementById("heroAvatar").textContent    = initials;
+  document.getElementById("heroName").textContent      = name;
+  document.getElementById("heroStudentNo").textContent = "Student Number: " + stuNo;
+  document.getElementById("heroEmail").textContent     = "✉ " + email;
+  document.getElementById("heroPhone").textContent     = phone !== "—" ? "📱 " + phone : "📱 —";
+
+  // sidebar + topbar
+  document.getElementById("sidebarAvatar").textContent = initials;
+  document.getElementById("sidebarName").textContent   = name;
+  document.getElementById("topAvatar").textContent     = initials;
+
+  // view mode
+  document.getElementById("v-name").textContent       = name;
+  document.getElementById("v-student-no").textContent = stuNo;
+  document.getElementById("v-email").textContent      = email;
+  document.getElementById("v-phone").textContent      = phone;
+
+  // pre-fill edit inputs
+  document.getElementById("e-name").value       = name !== "—" ? name : "";
+  document.getElementById("e-student-no").value = stuNo !== "—" ? stuNo : "";
+  document.getElementById("e-email").value      = email !== "—" ? email : "";
+  document.getElementById("e-phone").value      = phone !== "—" ? phone : "";
+}
+
+// ─────────────────────────────────────────
+// TOGGLE EDIT / VIEW
+// ─────────────────────────────────────────
+function toggleEdit() {
+  const editing = document.getElementById("edit-mode").style.display === "block";
+  document.getElementById("view-mode").style.display = editing ? "block" : "none";
+  document.getElementById("edit-mode").style.display = editing ? "none"  : "block";
+  document.getElementById("heroEditBtn").textContent  = editing ? "Edit Profile" : "Cancel";
+  hideMsg("profileMsg");
+}
+
+// ─────────────────────────────────────────
+// SAVE PROFILE
+// ─────────────────────────────────────────
+async function saveProfile() {
+  if (!currentUser || !db) return;
+
+  const btn  = document.getElementById("saveBtn");
+  const spin = document.getElementById("saveSpin");
+
+  const full_name     = document.getElementById("e-name").value.trim();
+  const email         = document.getElementById("e-email").value.trim();
+  const phone         = document.getElementById("e-phone").value.trim();
+
+  if (!full_name || !email) {
+    showMsg("profileMsg", "Full name and email are required.", "error");
+    return;
+  }
+
+  btn.disabled   = true;
+  spin.style.display = "inline-block";
+
+  const { error } = await db
+    .from("users")
+    .update({ full_name, email, phone })
+    .eq("user_id", currentUser.user_id);
+
+  spin.style.display = "none";
+  btn.disabled = false;
+
+  if (error) {
+    showMsg("profileMsg", error.message || "Failed to save.", "error");
+    return;
+  }
+
+  // update local state
+  currentUser = { ...currentUser, full_name, email, phone };
+  localStorage.setItem("uniclinic_user", JSON.stringify(currentUser));
+
+  renderProfile(currentUser);
+  showMsg("profileMsg", "Profile updated successfully!", "success");
+
+  setTimeout(() => {
+    toggleEdit();
+  }, 1200);
+}
+
+// ─────────────────────────────────────────
+// CHANGE PASSWORD (plain-text, matches your schema)
+// ─────────────────────────────────────────
+async function changePassword() {
+  if (!currentUser || !db) return;
+
+  const np  = document.getElementById("newPassword").value;
+  const cp  = document.getElementById("confirmPassword").value;
+
+  if (!np || np.length < 6) {
+    showMsg("pwMsg", "Password must be at least 6 characters.", "error"); return;
+  }
+  if (np !== cp) {
+    showMsg("pwMsg", "Passwords do not match.", "error"); return;
+  }
+
+  const { error } = await db
+    .from("users")
+    .update({ password: np })
+    .eq("user_id", currentUser.user_id);
+
+  if (error) {
+    showMsg("pwMsg", error.message || "Failed to update password.", "error"); return;
+  }
+
+  document.getElementById("newPassword").value     = "";
+  document.getElementById("confirmPassword").value = "";
+  showMsg("pwMsg", "Password updated successfully!", "success");
+}
+
+// ─────────────────────────────────────────
+// DELETE ACCOUNT
+// ─────────────────────────────────────────
+async function confirmDelete() {
+  if (!confirm("Are you sure you want to delete your account? This cannot be undone.")) return;
+  if (!currentUser || !db) return;
+
+  const { error } = await db
+    .from("users")
+    .delete()
+    .eq("user_id", currentUser.user_id);
+
+  if (error) { alert("Failed to delete account: " + error.message); return; }
+
+  localStorage.removeItem("uniclinic_user");
+  window.location.href = "login.html";
+}
+
+// ─────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────
+function showMsg(id, text, type) {
+  const el = document.getElementById(id);
+  el.textContent  = text;
+  el.className    = "profile-msg " + type;
+}
+function hideMsg(id) {
+  const el = document.getElementById(id);
+  el.textContent = "";
+  el.className   = "profile-msg";
+}
+
+// ─────────────────────────────────────────
+// LOGOUT
+// ─────────────────────────────────────────
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("uniclinic_user");
+});
+
+// ─────────────────────────────────────────
+// BOOT
+// ─────────────────────────────────────────
+init();
 </script>
 
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </body>
 </html>
