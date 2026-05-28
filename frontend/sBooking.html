@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>UniClinic — Book Appointment</title>
- <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -38,6 +38,13 @@
       <a href="services.html" class="nav-item">
         <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Services
+      </a>
+      <!-- ── AI Insights (new) ── -->
+      <a href="sDashboard.html#ai" class="nav-item" id="aiInsightsLink">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+        </svg>
+        AI Insights
       </a>
     </nav>
 
@@ -86,6 +93,18 @@
     </div>
 
     <div class="page-body">
+
+      <!-- AI Insights tip strip -->
+      <div class="ai-booking-tip fade-up" onclick="window.location.href='sDashboard.html#ai'" style="cursor:pointer;">
+        <div class="ai-booking-tip-left">
+          <div class="ai-booking-tip-dot"></div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+          <span><strong>AI Tip:</strong> Check AI Insights before booking — see today's congestion level and the quietest times to visit.</span>
+        </div>
+        <a href="sDashboard.html#ai" class="ai-booking-tip-link" onclick="event.stopPropagation();">View Insights →</a>
+      </div>
 
       <div class="booking-grid">
 
@@ -237,10 +256,78 @@
   Appointment booked successfully!
 </div>
 
+<style>
+/* AI Booking Tip Strip */
+.ai-booking-tip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #f0fdfa;
+  border: 1.5px solid #99f6e4;
+  border-radius: 12px;
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  transition: background .15s, border-color .15s;
+}
+.ai-booking-tip:hover {
+  background: #e6faf5;
+  border-color: var(--teal-400, #2dd4bf);
+}
+.ai-booking-tip-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #0f766e;
+  flex: 1;
+}
+.ai-booking-tip-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #14b8a6;
+  flex-shrink: 0;
+  position: relative;
+}
+.ai-booking-tip-dot::after {
+  content: '';
+  position: absolute; inset: -3px;
+  border-radius: 50%;
+  background: #14b8a6;
+  opacity: .25;
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+@keyframes pulse-ring { 0% { transform: scale(.6); opacity: .5; } 100% { transform: scale(1.8); opacity: 0; } }
+.ai-booking-tip-link {
+  font-family: var(--font-head, sans-serif);
+  font-size: 12px; font-weight: 700;
+  color: var(--teal-700, #0f766e);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #5eead4;
+  transition: all .15s;
+}
+.ai-booking-tip-link:hover {
+  background: var(--teal-500, #14b8a6);
+  color: white;
+  border-color: var(--teal-500, #14b8a6);
+}
+</style>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../JavaScript/supabase.js"></script>
 <script src="../JavaScript/auth-session.js"></script>
 <script src="../JavaScript/sBooking.js"></script>
+
+<!-- Handle #ai hash navigation from sDashboard -->
+<script>
+  // If someone lands here from a direct link with ?ai query, redirect to dashboard AI tab
+  if (window.location.hash === '#ai') {
+    window.location.href = 'sDashboard.html#ai';
+  }
+</script>
 
 </body>
 </html>

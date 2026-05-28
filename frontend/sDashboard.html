@@ -41,7 +41,7 @@
       padding: 11px 14px; border-radius: 10px;
       color: #64748b; font-size: 14px; font-weight: 500;
       font-family: var(--font-body); text-decoration: none;
-      transition: all .15s ease;
+      transition: all .15s ease; cursor: pointer; border: none; background: transparent; width: 100%; text-align: left;
     }
     .nav-item svg { width: 18px; height: 18px; flex-shrink: 0; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .nav-item:hover { background: #f1f5f9; color: #334155; }
@@ -205,7 +205,7 @@
       gap: 16px; margin-bottom: 24px;
     }
 
-    /* ── TRACKER CARDS (adminDash style) ── */
+    /* ── TRACKER CARDS ── */
     .tracker-card {
       background: white; border-radius: 14px;
       border: 1px solid #e8ecf0;
@@ -246,7 +246,7 @@
     }
     .tracker-sub strong { color: #334155; }
 
-    /* pulse dot used by tracker-live */
+    /* pulse dot */
     .pulse-dot {
       width: 7px; height: 7px; border-radius: 50%;
       background: #16a34a; position: relative; flex-shrink: 0;
@@ -258,7 +258,7 @@
     }
     @keyframes pulse-ring { 0% { transform: scale(.6); opacity: .5; } 100% { transform: scale(1.8); opacity: 0; } }
 
-    /* ── SENSOR CHECK-INS CARD ── */
+    /* ── DASH CARD ── */
     .dash-card {
       background: white; border-radius: 14px;
       border: 1px solid #e8ecf0;
@@ -273,21 +273,12 @@
     .dash-card-sub   { font-size: 12px; color: #94a3b8; margin-top: 2px; }
     .dash-card-body  { padding: 16px 20px 20px; }
 
-    /* ── SENSOR TABLE (matches adminDash style) ── */
+    /* ── SENSOR TABLE ── */
     .sensor-live-pill {
       display: flex; align-items: center; gap: 6px;
       font-size: 11px; font-weight: 700;
       color: #16a34a; font-family: var(--font-head);
       letter-spacing: .06em;
-    }
-    .pulse-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: #16a34a; position: relative;
-    }
-    .pulse-dot::after {
-      content: ''; position: absolute; inset: -3px;
-      border-radius: 50%; background: #16a34a; opacity: .25;
-      animation: pulse-ring 1.6s ease-out infinite;
     }
 
     .modern-table {
@@ -315,23 +306,6 @@
     }
     .modern-table tbody tr:last-child td { border-bottom: none; }
     .modern-table tbody tr:hover td { background: #f8fafc; }
-
-    .queue-badge {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 28px; height: 28px;
-      background: var(--teal-500); color: white;
-      border-radius: 8px;
-      font-family: var(--font-head); font-size: 12px; font-weight: 800;
-    }
-
-    .sensor-empty {
-      display: flex; flex-direction: column; align-items: center;
-      padding: 32px 16px; text-align: center; gap: 8px;
-      color: #94a3b8;
-    }
-    .sensor-empty svg { width: 32px; height: 32px; stroke: #cbd5e1; margin-bottom: 4px; }
-    .sensor-empty-title { font-size: 13px; font-weight: 600; color: #64748b; }
-    .sensor-empty-sub   { font-size: 12px; }
 
     /* ── BOTTOM TWO-COL ── */
     .dash-bottom-grid {
@@ -484,40 +458,128 @@
     .notif-cat-badge.clinic-hours { background: #dbeafe; color: #1d4ed8; }
     .notif-cat-badge.services     { background: #ccfbf1; color: #0f766e; }
     .notif-cat-badge.urgent       { background: #fef9c3; color: #a16207; }
-
-    .notif-empty {
-      padding: 32px 16px; text-align: center;
-      color: #94a3b8; font-size: 13px;
-    }
-    .notif-loading {
-      padding: 24px; text-align: center;
-      color: #94a3b8; font-size: 13px;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-    }
+    .notif-empty { padding: 32px 16px; text-align: center; color: #94a3b8; font-size: 13px; }
+    .notif-loading { padding: 24px; text-align: center; color: #94a3b8; font-size: 13px; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
     /* ── LOADING SPINNER ── */
-    .appt-loading {
-      display: flex; align-items: center; justify-content: center;
-      gap: 8px; padding: 28px; font-size: 13px; color: #94a3b8;
-    }
-    .spin {
-      width: 17px; height: 17px;
-      border: 2px solid #e2e8f0; border-top-color: var(--teal-500);
-      border-radius: 50%; animation: spinner .7s linear infinite; flex-shrink: 0;
-    }
+    .appt-loading { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 28px; font-size: 13px; color: #94a3b8; }
+    .spin { width: 17px; height: 17px; border: 2px solid #e2e8f0; border-top-color: var(--teal-500); border-radius: 50%; animation: spinner .7s linear infinite; flex-shrink: 0; }
     @keyframes spinner { to { transform: rotate(360deg); } }
 
     /* ── SPACING HELPERS ── */
     .mb-22 { margin-bottom: 22px; }
 
+    /* ══════════════════════════════════════════════
+       AI INSIGHTS PAGE — Patient-facing styles
+    ══════════════════════════════════════════════ */
+
+    /* Info Banner */
+    .info-banner {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: #f0fdfa; border: 1.5px solid #99f6e4;
+      border-radius: 12px; padding: 14px 18px;
+      font-size: 13px; color: #0f766e; line-height: 1.55;
+      margin-bottom: 22px;
+    }
+    .info-banner svg { flex-shrink: 0; margin-top: 1px; }
+
+    /* AI stats grid (reuse mini-stat-card pattern) */
+    .ai-stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 14px; margin-bottom: 22px;
+    }
+    .ai-stat-card {
+      background: white; border: 1px solid #e8ecf0;
+      border-radius: 14px; padding: 20px 18px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+      transition: all .2s;
+    }
+    .ai-stat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.07); }
+    .ai-stat-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+    .ai-stat-icon svg { width: 18px; height: 18px; }
+    .ai-stat-icon.teal  { background: #f0fdfa; }
+    .ai-stat-icon.blue  { background: #eff6ff; }
+    .ai-stat-icon.green { background: #f0fdf4; }
+    .ai-stat-val { font-family: var(--font-head); font-size: 22px; font-weight: 800; color: #0f172a; line-height: 1; margin-bottom: 4px; }
+    .ai-stat-label { font-size: 12px; font-weight: 500; color: #64748b; margin-bottom: 3px; }
+    .ai-stat-sub   { font-size: 11px; color: #94a3b8; }
+
+    /* Chart cards two-col */
+    .ai-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 22px; }
+
+    .card {
+      background: white; border-radius: 14px;
+      border: 1px solid #e8ecf0;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 18px 20px 0;
+      display: flex; align-items: flex-start; justify-content: space-between;
+    }
+    .card-title { font-family: var(--font-head); font-size: 15px; font-weight: 700; color: #0f172a; }
+    .card-sub   { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+    .card-body  { padding: 16px 20px 20px; }
+
+    /* Report bars (reused from admin) */
+    .report-bar-wrap { display: flex; flex-direction: column; gap: 10px; }
+    .report-bar-row  { display: flex; align-items: center; gap: 10px; }
+    .report-bar-label { font-size: 12px; color: #475569; font-weight: 500; width: 80px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .report-bar-track { flex: 1; background: #f1f5f9; border-radius: 9999px; height: 8px; overflow: hidden; }
+    .report-bar-fill  { height: 100%; background: linear-gradient(90deg, var(--teal-400), var(--teal-600)); border-radius: 9999px; transition: width .6s ease; }
+    .report-bar-val   { font-size: 12px; font-weight: 700; color: #334155; width: 28px; text-align: right; flex-shrink: 0; }
+
+    /* AI Recommendations */
+    .ai-rec-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 0; border-bottom: 1px solid #f1f5f9;
+    }
+    .ai-rec-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .ai-rec-icon {
+      width: 34px; height: 34px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .ai-rec-title { font-size: 13px; font-weight: 700; color: #1e293b; margin-bottom: 3px; }
+    .ai-rec-body  { font-size: 12px; color: #64748b; line-height: 1.5; }
+
+    /* Congestion banner colours */
+    .banner-low    { background: #f0fdf4; border-color: #86efac; color: #15803d; }
+    .banner-medium { background: #fffbeb; border-color: #fcd34d; color: #a16207; }
+    .banner-high   { background: #fef2f2; border-color: #fca5a5; color: #dc2626; }
+
+    /* Risk level badge */
+    .risk-low    { color: #16a34a; }
+    .risk-medium { color: #d97706; }
+    .risk-high   { color: #dc2626; }
+
+    /* High booking table load bars */
+    .load-bar-inline {
+      display: inline-flex; align-items: center; gap: 6px; width: 120px;
+    }
+    .load-bar-track-sm { flex: 1; background: #f1f5f9; border-radius: 9999px; height: 6px; overflow: hidden; }
+    .load-bar-fill-sm  { height: 100%; background: linear-gradient(90deg, var(--teal-400), var(--teal-600)); border-radius: 9999px; }
+
+    /* AI loading state */
+    .ai-loading {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 48px 20px; gap: 14px; color: #94a3b8;
+    }
+    .ai-loading .spin { width: 24px; height: 24px; border-width: 3px; }
+    .ai-loading-text { font-size: 13px; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 960px) {
       .sidebar { display: none; }
-      .mini-stats-grid, .clinic-status-grid, .dash-bottom-grid { grid-template-columns: 1fr; }
+      .mini-stats-grid, .clinic-status-grid, .dash-bottom-grid,
+      .ai-stats-grid, .ai-two-col { grid-template-columns: 1fr; }
       .page-body { padding: 16px; }
       .topbar { padding: 12px 16px; }
       .hero-banner { padding: 24px 20px; }
       .hero-title { font-size: 22px; }
+    }
+    @media (max-width: 1200px) {
+      .ai-stats-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -540,10 +602,10 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a href="sDashboard.html" class="nav-item active">
+      <button class="nav-item active" onclick="showPage('dashboard', this)">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
         Dashboard
-      </a>
+      </button>
       <a href="sBooking.html" class="nav-item">
         <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>
         Book Appointment
@@ -552,6 +614,10 @@
         <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Services
       </a>
+      <button class="nav-item" onclick="showPage('ai', this)">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+        AI Insights
+      </button>
     </nav>
 
     <div class="sidebar-footer">
@@ -582,12 +648,12 @@
     <!-- TOPBAR -->
     <div class="topbar">
       <div>
-        <div class="topbar-title">Welcome</div>
-        <div class="topbar-sub">Here's what's happening with your health today</div>
+        <div class="topbar-title" id="pageTitle">Welcome</div>
+        <div class="topbar-sub" id="pageSub">Here's what's happening with your health today</div>
       </div>
       <div class="topbar-right">
 
-        <!-- ── NOTIFICATION BELL (live from Supabase announcements) ── -->
+        <!-- NOTIFICATION BELL -->
         <div class="notif-wrap" id="notifWrap">
           <button class="icon-btn" id="notifBtn" onclick="toggleNotif()">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -596,18 +662,13 @@
             </svg>
             <span class="notif-badge" id="notifDot" style="display:none;">0</span>
           </button>
-
           <div class="notif-dropdown" id="notifDropdown">
             <div class="notif-header">
               <span class="notif-header-title">Announcements</span>
               <button class="btn-ghost" onclick="markAllRead()">Mark all read</button>
             </div>
-            <!-- Populated dynamically by loadAnnouncements() -->
             <div class="notif-list" id="notifList">
-              <div class="notif-loading">
-                <div class="spin"></div>
-                Loading announcements…
-              </div>
+              <div class="notif-loading"><div class="spin"></div>Loading…</div>
             </div>
           </div>
         </div>
@@ -619,149 +680,258 @@
     <!-- PAGE BODY -->
     <div class="page-body">
 
-      <!-- ── HERO BANNER ── -->
-      <div class="hero-banner fade-up">
-        <div class="hero-title">Your health, <span>our priority.</span></div>
-        <div class="hero-sub">Access free, confidential healthcare services available exclusively to registered students. Book appointments and stay informed.</div>
-        <div class="hero-actions">
-          <a href="sBooking.html" class="btn-hero-primary">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Book a Visit
-          </a>
-          <a href="services.html" class="btn-hero-outline">View Services</a>
-        </div>
-      </div>
+      <!-- ══════════ DASHBOARD PAGE ══════════ -->
+      <div id="page-dashboard">
 
-      <!-- ── MINI STAT CARDS ── -->
-      <div class="mini-stats-grid fade-up-1">
-        <div class="mini-stat-card">
-          <div class="mini-stat-icon blue">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <!-- HERO BANNER -->
+        <div class="hero-banner fade-up">
+          <div class="hero-title">Your health, <span>our priority.</span></div>
+          <div class="hero-sub">Access free, confidential healthcare services available exclusively to registered students. Book appointments and stay informed.</div>
+          <div class="hero-actions">
+            <a href="sBooking.html" class="btn-hero-primary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Book a Visit
+            </a>
+            <a href="services.html" class="btn-hero-outline">View Services</a>
           </div>
-          <div class="mini-stat-val">24/7</div>
-          <div class="mini-stat-label">Health Support Access</div>
-          <div class="mini-stat-sub">Available anytime</div>
         </div>
-        <div class="mini-stat-card">
-          <div class="mini-stat-icon green">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+
+        <!-- MINI STAT CARDS -->
+        <div class="mini-stats-grid fade-up-1">
+          <div class="mini-stat-card">
+            <div class="mini-stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="mini-stat-val">24/7</div>
+            <div class="mini-stat-label">Health Support Access</div>
+            <div class="mini-stat-sub">Available anytime</div>
           </div>
-          <div class="mini-stat-val">8+</div>
-          <div class="mini-stat-label">Services Available</div>
-          <div class="mini-stat-sub">Free for students</div>
+          <div class="mini-stat-card">
+            <div class="mini-stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+            <div class="mini-stat-val">8+</div>
+            <div class="mini-stat-label">Services Available</div>
+            <div class="mini-stat-sub">Free for students</div>
+          </div>
         </div>
-      </div>
 
-      <!-- ── CLINIC STATUS (adminDash tracker style) ── -->
-      <div class="section-label fade-up-1">Clinic Status</div>
-      <div class="clinic-status-grid fade-up-1">
-
-        <!-- Booked Appointments Today -->
-        <div class="tracker-card accent-teal">
-          <div class="tracker-header">
-            <div class="tracker-title">Booked Appointments Today</div>
-            <div class="tracker-live">
-              <div class="pulse-dot"></div>
-              LIVE
+        <!-- CLINIC STATUS -->
+        <div class="section-label fade-up-1">Clinic Status</div>
+        <div class="clinic-status-grid fade-up-1">
+          <div class="tracker-card accent-teal">
+            <div class="tracker-header">
+              <div class="tracker-title">Booked Appointments Today</div>
+              <div class="tracker-live"><div class="pulse-dot"></div>LIVE</div>
+            </div>
+            <div class="tracker-body">
+              <div class="tracker-num teal" id="bookedCount">0</div>
+              <div class="tracker-sub">checked in of <strong id="apptTotalLabel">0</strong> booked</div>
             </div>
           </div>
-          <div class="tracker-body">
-            <div class="tracker-num teal" id="bookedCount">0</div>
-            <div class="tracker-sub">
-              checked in of <strong id="apptTotalLabel">0</strong> booked
+          <div class="tracker-card accent-orange">
+            <div class="tracker-header">
+              <div class="tracker-title">Walk-in Slots Today</div>
+              <div class="tracker-live"><div class="pulse-dot"></div>LIVE</div>
             </div>
-          </div>
-        </div>
-
-        <!-- Walk-in Slots Today -->
-        <div class="tracker-card accent-orange">
-          <div class="tracker-header">
-            <div class="tracker-title">Walk-in Slots Today</div>
-            <div class="tracker-live">
-              <div class="pulse-dot"></div>
-              LIVE
-            </div>
-          </div>
-          <div class="tracker-body">
-            <div class="tracker-num orange" id="waitlistedCount">0</div>
-            <div class="tracker-sub">
-              slots remaining of <strong id="walkinTotalLabel">0</strong>
+            <div class="tracker-body">
+              <div class="tracker-num orange" id="waitlistedCount">0</div>
+              <div class="tracker-sub">slots remaining of <strong id="walkinTotalLabel">0</strong></div>
             </div>
           </div>
         </div>
 
-      </div>
+        <!-- BOTTOM: UPCOMING APPOINTMENTS + SERVICES -->
+        <div class="dash-bottom-grid fade-up-2">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Upcoming Appointments</div>
+                <div class="dash-card-sub">Your next scheduled visits</div>
+              </div>
+              <a href="sBooking.html" class="btn-book-new">+ Book New</a>
+            </div>
+            <div class="dash-card-body">
+              <div id="upcomingApptList">
+                <div class="appt-loading"><div class="spin"></div>Loading appointments…</div>
+              </div>
+            </div>
+          </div>
 
-      <!-- ── UPCOMING APPOINTMENTS + SERVICES ── -->
-      <div class="dash-bottom-grid fade-up-2">
+          <div class="dash-card">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Services Offered</div>
+                <div class="dash-card-sub">Available at UniClinic</div>
+              </div>
+            </div>
+            <div class="dash-card-body">
+              <div class="services-mini-grid">
+                <div class="svc-chip"><div class="svc-chip-icon" style="background:#f0fdfa;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><span>HIV Testing</span></div>
+                <div class="svc-chip"><div class="svc-chip-icon" style="background:#eff6ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div><span>Flu &amp; Fever</span></div>
+                <div class="svc-chip"><div class="svc-chip-icon" style="background:#fdf4ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><span>Pap Smear</span></div>
+                <div class="svc-chip"><div class="svc-chip-icon" style="background:#fff7ed;"><svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div><span>Mental Health</span></div>
+                <div class="svc-chip"><div class="svc-chip-icon" style="background:#f0fdf4;"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span>Vaccinations</span></div>
+                <div class="svc-chip"><div class="svc-chip-icon" style="background:#f0fdfa;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div><span>General Checkup</span></div>
+                <div class="svc-chip"><div class="svc-chip-icon" style="background:#fef2f2;"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/></svg></div><span>Medication</span></div>
+                <div class="svc-chip"><div class="svc-chip-icon" style="background:#eff6ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><span>Telehealth</span></div>
+              </div>
+              <a href="services.html" class="view-all-link" style="margin-top:12px;">View all services →</a>
+            </div>
+          </div>
+        </div>
 
-        <!-- Upcoming Appointments -->
-        <div class="dash-card">
-          <div class="dash-card-header">
+      </div><!-- end page-dashboard -->
+
+      <!-- ══════════ AI INSIGHTS PAGE (Patient-facing) ══════════ -->
+      <div id="page-ai" style="display:none;">
+
+        <!-- Congestion Risk Banner -->
+        <div id="aiCongestionBanner" class="info-banner mb-22">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span id="aiCongestionMessage">Analysing today's clinic activity…</span>
+        </div>
+
+        <!-- AI Stats Row -->
+        <div class="ai-stats-grid mb-22">
+          <div class="ai-stat-card">
+            <div class="ai-stat-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="ai-stat-val" id="aiRiskLevel">--</div>
+            <div class="ai-stat-label">Congestion Risk Today</div>
+            <div class="ai-stat-sub">↑ Live prediction</div>
+          </div>
+          <div class="ai-stat-card">
+            <div class="ai-stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="ai-stat-val" id="aiBusiestDay">--</div>
+            <div class="ai-stat-label">Busiest Day of Week</div>
+            <div class="ai-stat-sub">↑ Based on history</div>
+          </div>
+          <div class="ai-stat-card">
+            <div class="ai-stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="ai-stat-val" id="aiBusiestHour">--</div>
+            <div class="ai-stat-label">Busiest Hour</div>
+            <div class="ai-stat-sub">↑ Based on history</div>
+          </div>
+          <div class="ai-stat-card">
+            <div class="ai-stat-icon teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div class="ai-stat-val" id="aiTodayCount">--</div>
+            <div class="ai-stat-label">Appointments Today</div>
+            <div class="ai-stat-sub">↑ Live count</div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="ai-two-col mb-22">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Busiest Days of the Week</div>
+                <div class="card-sub">Helps you plan the best day to visit</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="report-bar-wrap" id="aiBusiestDaysChart">
+                <div class="appt-loading"><div class="spin"></div>Loading…</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Busiest Hours of the Day</div>
+                <div class="card-sub">Helps you pick the quietest time to come in</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="report-bar-wrap" id="aiBusiestHoursChart">
+                <div class="appt-loading"><div class="spin"></div>Loading…</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- High Booking Dates + Recommendations -->
+        <div class="ai-two-col">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Top 5 Busiest Dates</div>
+                <div class="card-sub">Historically high-demand dates — try to avoid these</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <table class="modern-table">
+                <thead>
+                  <tr><th>Date</th><th>Appointments</th><th>Load</th></tr>
+                </thead>
+                <tbody id="aiHighBookingTable">
+                  <tr><td colspan="3" style="text-align:center;color:#94a3b8;padding:20px;">Loading…</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">Tips for Your Visit</div>
+                <div class="card-sub">Personalised suggestions based on clinic trends</div>
+              </div>
+            </div>
+            <div class="card-body" id="aiRecommendations">
+              <div class="appt-loading"><div class="spin"></div>Generating tips…</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="card" style="margin-top:22px;">
+          <div class="card-header">
             <div>
-              <div class="dash-card-title">Upcoming Appointments</div>
-              <div class="dash-card-sub">Your next scheduled visits</div>
-            </div>
-            <a href="sBooking.html" class="btn-book-new">+ Book New</a>
-          </div>
-          <div class="dash-card-body">
-            <div id="upcomingApptList">
-              <div class="appt-loading">
-                <div class="spin"></div>
-                Loading appointments…
-              </div>
+              <div class="card-title">How AI Insights Work</div>
+              <div class="card-sub">Understanding your clinic predictions</div>
             </div>
           </div>
-        </div>
-
-        <!-- Services Offered -->
-        <div class="dash-card">
-          <div class="dash-card-header">
-            <div>
-              <div class="dash-card-title">Services Offered</div>
-              <div class="dash-card-sub">Available at UniClinic</div>
-            </div>
-          </div>
-          <div class="dash-card-body">
-            <div class="services-mini-grid">
-              <div class="svc-chip">
-                <div class="svc-chip-icon" style="background:#f0fdfa;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                <span>HIV Testing</span>
+          <div class="card-body">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center;">
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;">
+                <div style="font-size:28px;margin-bottom:8px;">📋</div>
+                <div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Appointment Data</div>
+                <div style="font-size:11px;color:#94a3b8;line-height:1.5;">We analyse all historical bookings at the clinic</div>
               </div>
-              <div class="svc-chip">
-                <div class="svc-chip-icon" style="background:#eff6ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
-                <span>Flu &amp; Fever</span>
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;">
+                <div style="font-size:28px;margin-bottom:8px;">🧠</div>
+                <div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Pattern Detection</div>
+                <div style="font-size:11px;color:#94a3b8;line-height:1.5;">Patterns in days, times and dates are identified</div>
               </div>
-              <div class="svc-chip">
-                <div class="svc-chip-icon" style="background:#fdf4ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-                <span>Pap Smear</span>
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;">
+                <div style="font-size:28px;margin-bottom:8px;">📊</div>
+                <div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Risk Assessment</div>
+                <div style="font-size:11px;color:#94a3b8;line-height:1.5;">Today's load is assessed as Low, Medium or High</div>
               </div>
-              <div class="svc-chip">
-                <div class="svc-chip-icon" style="background:#fff7ed;"><svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
-                <span>Mental Health</span>
-              </div>
-              <div class="svc-chip">
-                <div class="svc-chip-icon" style="background:#f0fdf4;"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                <span>Vaccinations</span>
-              </div>
-              <div class="svc-chip">
-                <div class="svc-chip-icon" style="background:#f0fdfa;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
-                <span>General Checkup</span>
-              </div>
-              <div class="svc-chip">
-                <div class="svc-chip-icon" style="background:#fef2f2;"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/></svg></div>
-                <span>Medication</span>
-              </div>
-              <div class="svc-chip">
-                <div class="svc-chip-icon" style="background:#eff6ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-                <span>Telehealth</span>
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;">
+                <div style="font-size:28px;margin-bottom:8px;">💡</div>
+                <div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Smart Tips</div>
+                <div style="font-size:11px;color:#94a3b8;line-height:1.5;">Personalised tips to help you plan your visit</div>
               </div>
             </div>
-            <a href="services.html" class="view-all-link" style="margin-top:12px;">View all services →</a>
           </div>
         </div>
 
-      </div>
+      </div><!-- end page-ai -->
 
     </div><!-- end page-body -->
   </div><!-- end main-content -->
@@ -773,12 +943,34 @@
 
 <script>
 // ============================================================
+// PAGE ROUTING
+// ============================================================
+const pageMeta = {
+  dashboard: { title: 'Welcome',      sub: "Here's what's happening with your health today" },
+  ai:        { title: 'AI Insights',  sub: 'Smart predictions to help you plan your clinic visit' },
+};
+
+function showPage(id, linkEl) {
+  document.querySelectorAll('[id^="page-"]').forEach(p => p.style.display = 'none');
+  const page = document.getElementById('page-' + id);
+  if (page) page.style.display = '';
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (linkEl) linkEl.classList.add('active');
+  const meta = pageMeta[id] || {};
+  document.getElementById('pageTitle').textContent = meta.title || '';
+  document.getElementById('pageSub').textContent   = meta.sub   || '';
+  if (id === 'ai' && !window._aiLoaded) {
+    window._aiLoaded = true;
+    runAndRenderPredictions();
+  }
+}
+
+// ============================================================
 // USER SESSION
 // ============================================================
 const currentUser = JSON.parse(localStorage.getItem("uniclinic_user")) || null;
 const db = window.supabaseClient;
 
-// Track which announcement IDs have been "read" in this session
 let readAnnIds = new Set(
   JSON.parse(localStorage.getItem("uniclinic_read_anns") || "[]")
 );
@@ -793,8 +985,7 @@ function setUserUI() {
 }
 
 // ============================================================
-// ANNOUNCEMENTS — pulled from Supabase `announcements` table
-// Falls back gracefully if table doesn't exist yet.
+// ANNOUNCEMENTS
 // ============================================================
 const CAT_CLASS = {
   "General":      "general",
@@ -806,49 +997,36 @@ const CAT_CLASS = {
 
 async function loadAnnouncements() {
   const list = document.getElementById("notifList");
-
-  if (!db) {
-    list.innerHTML = '<div class="notif-empty">Announcements unavailable.</div>';
-    return;
-  }
-
+  if (!db) { list.innerHTML = '<div class="notif-empty">Announcements unavailable.</div>'; return; }
   try {
     const { data, error } = await db
       .from("announcements")
       .select("id, title, body, category, created_at")
       .order("created_at", { ascending: false })
       .limit(20);
-
     if (error) throw error;
-
     if (!data || data.length === 0) {
       list.innerHTML = '<div class="notif-empty">No announcements posted yet.</div>';
-      updateNotifBadge(0);
-      return;
+      updateNotifBadge(0); return;
     }
-
-    // Count unread
     const unreadCount = data.filter(a => !readAnnIds.has(String(a.id))).length;
     updateNotifBadge(unreadCount);
-
     list.innerHTML = data.map(a => {
       const isUnread = !readAnnIds.has(String(a.id));
       const catKey   = CAT_CLASS[a.category] || "general";
       const dateStr  = formatAnnDate(a.created_at);
-      return `
-        <div class="notif-item ${isUnread ? "unread" : ""}" data-ann-id="${a.id}">
-          <div class="notif-dot ${isUnread ? "" : "read"}"></div>
-          <div class="notif-content">
-            <div class="notif-title">${escHtml(a.title)}</div>
-            <div class="notif-body">${escHtml(a.body)}</div>
-            <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
-              <span class="notif-cat-badge ${catKey}">${escHtml(a.category || "General")}</span>
-              <span class="notif-date">${dateStr}</span>
-            </div>
+      return `<div class="notif-item ${isUnread ? "unread" : ""}" data-ann-id="${a.id}">
+        <div class="notif-dot ${isUnread ? "" : "read"}"></div>
+        <div class="notif-content">
+          <div class="notif-title">${escHtml(a.title)}</div>
+          <div class="notif-body">${escHtml(a.body)}</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
+            <span class="notif-cat-badge ${catKey}">${escHtml(a.category || "General")}</span>
+            <span class="notif-date">${dateStr}</span>
           </div>
-        </div>`;
+        </div>
+      </div>`;
     }).join("");
-
   } catch (err) {
     console.warn("Announcements load failed:", err.message);
     list.innerHTML = '<div class="notif-empty">Could not load announcements.</div>';
@@ -857,12 +1035,8 @@ async function loadAnnouncements() {
 
 function updateNotifBadge(count) {
   const dot = document.getElementById("notifDot");
-  if (count > 0) {
-    dot.textContent = count > 9 ? "9+" : count;
-    dot.style.display = "flex";
-  } else {
-    dot.style.display = "none";
-  }
+  if (count > 0) { dot.textContent = count > 9 ? "9+" : count; dot.style.display = "flex"; }
+  else { dot.style.display = "none"; }
 }
 
 function formatAnnDate(iso) {
@@ -871,33 +1045,25 @@ function formatAnnDate(iso) {
   return d.toLocaleDateString("en-ZA", { day: "numeric", month: "short", year: "numeric" });
 }
 
-// ============================================================
-// NOTIFICATIONS DROPDOWN
-// ============================================================
 function toggleNotif() {
-  const dropdown = document.getElementById("notifDropdown");
-  dropdown.classList.toggle("open");
+  document.getElementById("notifDropdown").classList.toggle("open");
 }
 
 function markAllRead() {
-  const items = document.querySelectorAll(".notif-item");
-  items.forEach(el => {
+  document.querySelectorAll(".notif-item").forEach(el => {
     const id = el.dataset.annId;
     if (id) readAnnIds.add(String(id));
     el.classList.remove("unread");
     const dot = el.querySelector(".notif-dot");
     if (dot) dot.classList.add("read");
   });
-  // Persist to localStorage so reads survive a page refresh
   localStorage.setItem("uniclinic_read_anns", JSON.stringify([...readAnnIds]));
   updateNotifBadge(0);
 }
 
 document.addEventListener("click", function(e) {
   const wrap = document.getElementById("notifWrap");
-  if (!wrap.contains(e.target)) {
-    document.getElementById("notifDropdown").classList.remove("open");
-  }
+  if (!wrap.contains(e.target)) document.getElementById("notifDropdown").classList.remove("open");
 });
 
 // ============================================================
@@ -907,43 +1073,26 @@ async function loadCounters() {
   if (!db) return;
   try {
     const today = new Date().toISOString().split("T")[0];
-
-    // Booked appointments
     const { data: booked, error: apptErr } = await db
-      .from("appointments")
-      .select("appointment_id, status")
-      .eq("appointment_date", today)
-      .neq("status", "Cancelled");
-
+      .from("appointments").select("appointment_id, status")
+      .eq("appointment_date", today).neq("status", "Cancelled");
     if (apptErr) throw apptErr;
-
     if (booked) {
       const total     = booked.length;
-      const checkedIn = booked.filter(a =>
-        a.status === "Checked In" || a.status === "Completed"
-      ).length;
+      const checkedIn = booked.filter(a => a.status === "Checked In" || a.status === "Completed").length;
       document.getElementById("bookedCount").textContent    = checkedIn;
       document.getElementById("apptTotalLabel").textContent = total;
     }
-
-    // Walk-in slots
     try {
-      const { data: walkin } = await db
-        .from("walk_in_slots")
-        .select("id, status")
-        .eq("slot_date", today);
-
+      const { data: walkin } = await db.from("walk_in_slots").select("id, status").eq("slot_date", today);
       if (walkin) {
         const walkinTotal     = walkin.length;
         const walkinRemaining = walkin.filter(s => s.status !== "Taken").length;
         document.getElementById("waitlistedCount").textContent  = walkinRemaining;
         document.getElementById("walkinTotalLabel").textContent = walkinTotal;
       }
-    } catch (_) { /* walk_in_slots may not exist yet */ }
-
-  } catch (err) {
-    console.warn("Counter load failed:", err.message);
-  }
+    } catch (_) {}
+  } catch (err) { console.warn("Counter load failed:", err.message); }
 }
 
 // ============================================================
@@ -951,89 +1100,46 @@ async function loadCounters() {
 // ============================================================
 async function loadUpcomingAppointments() {
   const container = document.getElementById("upcomingApptList");
-
-  if (!db || !currentUser) {
-    renderNoAppointments(container);
-    return;
-  }
-
+  if (!db || !currentUser) { renderNoAppointments(container); return; }
   try {
     const today = new Date().toISOString().split("T")[0];
     const { data, error } = await db
       .from("appointments")
-      .select(`
-        appointment_id,
-        appointment_date,
-        appointment_time,
-        status,
-        clinic_services!fk_appointments_service ( service_name )
-      `)
+      .select(`appointment_id, appointment_date, appointment_time, status,
+               clinic_services!fk_appointments_service ( service_name )`)
       .eq("student_id", currentUser.user_id)
-      .gte("appointment_date", today)
-      .neq("status", "Cancelled")
+      .gte("appointment_date", today).neq("status", "Cancelled")
       .order("appointment_date", { ascending: true })
-      .order("appointment_time", { ascending: true })
-      .limit(5);
-
+      .order("appointment_time", { ascending: true }).limit(5);
     if (error) throw error;
-
-    if (!data || data.length === 0) {
-      renderNoAppointments(container);
-      return;
-    }
-
+    if (!data || data.length === 0) { renderNoAppointments(container); return; }
     const barColors = ["teal", "blue", "purple", "teal", "blue"];
-    const badgeMap  = {
-      "Booked":     "badge-yellow",
-      "Approved":   "badge-green",
-      "Confirmed":  "badge-green",
-      "Checked In": "badge-teal",
-      "Completed":  "badge-teal",
-    };
-
-    container.innerHTML = `<div class="appt-list">${
-      data.map((appt, i) => {
-        const svcName = appt.clinic_services?.service_name || "Clinic Service";
-        const dateStr = formatApptDate(appt.appointment_date);
-        const timeStr = appt.appointment_time?.slice(0, 5) || "";
-        const badge   = badgeMap[appt.status] || "badge-yellow";
-        const color   = barColors[i % barColors.length];
-        return `
-          <div class="appt-item">
-            <div class="appt-bar ${color}"></div>
-            <div class="appt-info">
-              <div class="appt-service">${escHtml(svcName)}</div>
-              <div class="appt-meta">${dateStr} · ${timeStr}</div>
-            </div>
-            <span class="badge ${badge}">${escHtml(appt.status)}</span>
-          </div>`;
-      }).join("")
-    }</div>
-    <a href="sBooking.html" class="view-all-link">View all appointments →</a>`;
-
-  } catch (err) {
-    console.error("Upcoming appointments error:", err);
-    renderNoAppointments(container);
-  }
+    const badgeMap  = { "Booked": "badge-yellow", "Approved": "badge-green", "Confirmed": "badge-green", "Checked In": "badge-teal", "Completed": "badge-teal" };
+    container.innerHTML = `<div class="appt-list">${data.map((appt, i) => {
+      const svcName = appt.clinic_services?.service_name || "Clinic Service";
+      const dateStr = formatApptDate(appt.appointment_date);
+      const timeStr = appt.appointment_time?.slice(0, 5) || "";
+      const badge   = badgeMap[appt.status] || "badge-yellow";
+      const color   = barColors[i % barColors.length];
+      return `<div class="appt-item">
+        <div class="appt-bar ${color}"></div>
+        <div class="appt-info">
+          <div class="appt-service">${escHtml(svcName)}</div>
+          <div class="appt-meta">${dateStr} · ${timeStr}</div>
+        </div>
+        <span class="badge ${badge}">${escHtml(appt.status)}</span>
+      </div>`;
+    }).join("")}</div><a href="sBooking.html" class="view-all-link">View all appointments →</a>`;
+  } catch (err) { console.error("Upcoming appointments error:", err); renderNoAppointments(container); }
 }
 
 function renderNoAppointments(container) {
-  container.innerHTML = `
-    <div class="appt-empty-state">
-      <div class="appt-empty-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-          <line x1="12" y1="14" x2="12" y2="18"/>
-          <line x1="10" y1="16" x2="14" y2="16"/>
-        </svg>
-      </div>
-      <div class="appt-empty-title">No upcoming appointments</div>
-      <div class="appt-empty-sub">You don't have any scheduled visits yet.<br>Book one to get started.</div>
-      <a href="sBooking.html" class="btn-sm-primary" style="margin-top:6px;">+ Book New Appointment</a>
-    </div>`;
+  container.innerHTML = `<div class="appt-empty-state">
+    <div class="appt-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg></div>
+    <div class="appt-empty-title">No upcoming appointments</div>
+    <div class="appt-empty-sub">You don't have any scheduled visits yet.<br>Book one to get started.</div>
+    <a href="sBooking.html" class="btn-sm-primary" style="margin-top:6px;">+ Book New Appointment</a>
+  </div>`;
 }
 
 function formatApptDate(dateStr) {
@@ -1043,14 +1149,196 @@ function formatApptDate(dateStr) {
 }
 
 // ============================================================
+// AI PREDICTION ENGINE
+// ============================================================
+async function fetchAppointmentHistory() {
+  if (!db) return [];
+  const { data, error } = await db
+    .from("appointments")
+    .select("appointment_id, appointment_date, appointment_time, status");
+  if (error) { console.error("AI Prediction Error:", error); return []; }
+  return data || [];
+}
+
+function predictBusiestDays(appointments) {
+  const dayCounts = { Sunday:0, Monday:0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0, Saturday:0 };
+  appointments.forEach(app => {
+    const day = new Date(app.appointment_date).toLocaleDateString("en-ZA", { weekday: "long" });
+    if (dayCounts[day] !== undefined) dayCounts[day]++;
+  });
+  return Object.entries(dayCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([day, count]) => ({ day, count }));
+}
+
+function predictBusiestHours(appointments) {
+  const hourCounts = {};
+  appointments.forEach(app => {
+    if (!app.appointment_time) return;
+    const hour = app.appointment_time.slice(0, 2) + ":00";
+    hourCounts[hour] = (hourCounts[hour] || 0) + 1;
+  });
+  return Object.entries(hourCounts)
+    .sort((a, b) => b[1] - a[1])
+    .map(([hour, count]) => ({ hour, count }));
+}
+
+function predictCongestionRisk(appointments) {
+  const today = new Date().toISOString().split("T")[0];
+  const todayAppointments = appointments.filter(a => a.appointment_date === today);
+  let risk = "Low", message = "Clinic is running smoothly today — a great time to visit!";
+  if (todayAppointments.length >= 10) {
+    risk = "High";
+    message = "High activity expected today. Consider visiting another day or arriving early to reduce your wait.";
+  } else if (todayAppointments.length >= 5) {
+    risk = "Medium";
+    message = "Moderate activity today. You may experience some waiting time — plan accordingly.";
+  }
+  return { risk, message, count: todayAppointments.length };
+}
+
+function predictHighBookingDays(appointments) {
+  const dateCounts = {};
+  appointments.forEach(app => {
+    const date = app.appointment_date;
+    dateCounts[date] = (dateCounts[date] || 0) + 1;
+  });
+  return Object.entries(dateCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([date, count]) => ({ date, count }));
+}
+
+async function runPredictions() {
+  const appointments   = await fetchAppointmentHistory();
+  const busiestDays    = predictBusiestDays(appointments);
+  const busiestHours   = predictBusiestHours(appointments);
+  const congestionRisk = predictCongestionRisk(appointments);
+  const highBookingDays = predictHighBookingDays(appointments);
+  return { busiestDays, busiestHours, congestionRisk, highBookingDays };
+}
+
+// ============================================================
+// RENDER AI INSIGHTS — PATIENT VIEW
+// ============================================================
+async function runAndRenderPredictions() {
+  const results = await runPredictions();
+  const { busiestDays, busiestHours, congestionRisk, highBookingDays } = results;
+
+  // ── Congestion banner ──
+  const banner = document.getElementById("aiCongestionBanner");
+  const msg    = document.getElementById("aiCongestionMessage");
+  msg.textContent = congestionRisk.message;
+  banner.className = "info-banner mb-22 " +
+    (congestionRisk.risk === "High" ? "banner-high" :
+     congestionRisk.risk === "Medium" ? "banner-medium" : "banner-low");
+
+  // ── Stats cards ──
+  const riskEl = document.getElementById("aiRiskLevel");
+  riskEl.textContent = congestionRisk.risk;
+  riskEl.className = "ai-stat-val risk-" + congestionRisk.risk.toLowerCase();
+
+  document.getElementById("aiBusiestDay").textContent  = busiestDays[0]?.day  || "--";
+  document.getElementById("aiBusiestHour").textContent = busiestHours[0]?.hour || "--";
+  document.getElementById("aiTodayCount").textContent  = congestionRisk.count;
+
+  // ── Busiest Days chart ──
+  const daysMax = busiestDays[0]?.count || 1;
+  document.getElementById("aiBusiestDaysChart").innerHTML =
+    busiestDays.map(({ day, count }) => {
+      const pct = Math.round((count / daysMax) * 100);
+      return `<div class="report-bar-row">
+        <span class="report-bar-label" title="${day}">${day.slice(0,3)}</span>
+        <div class="report-bar-track"><div class="report-bar-fill" style="width:${pct}%"></div></div>
+        <span class="report-bar-val">${count}</span>
+      </div>`;
+    }).join("") || '<p style="color:#94a3b8;font-size:13px;text-align:center;padding:16px 0;">No data yet.</p>';
+
+  // ── Busiest Hours chart ──
+  const hoursMax = busiestHours[0]?.count || 1;
+  const top8Hours = busiestHours.slice(0, 8);
+  document.getElementById("aiBusiestHoursChart").innerHTML =
+    top8Hours.map(({ hour, count }) => {
+      const pct = Math.round((count / hoursMax) * 100);
+      return `<div class="report-bar-row">
+        <span class="report-bar-label">${hour}</span>
+        <div class="report-bar-track"><div class="report-bar-fill" style="width:${pct}%"></div></div>
+        <span class="report-bar-val">${count}</span>
+      </div>`;
+    }).join("") || '<p style="color:#94a3b8;font-size:13px;text-align:center;padding:16px 0;">No data yet.</p>';
+
+  // ── High Booking Dates table ──
+  const bookingMax = highBookingDays[0]?.count || 1;
+  const tbody = document.getElementById("aiHighBookingTable");
+  if (highBookingDays.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:#94a3b8;padding:20px;">No historical data yet.</td></tr>';
+  } else {
+    tbody.innerHTML = highBookingDays.map(({ date, count }) => {
+      const pct = Math.round((count / bookingMax) * 100);
+      const d   = new Date(date + "T00:00:00");
+      const fmt = d.toLocaleDateString("en-ZA", { day: "numeric", month: "short", year: "numeric" });
+      return `<tr>
+        <td>${fmt}</td>
+        <td style="font-weight:700;">${count}</td>
+        <td>
+          <div class="load-bar-inline">
+            <div class="load-bar-track-sm"><div class="load-bar-fill-sm" style="width:${pct}%"></div></div>
+            <span style="font-size:11px;color:#64748b;">${pct}%</span>
+          </div>
+        </td>
+      </tr>`;
+    }).join("");
+  }
+
+  // ── Patient-facing recommendations ──
+  const recs = buildPatientRecs(congestionRisk, busiestDays, busiestHours);
+  document.getElementById("aiRecommendations").innerHTML =
+    recs.map(r => `<div class="ai-rec-item">
+      <div class="ai-rec-icon" style="background:${r.bg};">${r.icon}</div>
+      <div>
+        <div class="ai-rec-title">${r.title}</div>
+        <div class="ai-rec-body">${r.body}</div>
+      </div>
+    </div>`).join("");
+}
+
+function buildPatientRecs(congestion, busiestDays, busiestHours) {
+  const recs = [];
+
+  // Congestion tip
+  if (congestion.risk === "High") {
+    recs.push({ icon: "🚨", bg: "#fef2f2", title: "High Traffic Today", body: "Today's clinic is very busy. If your visit is not urgent, consider booking for another day to reduce waiting time." });
+  } else if (congestion.risk === "Medium") {
+    recs.push({ icon: "⚠️", bg: "#fffbeb", title: "Moderate Traffic Today", body: "Expect some waiting time today. Arriving at the start of your time slot will help." });
+  } else {
+    recs.push({ icon: "✅", bg: "#f0fdf4", title: "Good Time to Visit", body: "Today's clinic load is low — it's a great day to come in for your appointment." });
+  }
+
+  // Quietest day tip
+  const quietDay = [...busiestDays].sort((a, b) => a.count - b.count)[0];
+  if (quietDay) {
+    recs.push({ icon: "📅", bg: "#f0fdfa", title: `Book on a ${quietDay.day}`, body: `${quietDay.day}s historically have the fewest appointments, meaning shorter queues and faster service.` });
+  }
+
+  // Quietest hour tip
+  if (busiestHours.length > 0) {
+    const sortedHours = [...busiestHours].sort((a, b) => a.count - b.count);
+    const quietHour   = sortedHours[0];
+    const busyHour    = busiestHours[0];
+    recs.push({ icon: "🕐", bg: "#eff6ff", title: `Avoid ${busyHour.hour} — Try ${quietHour.hour}`, body: `The busiest hour is around ${busyHour.hour}. Booking around ${quietHour.hour} gives you a much quicker experience.` });
+  }
+
+  // General tip
+  recs.push({ icon: "💡", bg: "#fdf4ff", title: "Book Ahead When Possible", body: "Pre-booked appointments are prioritised. Walk-in slots fill up fast on busy days, so booking online saves you time." });
+
+  return recs;
+}
+
+// ============================================================
 // HELPERS
 // ============================================================
 function escHtml(str) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/"/g, "&quot;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+  return String(str).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
 
 // ============================================================

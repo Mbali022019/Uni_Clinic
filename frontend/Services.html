@@ -55,6 +55,13 @@
         </svg>
         Services
       </a>
+      <!-- ── AI Insights (new) ── -->
+      <a href="sDashboard.html#ai" class="nav-item" id="aiInsightsLink">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+        </svg>
+        AI Insights
+      </a>
     </nav>
 
     <!-- Footer / Profile -->
@@ -117,6 +124,22 @@
           </div>
         </div>
         <a href="sBooking.html" class="btn btn-white">Book Appointment</a>
+      </div>
+
+      <!-- AI Insights Promo Strip -->
+      <div class="ai-promo-strip fade-up" onclick="window.location.href='sDashboard.html#ai'" style="cursor:pointer;">
+        <div class="ai-promo-left">
+          <div class="ai-promo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ai-promo-title">Plan your visit smarter with AI Insights</div>
+            <div class="ai-promo-sub">See real-time congestion levels, busiest hours, and personalised visit tips</div>
+          </div>
+        </div>
+        <a href="sDashboard.html#ai" class="btn btn-white btn-sm" onclick="event.stopPropagation();">View AI Insights →</a>
       </div>
 
       <!-- Service Cards -->
@@ -350,6 +373,48 @@
     </div><!-- /page-body -->
   </div><!-- /main-content -->
 </div><!-- /app-shell -->
+
+<style>
+/* AI Promo Strip */
+.ai-promo-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 60%, #14b8a6 100%);
+  border-radius: 14px;
+  padding: 16px 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 18px rgba(13,148,136,.25);
+  transition: box-shadow .2s, transform .2s;
+}
+.ai-promo-strip:hover {
+  box-shadow: 0 8px 28px rgba(13,148,136,.35);
+  transform: translateY(-1px);
+}
+.ai-promo-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.ai-promo-icon {
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,.18);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ai-promo-title {
+  font-family: var(--font-head, sans-serif);
+  font-size: 14px; font-weight: 700;
+  color: white; margin-bottom: 3px;
+}
+.ai-promo-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,.78);
+  line-height: 1.5;
+}
+</style>
 
 <script>
   // Sync sidebar user info from localStorage
