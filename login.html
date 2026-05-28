@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UniClinic — Sign In</title>
+  <link rel="stylesheet" href="../css/signup.css"/>
+</head>
+<body>
+
+<div class="auth-shell">
+
+  <!-- LEFT PANEL -->
+  <div class="auth-left">
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+    
+    <div class="auth-left-inner">
+      <div class="auth-logo-box">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="white">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <div class="auth-brand">UniClinic</div>
+      <div class="auth-tagline">Your campus health partner.<br>Access quality healthcare services anytime, anywhere.</div>
+      <div class="auth-stats">
+        <div class="auth-stat"><span class="auth-stat-val">5,000+</span><span class="auth-stat-label">Students Served</span></div>
+        <div class="auth-stat"><span class="auth-stat-val">15+</span><span class="auth-stat-label">Health Services</span></div>
+        <div class="auth-stat"><span class="auth-stat-val">24/7</span><span class="auth-stat-label">Support</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="auth-right">
+    <div class="auth-card">
+      <div class="auth-form-wrap">
+        
+        <div class="auth-top">
+          <div class="auth-card-title">Welcome Back</div>
+          <div class="auth-card-sub">Sign in to access your UniClinic dashboard</div>
+        </div>
+
+        <form id="loginForm">
+
+          <!-- EMAIL / STUDENT NUMBER -->
+          <div class="field">
+            <label class="field-label">Email or Student Number</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </span>
+              <input type="text" id="loginInput" placeholder="name@uni.ac.za or 202512345" required/>
+            </div>
+          </div>
+
+          <!-- PASSWORD WITH TOGGLE -->
+          <div class="field">
+            <label class="field-label">Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </span>
+              <input type="password" id="password" placeholder="Enter your password" required/>
+              <button class="input-icon-right" type="button" id="togglePassword">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ROLE CARDS (SAME AS SIGNUP) -->
+          <div class="field">
+            <label class="field-label">Login As</label>
+            <div class="role-selector">
+              <label class="role-card" data-role="student">
+                <input type="radio" name="role" value="student" checked>
+                <div class="role-icon patient-role">👤</div>
+                <div>
+                  <div class="role-title">Patient</div>
+                  <div class="role-sub">Students & Staff</div>
+                </div>
+              </label>
+
+              <label class="role-card" data-role="nurse">
+                <input type="radio" name="role" value="nurse">
+                <div class="role-icon nurse-role">✚</div>
+                <div>
+                  <div class="role-title">Nurse</div>
+                  <div class="role-sub">Clinic Staff</div>
+                </div>
+              </label>
+
+              <label class="role-card" data-role="admin">
+                <input type="radio" name="role" value="admin">
+                <div class="role-icon admin-role">⚙</div>
+                <div>
+                  <div class="role-title">Admin</div>
+                  <div class="role-sub">System Manager</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- REMEMBER ME & FORGOT PASSWORD -->
+          <div class="remember-row">
+            <label class="remember-box">
+              <input type="checkbox" id="rememberMe">
+              <span>Remember me</span>
+            </label>
+            <button class="btn-ghost" type="button" id="forgotPasswordBtn" onclick="alert('Password reset link will be sent to your email.')">Forgot Password?</button>
+          </div>
+
+          <!-- SUBMIT BUTTON -->
+          <div class="submit-wrap">
+            <button type="submit" class="btn btn-primary btn-full" id="loginBtn">Sign In</button>
+          </div>
+
+        </form>
+
+        <div class="auth-footer-text">
+          Don't have an account? <a href="signup.html">Create Account</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../JavaScript/supabase.js"></script>
+<script src="../JavaScript/login.js"></script>
+
+</body>
+</html>
