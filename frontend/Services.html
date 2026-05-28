@@ -5,6 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UniClinic — Services</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Styles copied from sDashboard for AI page ── */
+    .info-banner{display:flex;align-items:flex-start;gap:10px;background:#f0fdfa;border:1.5px solid #99f6e4;border-radius:12px;padding:14px 18px;font-size:13px;color:#0f766e;line-height:1.55;margin-bottom:22px;}
+    .info-banner svg{flex-shrink:0;margin-top:1px;}
+    .ai-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px;}
+    .ai-stat-card{background:white;border:1px solid #e8ecf0;border-radius:14px;padding:20px 18px;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:all .2s;}
+    .ai-stat-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.07);}
+    .ai-stat-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+    .ai-stat-icon svg{width:18px;height:18px;}
+    .ai-stat-icon.teal{background:#f0fdfa;} .ai-stat-icon.blue{background:#eff6ff;} .ai-stat-icon.green{background:#f0fdf4;}
+    .ai-stat-val{font-family:var(--font-head);font-size:22px;font-weight:800;color:#0f172a;line-height:1;margin-bottom:4px;}
+    .ai-stat-label{font-size:12px;font-weight:500;color:#64748b;margin-bottom:3px;}
+    .ai-stat-sub{font-size:11px;color:#94a3b8;}
+    .ai-two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px;}
+    .card{background:white;border-radius:14px;border:1px solid #e8ecf0;box-shadow:0 1px 4px rgba(0,0,0,.04);overflow:hidden;}
+    .card-header{padding:18px 20px 0;display:flex;align-items:flex-start;justify-content:space-between;}
+    .card-title{font-family:var(--font-head);font-size:15px;font-weight:700;color:#0f172a;}
+    .card-sub{font-size:12px;color:#94a3b8;margin-top:2px;}
+    .card-body{padding:16px 20px 20px;}
+    .report-bar-wrap{display:flex;flex-direction:column;gap:10px;}
+    .report-bar-row{display:flex;align-items:center;gap:10px;}
+    .report-bar-label{font-size:12px;color:#475569;font-weight:500;width:80px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .report-bar-track{flex:1;background:#f1f5f9;border-radius:9999px;height:8px;overflow:hidden;}
+    .report-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal-400),var(--teal-600));border-radius:9999px;transition:width .6s ease;}
+    .report-bar-val{font-size:12px;font-weight:700;color:#334155;width:28px;text-align:right;flex-shrink:0;}
+    .ai-rec-item{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid #f1f5f9;}
+    .ai-rec-item:last-child{border-bottom:none;padding-bottom:0;}
+    .ai-rec-icon{width:34px;height:34px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;}
+    .ai-rec-title{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:3px;}
+    .ai-rec-body{font-size:12px;color:#64748b;line-height:1.5;}
+    .modern-table{width:100%;border-collapse:collapse;font-size:13px;}
+    .modern-table thead th{background:#f8fafc;color:#64748b;font-family:var(--font-head);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;text-align:left;border-bottom:1px solid #e8ecf0;}
+    .modern-table tbody td{padding:12px 14px;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle;}
+    .modern-table tbody tr:last-child td{border-bottom:none;}
+    .modern-table tbody tr:hover td{background:#f8fafc;}
+    .load-bar-inline{display:inline-flex;align-items:center;gap:6px;width:120px;}
+    .load-bar-track-sm{flex:1;background:#f1f5f9;border-radius:9999px;height:6px;overflow:hidden;}
+    .load-bar-fill-sm{height:100%;background:linear-gradient(90deg,var(--teal-400),var(--teal-600));border-radius:9999px;}
+    .banner-low{background:#f0fdf4;border-color:#86efac;color:#15803d;}
+    .banner-medium{background:#fffbeb;border-color:#fcd34d;color:#a16207;}
+    .banner-high{background:#fef2f2;border-color:#fca5a5;color:#dc2626;}
+    .risk-low{color:#16a34a;} .risk-medium{color:#d97706;} .risk-high{color:#dc2626;}
+    .spin{width:17px;height:17px;border:2px solid #e2e8f0;border-top-color:var(--teal-500);border-radius:50%;animation:spinner .7s linear infinite;flex-shrink:0;}
+    @keyframes spinner{to{transform:rotate(360deg)}}
+    .appt-loading{display:flex;align-items:center;justify-content:center;gap:8px;padding:28px;font-size:13px;color:#94a3b8;}
+    .mb-22{margin-bottom:22px;}
+    @media(max-width:1200px){.ai-stats-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:960px){.ai-two-col{grid-template-columns:1fr;}}
+  </style>
 </head>
 
 <body>
@@ -13,7 +62,6 @@
   <!-- ═══ SIDEBAR ═══ -->
   <aside class="sidebar">
 
-    <!-- Logo -->
     <div class="sidebar-logo">
       <div class="sidebar-logo-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
@@ -26,45 +74,25 @@
       </div>
     </div>
 
-    <!-- Nav -->
     <nav class="sidebar-nav">
       <a href="sDashboard.html" class="nav-item">
-        <svg viewBox="0 0 24 24">
-          <rect x="3" y="3" width="7" height="7" rx="1"/>
-          <rect x="14" y="3" width="7" height="7" rx="1"/>
-          <rect x="14" y="14" width="7" height="7" rx="1"/>
-          <rect x="3" y="14" width="7" height="7" rx="1"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
         Dashboard
       </a>
       <a href="sBooking.html" class="nav-item">
-        <svg viewBox="0 0 24 24">
-          <rect x="3" y="4" width="18" height="18" rx="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-          <line x1="12" y1="14" x2="12" y2="18"/>
-          <line x1="10" y1="16" x2="14" y2="16"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>
         Book Appointment
       </a>
-      <a href="services.html" class="nav-item active">
-        <svg viewBox="0 0 24 24">
-          <line x1="12" y1="5" x2="12" y2="19"/>
-          <line x1="5" y1="12" x2="19" y2="12"/>
-        </svg>
+      <button class="nav-item" onclick="showPage('services', this)">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Services
-      </a>
-      <!-- ── AI Insights (new) ── -->
-      <a href="sDashboard.html#ai" class="nav-item" id="aiInsightsLink">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-        </svg>
+      </button>
+      <button class="nav-item" onclick="showPage('ai', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
         AI Insights
-      </a>
+      </button>
     </nav>
 
-    <!-- Footer / Profile -->
     <div class="sidebar-footer">
       <a href="sProfile.html" class="sidebar-profile-btn">
         <div class="sidebar-avatar" id="sidebarAvatar">MN</div>
@@ -72,16 +100,12 @@
           <div class="sidebar-user-name" id="sidebarName">Loading…</div>
           <div class="sidebar-user-role">Registered Student</div>
         </div>
-        <svg class="sidebar-profile-btn-arrow" width="14" height="14" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2.5"
-             stroke-linecap="round" stroke-linejoin="round">
+        <svg class="sidebar-profile-btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"/>
         </svg>
       </a>
-
       <a href="login.html" class="nav-item logout-btn" id="logoutBtn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
           <polyline points="16 17 21 12 16 7"/>
           <line x1="21" y1="12" x2="9" y2="12"/>
@@ -94,341 +118,330 @@
   <!-- ═══ MAIN ═══ -->
   <div class="main-content">
 
-    <!-- Topbar -->
     <div class="topbar">
       <div>
-        <div class="topbar-title">Services</div>
-        <div class="topbar-sub">All available clinical services at UniClinic</div>
+        <div class="topbar-title" id="pageTitle">Services</div>
+        <div class="topbar-sub" id="pageSub">All available clinical services at UniClinic</div>
       </div>
       <div class="topbar-right">
         <div class="topbar-avatar" id="topAvatar">MN</div>
       </div>
     </div>
 
-    <!-- Page Body -->
     <div class="page-body">
 
-      <!-- Banner -->
-      <div class="services-banner fade-up">
-        <div class="services-banner-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
-               stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-          </svg>
-        </div>
-        <div class="services-banner-text">
-          <div class="services-banner-title">UniClinic Health Services</div>
-          <div class="services-banner-sub">
-            Comprehensive healthcare for all registered students and staff.
-            Book an appointment or walk in during clinic hours.
-          </div>
-        </div>
-        <a href="sBooking.html" class="btn btn-white">Book Appointment</a>
-      </div>
+      <!-- ══════════ SERVICES PAGE ══════════ -->
+      <div id="page-services">
 
-      <!-- AI Insights Promo Strip -->
-      <div class="ai-promo-strip fade-up" onclick="window.location.href='sDashboard.html#ai'" style="cursor:pointer;">
-        <div class="ai-promo-left">
-          <div class="ai-promo-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-            </svg>
+        <div class="services-banner fade-up">
+          <div class="services-banner-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
-          <div>
-            <div class="ai-promo-title">Plan your visit smarter with AI Insights</div>
-            <div class="ai-promo-sub">See real-time congestion levels, busiest hours, and personalised visit tips</div>
+          <div class="services-banner-text">
+            <div class="services-banner-title">UniClinic Health Services</div>
+            <div class="services-banner-sub">Comprehensive healthcare for all registered students and staff. Book an appointment or walk in during clinic hours.</div>
           </div>
-        </div>
-        <a href="sDashboard.html#ai" class="btn btn-white btn-sm" onclick="event.stopPropagation();">View AI Insights →</a>
-      </div>
-
-      <!-- Service Cards -->
-      <div class="services-full-grid fade-up-1">
-
-        <div class="service-card">
-          <div class="service-card-icon" style="background:#f0fdfa;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-            </svg>
-          </div>
-          <div class="service-card-body">
-            <div class="service-card-title">HIV Testing &amp; Counselling</div>
-            <div class="service-card-desc">Confidential HIV testing with pre- and post-test counselling. Results available same day.</div>
-            <div class="service-card-meta">
-              <span class="service-tag">Appointment</span>
-              <span class="service-tag">Walk-in</span>
-              <span class="service-tag teal">Free</span>
-            </div>
-          </div>
-          <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
+          <a href="sBooking.html" class="btn btn-white">Book Appointment</a>
         </div>
 
-        <div class="service-card">
-          <div class="service-card-icon" style="background:#eff6ff;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/>
-            </svg>
-          </div>
-          <div class="service-card-body">
-            <div class="service-card-title">Flu &amp; Fever Treatment</div>
-            <div class="service-card-desc">Diagnosis and treatment for flu, fever, and related respiratory conditions. Walk-ins welcome.</div>
-            <div class="service-card-meta">
-              <span class="service-tag">Appointment</span>
-              <span class="service-tag">Walk-in</span>
+        <div class="services-full-grid fade-up-1">
+
+          <div class="service-card">
+            <div class="service-card-icon" style="background:#f0fdfa;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div class="service-card-body">
+              <div class="service-card-title">HIV Testing &amp; Counselling</div>
+              <div class="service-card-desc">Confidential HIV testing with pre- and post-test counselling. Results available same day.</div>
+              <div class="service-card-meta"><span class="service-tag">Appointment</span><span class="service-tag">Walk-in</span><span class="service-tag teal">Free</span></div>
             </div>
+            <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
           </div>
-          <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
+
+          <div class="service-card">
+            <div class="service-card-icon" style="background:#eff6ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+            <div class="service-card-body">
+              <div class="service-card-title">Flu &amp; Fever Treatment</div>
+              <div class="service-card-desc">Diagnosis and treatment for flu, fever, and related respiratory conditions. Walk-ins welcome.</div>
+              <div class="service-card-meta"><span class="service-tag">Appointment</span><span class="service-tag">Walk-in</span></div>
+            </div>
+            <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card-icon" style="background:#fdf4ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div class="service-card-body">
+              <div class="service-card-title">Pap Smear</div>
+              <div class="service-card-desc">Cervical cancer screening for eligible students and staff. Appointment required.</div>
+              <div class="service-card-meta"><span class="service-tag">Appointment only</span><span class="service-tag teal">Free</span></div>
+            </div>
+            <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card-icon" style="background:#fff7ed;"><svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+            <div class="service-card-body">
+              <div class="service-card-title">Mental Health Support</div>
+              <div class="service-card-desc">Counselling sessions with qualified mental health professionals. Confidential and supportive environment.</div>
+              <div class="service-card-meta"><span class="service-tag">Appointment only</span><span class="service-tag teal">Free</span></div>
+            </div>
+            <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card-icon" style="background:#f0fdf4;"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="service-card-body">
+              <div class="service-card-title">Vaccinations</div>
+              <div class="service-card-desc">Flu vaccines, Hepatitis B, and other routine immunisations. Free flu vaccine drive currently active.</div>
+              <div class="service-card-meta"><span class="service-tag">Appointment</span><span class="service-tag">Walk-in</span><span class="service-tag teal">Free</span></div>
+            </div>
+            <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card-icon" style="background:#f0fdfa;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+            <div class="service-card-body">
+              <div class="service-card-title">General Health Checkup</div>
+              <div class="service-card-desc">Routine physical exams, blood pressure, BMI assessment, and general wellness checks.</div>
+              <div class="service-card-meta"><span class="service-tag">Appointment</span><span class="service-tag">Walk-in</span></div>
+            </div>
+            <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card-icon" style="background:#fef2f2;"><svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/></svg></div>
+            <div class="service-card-body">
+              <div class="service-card-title">Medication Collection</div>
+              <div class="service-card-desc">Collect chronic and acute medication prescriptions. Online renewal now available through the portal.</div>
+              <div class="service-card-meta"><span class="service-tag">Walk-in</span><span class="service-tag">Online renewal</span></div>
+            </div>
+            <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card-icon" style="background:#eff6ff;"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+            <div class="service-card-body">
+              <div class="service-card-title">Telehealth Consultation</div>
+              <div class="service-card-desc">Virtual consultations via video call for non-emergency health concerns. Available Mon–Fri.</div>
+              <div class="service-card-meta"><span class="service-tag">Appointment only</span><span class="service-tag teal">Online</span></div>
+            </div>
+            <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
+          </div>
+
+          <div class="service-card">
+            <div class="service-card-icon" style="background:#fef9c3;"><svg viewBox="0 0 24 24" fill="none" stroke="#a16207" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <div class="service-card-body">
+              <div class="service-card-title">Sexual &amp; Reproductive Health</div>
+              <div class="service-card-desc">Contraception advice, STI testing, and reproductive health consultations in a confidential setting.</div>
+              <div class="service-card-meta"><span class="service-tag">Appointment</span><span class="service-tag">Walk-in</span><span class="service-tag teal">Free</span></div>
+            </div>
+            <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
+          </div>
+
         </div>
 
-        <div class="service-card">
-          <div class="service-card-icon" style="background:#fdf4ff;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
-            </svg>
-          </div>
-          <div class="service-card-body">
-            <div class="service-card-title">Pap Smear</div>
-            <div class="service-card-desc">Cervical cancer screening for eligible students and staff. Appointment required.</div>
-            <div class="service-card-meta">
-              <span class="service-tag">Appointment only</span>
-              <span class="service-tag teal">Free</span>
+        <div class="card fade-up-2" style="margin-top:22px;">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Clinic Hours &amp; Contact</div>
+              <div class="card-sub">When we're available</div>
             </div>
+            <span class="badge badge-green" style="margin-top:4px;">OPEN NOW</span>
           </div>
-          <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
-        </div>
-
-        <div class="service-card">
-          <div class="service-card-icon" style="background:#fff7ed;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-            </svg>
-          </div>
-          <div class="service-card-body">
-            <div class="service-card-title">Mental Health Support</div>
-            <div class="service-card-desc">Counselling sessions with qualified mental health professionals. Confidential and supportive environment.</div>
-            <div class="service-card-meta">
-              <span class="service-tag">Appointment only</span>
-              <span class="service-tag teal">Free</span>
+          <div class="card-body">
+            <div class="hours-grid">
+              <div class="hours-row"><span class="hours-day">Monday – Thursday</span><span class="hours-time">07:30 – 16:30<span class="hours-note">&nbsp;(Extended: 07:30 – 18:00 this week)</span></span></div>
+              <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">07:30 – 15:00</span></div>
+              <div class="hours-row closed"><span class="hours-day">Saturday – Sunday</span><span class="hours-time">Closed</span></div>
+              <div class="hours-row closed"><span class="hours-day">Public Holidays</span><span class="hours-time">Closed</span></div>
             </div>
-          </div>
-          <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
-        </div>
-
-        <div class="service-card">
-          <div class="service-card-icon" style="background:#f0fdf4;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <div class="service-card-body">
-            <div class="service-card-title">Vaccinations</div>
-            <div class="service-card-desc">Flu vaccines, Hepatitis B, and other routine immunisations. Free flu vaccine drive currently active.</div>
-            <div class="service-card-meta">
-              <span class="service-tag">Appointment</span>
-              <span class="service-tag">Walk-in</span>
-              <span class="service-tag teal">Free</span>
-            </div>
-          </div>
-          <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
-        </div>
-
-        <div class="service-card">
-          <div class="service-card-icon" style="background:#f0fdfa;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            </svg>
-          </div>
-          <div class="service-card-body">
-            <div class="service-card-title">General Health Checkup</div>
-            <div class="service-card-desc">Routine physical exams, blood pressure, BMI assessment, and general wellness checks.</div>
-            <div class="service-card-meta">
-              <span class="service-tag">Appointment</span>
-              <span class="service-tag">Walk-in</span>
-            </div>
-          </div>
-          <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
-        </div>
-
-        <div class="service-card">
-          <div class="service-card-icon" style="background:#fef2f2;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/>
-              <path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/>
-              <path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/>
-              <path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/>
-            </svg>
-          </div>
-          <div class="service-card-body">
-            <div class="service-card-title">Medication Collection</div>
-            <div class="service-card-desc">Collect chronic and acute medication prescriptions. Online renewal now available through the portal.</div>
-            <div class="service-card-meta">
-              <span class="service-tag">Walk-in</span>
-              <span class="service-tag">Online renewal</span>
-            </div>
-          </div>
-          <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
-        </div>
-
-        <div class="service-card">
-          <div class="service-card-icon" style="background:#eff6ff;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2"/>
-              <path d="M8 21h8M12 17v4"/>
-            </svg>
-          </div>
-          <div class="service-card-body">
-            <div class="service-card-title">Telehealth Consultation</div>
-            <div class="service-card-desc">Virtual consultations via video call for non-emergency health concerns. Available Mon–Fri.</div>
-            <div class="service-card-meta">
-              <span class="service-tag">Appointment only</span>
-              <span class="service-tag teal">Online</span>
-            </div>
-          </div>
-          <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
-        </div>
-
-        <div class="service-card">
-          <div class="service-card-icon" style="background:#fef9c3;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#a16207" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </div>
-          <div class="service-card-body">
-            <div class="service-card-title">Sexual &amp; Reproductive Health</div>
-            <div class="service-card-desc">Contraception advice, STI testing, and reproductive health consultations in a confidential setting.</div>
-            <div class="service-card-meta">
-              <span class="service-tag">Appointment</span>
-              <span class="service-tag">Walk-in</span>
-              <span class="service-tag teal">Free</span>
-            </div>
-          </div>
-          <a href="sBooking.html" class="btn btn-outline btn-sm">Book Now</a>
-        </div>
-
-      </div><!-- /services-full-grid -->
-
-      <!-- Clinic Hours -->
-      <div class="card fade-up-2" style="margin-top:22px;">
-        <div class="card-header">
-          <div>
-            <div class="card-title">Clinic Hours &amp; Contact</div>
-            <div class="card-sub">When we're available</div>
-          </div>
-          <span class="badge badge-green" style="margin-top:4px;">OPEN NOW</span>
-        </div>
-        <div class="card-body">
-          <div class="hours-grid">
-            <div class="hours-row">
-              <span class="hours-day">Monday – Thursday</span>
-              <span class="hours-time">
-                07:30 – 16:30
-                <span class="hours-note">&nbsp;(Extended: 07:30 – 18:00 this week)</span>
-              </span>
-            </div>
-            <div class="hours-row">
-              <span class="hours-day">Friday</span>
-              <span class="hours-time">07:30 – 15:00</span>
-            </div>
-            <div class="hours-row closed">
-              <span class="hours-day">Saturday – Sunday</span>
-              <span class="hours-time">Closed</span>
-            </div>
-            <div class="hours-row closed">
-              <span class="hours-day">Public Holidays</span>
-              <span class="hours-time">Closed</span>
-            </div>
-          </div>
-
-          <div class="contact-row" style="margin-top:18px;">
-            <div class="contact-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                   stroke="var(--teal-600)" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13 19.79 19.79 0 0 1 1.05 4.4 2 2 0 0 1 3 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17"/>
-              </svg>
-              <span>031 260 1234</span>
-            </div>
-            <div class="contact-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                   stroke="var(--teal-600)" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-              <span>clinic@uni.ac.za</span>
-            </div>
-            <div class="contact-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                   stroke="var(--teal-600)" stroke-width="2"
-                   stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-              <span>Howard College Campus, Health Centre Building</span>
+            <div class="contact-row" style="margin-top:18px;">
+              <div class="contact-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13 19.79 19.79 0 0 1 1.05 4.4 2 2 0 0 1 3 2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17"/></svg><span>031 260 1234</span></div>
+              <div class="contact-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>clinic@uni.ac.za</span></div>
+              <div class="contact-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Howard College Campus, Health Centre Building</span></div>
             </div>
           </div>
         </div>
-      </div>
+
+      </div><!-- /page-services -->
+
+      <!-- ══════════ AI INSIGHTS PAGE ══════════ -->
+      <div id="page-ai" style="display:none;">
+
+        <div id="aiCongestionBanner" class="info-banner mb-22">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="aiCongestionMessage">Analysing today's clinic activity…</span>
+        </div>
+
+        <div class="ai-stats-grid mb-22">
+          <div class="ai-stat-card"><div class="ai-stat-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="ai-stat-val" id="aiRiskLevel">--</div><div class="ai-stat-label">Congestion Risk Today</div><div class="ai-stat-sub">↑ Live prediction</div></div>
+          <div class="ai-stat-card"><div class="ai-stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="ai-stat-val" id="aiBusiestDay">--</div><div class="ai-stat-label">Busiest Day of Week</div><div class="ai-stat-sub">↑ Based on history</div></div>
+          <div class="ai-stat-card"><div class="ai-stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="ai-stat-val" id="aiBusiestHour">--</div><div class="ai-stat-label">Busiest Hour</div><div class="ai-stat-sub">↑ Based on history</div></div>
+          <div class="ai-stat-card"><div class="ai-stat-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="ai-stat-val" id="aiTodayCount">--</div><div class="ai-stat-label">Appointments Today</div><div class="ai-stat-sub">↑ Live count</div></div>
+        </div>
+
+        <div class="ai-two-col mb-22">
+          <div class="card">
+            <div class="card-header"><div><div class="card-title">Busiest Days of the Week</div><div class="card-sub">Helps you plan the best day to visit</div></div></div>
+            <div class="card-body"><div class="report-bar-wrap" id="aiBusiestDaysChart"><div class="appt-loading"><div class="spin"></div>Loading…</div></div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div><div class="card-title">Busiest Hours of the Day</div><div class="card-sub">Helps you pick the quietest time to come in</div></div></div>
+            <div class="card-body"><div class="report-bar-wrap" id="aiBusiestHoursChart"><div class="appt-loading"><div class="spin"></div>Loading…</div></div></div>
+          </div>
+        </div>
+
+        <div class="ai-two-col">
+          <div class="card">
+            <div class="card-header"><div><div class="card-title">Top 5 Busiest Dates</div><div class="card-sub">Historically high-demand dates — try to avoid these</div></div></div>
+            <div class="card-body">
+              <table class="modern-table"><thead><tr><th>Date</th><th>Appointments</th><th>Load</th></tr></thead><tbody id="aiHighBookingTable"><tr><td colspan="3" style="text-align:center;color:#94a3b8;padding:20px;">Loading…</td></tr></tbody></table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div><div class="card-title">Tips for Your Visit</div><div class="card-sub">Personalised suggestions based on clinic trends</div></div></div>
+            <div class="card-body" id="aiRecommendations"><div class="appt-loading"><div class="spin"></div>Generating tips…</div></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:22px;">
+          <div class="card-header"><div><div class="card-title">How AI Insights Work</div><div class="card-sub">Understanding your clinic predictions</div></div></div>
+          <div class="card-body">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center;">
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;"><div style="font-size:28px;margin-bottom:8px;">📋</div><div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Appointment Data</div><div style="font-size:11px;color:#94a3b8;line-height:1.5;">We analyse all historical bookings at the clinic</div></div>
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;"><div style="font-size:28px;margin-bottom:8px;">🧠</div><div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Pattern Detection</div><div style="font-size:11px;color:#94a3b8;line-height:1.5;">Patterns in days, times and dates are identified</div></div>
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;"><div style="font-size:28px;margin-bottom:8px;">📊</div><div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Risk Assessment</div><div style="font-size:11px;color:#94a3b8;line-height:1.5;">Today's load is assessed as Low, Medium or High</div></div>
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;"><div style="font-size:28px;margin-bottom:8px;">💡</div><div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Smart Tips</div><div style="font-size:11px;color:#94a3b8;line-height:1.5;">Personalised tips to help you plan your visit</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /page-ai -->
 
     </div><!-- /page-body -->
   </div><!-- /main-content -->
 </div><!-- /app-shell -->
 
-<style>
-/* AI Promo Strip */
-.ai-promo-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  background: linear-gradient(135deg, #0f766e 0%, #0d9488 60%, #14b8a6 100%);
-  border-radius: 14px;
-  padding: 16px 22px;
-  margin-bottom: 22px;
-  box-shadow: 0 4px 18px rgba(13,148,136,.25);
-  transition: box-shadow .2s, transform .2s;
-}
-.ai-promo-strip:hover {
-  box-shadow: 0 8px 28px rgba(13,148,136,.35);
-  transform: translateY(-1px);
-}
-.ai-promo-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.ai-promo-icon {
-  width: 40px; height: 40px;
-  background: rgba(255,255,255,.18);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.ai-promo-title {
-  font-family: var(--font-head, sans-serif);
-  font-size: 14px; font-weight: 700;
-  color: white; margin-bottom: 3px;
-}
-.ai-promo-sub {
-  font-size: 12px;
-  color: rgba(255,255,255,.78);
-  line-height: 1.5;
-}
-</style>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../JavaScript/supabase.js"></script>
+<script src="../JavaScript/auth-session.js"></script>
 <script>
-  // Sync sidebar user info from localStorage
-  const currentUser = JSON.parse(localStorage.getItem("uniclinic_user")) || null;
-  if (currentUser) {
-    const name    = currentUser.full_name || "Student";
-    const initial = name.split(" ").map(n => n[0]).slice(0,2).join("").toUpperCase();
-    document.getElementById("sidebarAvatar").textContent = initial;
-    document.getElementById("sidebarName").textContent   = name;
-    document.getElementById("topAvatar").textContent     = initial;
-  }
-  document.getElementById("logoutBtn").addEventListener("click", () => {
-    localStorage.removeItem("uniclinic_user");
-  });
+const pageMeta = {
+  services: { title: 'Services',     sub: 'All available clinical services at UniClinic' },
+  ai:       { title: 'AI Insights',  sub: 'Smart predictions to help you plan your clinic visit' },
+};
+
+function showPage(id, linkEl) {
+  document.querySelectorAll('[id^="page-"]').forEach(p => p.style.display = 'none');
+  document.getElementById('page-' + id).style.display = '';
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (linkEl) linkEl.classList.add('active');
+  const meta = pageMeta[id] || {};
+  document.getElementById('pageTitle').textContent = meta.title || '';
+  document.getElementById('pageSub').textContent   = meta.sub   || '';
+  if (id === 'ai' && !window._aiLoaded) { window._aiLoaded = true; runAndRenderPredictions(); }
+}
+
+// Set services as default active
+document.addEventListener('DOMContentLoaded', () => {
+  const servicesBtn = document.querySelector('.nav-item[onclick*="services"]');
+  if (servicesBtn) servicesBtn.classList.add('active');
+});
+
+// User session
+const currentUser = JSON.parse(localStorage.getItem("uniclinic_user")) || null;
+const db = window.supabaseClient;
+if (currentUser) {
+  const name = currentUser.full_name || "Student";
+  const initial = name.split(" ").map(n => n[0]).slice(0,2).join("").toUpperCase();
+  document.getElementById("sidebarAvatar").textContent = initial;
+  document.getElementById("sidebarName").textContent   = name;
+  document.getElementById("topAvatar").textContent     = initial;
+}
+document.getElementById("logoutBtn").addEventListener("click", () => localStorage.removeItem("uniclinic_user"));
+
+// ── AI Prediction Engine (identical to sDashboard) ──
+async function fetchAppointmentHistory() {
+  if (!db) return [];
+  const { data, error } = await db.from("appointments").select("appointment_id,appointment_date,appointment_time,status");
+  if (error) return [];
+  return data || [];
+}
+function predictBusiestDays(appointments) {
+  const dayCounts = {Sunday:0,Monday:0,Tuesday:0,Wednesday:0,Thursday:0,Friday:0,Saturday:0};
+  appointments.forEach(app => { const day = new Date(app.appointment_date).toLocaleDateString("en-ZA",{weekday:"long"}); if(dayCounts[day]!==undefined) dayCounts[day]++; });
+  return Object.entries(dayCounts).sort((a,b)=>b[1]-a[1]).map(([day,count])=>({day,count}));
+}
+function predictBusiestHours(appointments) {
+  const hourCounts = {};
+  appointments.forEach(app => { if(!app.appointment_time) return; const hour = app.appointment_time.slice(0,2)+":00"; hourCounts[hour]=(hourCounts[hour]||0)+1; });
+  return Object.entries(hourCounts).sort((a,b)=>b[1]-a[1]).map(([hour,count])=>({hour,count}));
+}
+function predictCongestionRisk(appointments) {
+  const today = new Date().toISOString().split("T")[0];
+  const todayAppointments = appointments.filter(a=>a.appointment_date===today);
+  let risk="Low",message="Clinic is running smoothly today — a great time to visit!";
+  if(todayAppointments.length>=10){risk="High";message="High activity expected today. Consider visiting another day or arriving early to reduce your wait.";}
+  else if(todayAppointments.length>=5){risk="Medium";message="Moderate activity today. You may experience some waiting time — plan accordingly.";}
+  return {risk,message,count:todayAppointments.length};
+}
+function predictHighBookingDays(appointments) {
+  const dateCounts={};
+  appointments.forEach(app=>{dateCounts[app.appointment_date]=(dateCounts[app.appointment_date]||0)+1;});
+  return Object.entries(dateCounts).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([date,count])=>({date,count}));
+}
+async function runAndRenderPredictions() {
+  const appointments = await fetchAppointmentHistory();
+  const busiestDays = predictBusiestDays(appointments);
+  const busiestHours = predictBusiestHours(appointments);
+  const congestionRisk = predictCongestionRisk(appointments);
+  const highBookingDays = predictHighBookingDays(appointments);
+
+  const banner = document.getElementById("aiCongestionBanner");
+  document.getElementById("aiCongestionMessage").textContent = congestionRisk.message;
+  banner.className = "info-banner mb-22 " + (congestionRisk.risk==="High"?"banner-high":congestionRisk.risk==="Medium"?"banner-medium":"banner-low");
+
+  const riskEl = document.getElementById("aiRiskLevel");
+  riskEl.textContent = congestionRisk.risk;
+  riskEl.className = "ai-stat-val risk-" + congestionRisk.risk.toLowerCase();
+  document.getElementById("aiBusiestDay").textContent  = busiestDays[0]?.day  || "--";
+  document.getElementById("aiBusiestHour").textContent = busiestHours[0]?.hour || "--";
+  document.getElementById("aiTodayCount").textContent  = congestionRisk.count;
+
+  const daysMax = busiestDays[0]?.count||1;
+  document.getElementById("aiBusiestDaysChart").innerHTML = busiestDays.map(({day,count})=>{
+    const pct=Math.round((count/daysMax)*100);
+    return `<div class="report-bar-row"><span class="report-bar-label" title="${day}">${day.slice(0,3)}</span><div class="report-bar-track"><div class="report-bar-fill" style="width:${pct}%"></div></div><span class="report-bar-val">${count}</span></div>`;
+  }).join("")||'<p style="color:#94a3b8;font-size:13px;text-align:center;padding:16px 0;">No data yet.</p>';
+
+  const hoursMax = busiestHours[0]?.count||1;
+  document.getElementById("aiBusiestHoursChart").innerHTML = busiestHours.slice(0,8).map(({hour,count})=>{
+    const pct=Math.round((count/hoursMax)*100);
+    return `<div class="report-bar-row"><span class="report-bar-label">${hour}</span><div class="report-bar-track"><div class="report-bar-fill" style="width:${pct}%"></div></div><span class="report-bar-val">${count}</span></div>`;
+  }).join("")||'<p style="color:#94a3b8;font-size:13px;text-align:center;padding:16px 0;">No data yet.</p>';
+
+  const bookingMax = highBookingDays[0]?.count||1;
+  const tbody = document.getElementById("aiHighBookingTable");
+  tbody.innerHTML = highBookingDays.length===0
+    ? '<tr><td colspan="3" style="text-align:center;color:#94a3b8;padding:20px;">No historical data yet.</td></tr>'
+    : highBookingDays.map(({date,count})=>{
+        const pct=Math.round((count/bookingMax)*100);
+        const fmt=new Date(date+"T00:00:00").toLocaleDateString("en-ZA",{day:"numeric",month:"short",year:"numeric"});
+        return `<tr><td>${fmt}</td><td style="font-weight:700;">${count}</td><td><div class="load-bar-inline"><div class="load-bar-track-sm"><div class="load-bar-fill-sm" style="width:${pct}%"></div></div><span style="font-size:11px;color:#64748b;">${pct}%</span></div></td></tr>`;
+      }).join("");
+
+  const recs = buildPatientRecs(congestionRisk,busiestDays,busiestHours);
+  document.getElementById("aiRecommendations").innerHTML = recs.map(r=>`<div class="ai-rec-item"><div class="ai-rec-icon" style="background:${r.bg};">${r.icon}</div><div><div class="ai-rec-title">${r.title}</div><div class="ai-rec-body">${r.body}</div></div></div>`).join("");
+}
+function buildPatientRecs(congestion,busiestDays,busiestHours){
+  const recs=[];
+  if(congestion.risk==="High") recs.push({icon:"🚨",bg:"#fef2f2",title:"High Traffic Today",body:"Today's clinic is very busy. If your visit is not urgent, consider booking for another day to reduce waiting time."});
+  else if(congestion.risk==="Medium") recs.push({icon:"⚠️",bg:"#fffbeb",title:"Moderate Traffic Today",body:"Expect some waiting time today. Arriving at the start of your time slot will help."});
+  else recs.push({icon:"✅",bg:"#f0fdf4",title:"Good Time to Visit",body:"Today's clinic load is low — it's a great day to come in for your appointment."});
+  const quietDay=[...busiestDays].sort((a,b)=>a.count-b.count)[0];
+  if(quietDay) recs.push({icon:"📅",bg:"#f0fdfa",title:`Book on a ${quietDay.day}`,body:`${quietDay.day}s historically have the fewest appointments, meaning shorter queues and faster service.`});
+  if(busiestHours.length>0){const quietHour=[...busiestHours].sort((a,b)=>a.count-b.count)[0];const busyHour=busiestHours[0];recs.push({icon:"🕐",bg:"#eff6ff",title:`Avoid ${busyHour.hour} — Try ${quietHour.hour}`,body:`The busiest hour is around ${busyHour.hour}. Booking around ${quietHour.hour} gives you a much quicker experience.`});}
+  recs.push({icon:"💡",bg:"#fdf4ff",title:"Book Ahead When Possible",body:"Pre-booked appointments are prioritised. Walk-in slots fill up fast on busy days, so booking online saves you time."});
+  return recs;
+}
 </script>
 </body>
 </html>

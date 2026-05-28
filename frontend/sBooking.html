@@ -5,10 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>UniClinic — Book Appointment</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .info-banner{display:flex;align-items:flex-start;gap:10px;background:#f0fdfa;border:1.5px solid #99f6e4;border-radius:12px;padding:14px 18px;font-size:13px;color:#0f766e;line-height:1.55;margin-bottom:22px;}
+    .info-banner svg{flex-shrink:0;margin-top:1px;}
+    .ai-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px;}
+    .ai-stat-card{background:white;border:1px solid #e8ecf0;border-radius:14px;padding:20px 18px;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:all .2s;}
+    .ai-stat-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.07);}
+    .ai-stat-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+    .ai-stat-icon svg{width:18px;height:18px;}
+    .ai-stat-icon.teal{background:#f0fdfa;} .ai-stat-icon.blue{background:#eff6ff;} .ai-stat-icon.green{background:#f0fdf4;}
+    .ai-stat-val{font-family:var(--font-head);font-size:22px;font-weight:800;color:#0f172a;line-height:1;margin-bottom:4px;}
+    .ai-stat-label{font-size:12px;font-weight:500;color:#64748b;margin-bottom:3px;}
+    .ai-stat-sub{font-size:11px;color:#94a3b8;}
+    .ai-two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px;}
+    .card{background:white;border-radius:14px;border:1px solid #e8ecf0;box-shadow:0 1px 4px rgba(0,0,0,.04);overflow:hidden;}
+    .card-header{padding:18px 20px 0;display:flex;align-items:flex-start;justify-content:space-between;}
+    .card-title{font-family:var(--font-head);font-size:15px;font-weight:700;color:#0f172a;}
+    .card-sub{font-size:12px;color:#94a3b8;margin-top:2px;}
+    .card-body{padding:16px 20px 20px;}
+    .report-bar-wrap{display:flex;flex-direction:column;gap:10px;}
+    .report-bar-row{display:flex;align-items:center;gap:10px;}
+    .report-bar-label{font-size:12px;color:#475569;font-weight:500;width:80px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .report-bar-track{flex:1;background:#f1f5f9;border-radius:9999px;height:8px;overflow:hidden;}
+    .report-bar-fill{height:100%;background:linear-gradient(90deg,var(--teal-400),var(--teal-600));border-radius:9999px;transition:width .6s ease;}
+    .report-bar-val{font-size:12px;font-weight:700;color:#334155;width:28px;text-align:right;flex-shrink:0;}
+    .ai-rec-item{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid #f1f5f9;}
+    .ai-rec-item:last-child{border-bottom:none;padding-bottom:0;}
+    .ai-rec-icon{width:34px;height:34px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;}
+    .ai-rec-title{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:3px;}
+    .ai-rec-body{font-size:12px;color:#64748b;line-height:1.5;}
+    .modern-table{width:100%;border-collapse:collapse;font-size:13px;}
+    .modern-table thead th{background:#f8fafc;color:#64748b;font-family:var(--font-head);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;text-align:left;border-bottom:1px solid #e8ecf0;}
+    .modern-table tbody td{padding:12px 14px;color:#334155;border-bottom:1px solid #f1f5f9;vertical-align:middle;}
+    .modern-table tbody tr:last-child td{border-bottom:none;}
+    .modern-table tbody tr:hover td{background:#f8fafc;}
+    .load-bar-inline{display:inline-flex;align-items:center;gap:6px;width:120px;}
+    .load-bar-track-sm{flex:1;background:#f1f5f9;border-radius:9999px;height:6px;overflow:hidden;}
+    .load-bar-fill-sm{height:100%;background:linear-gradient(90deg,var(--teal-400),var(--teal-600));border-radius:9999px;}
+    .banner-low{background:#f0fdf4;border-color:#86efac;color:#15803d;}
+    .banner-medium{background:#fffbeb;border-color:#fcd34d;color:#a16207;}
+    .banner-high{background:#fef2f2;border-color:#fca5a5;color:#dc2626;}
+    .risk-low{color:#16a34a;} .risk-medium{color:#d97706;} .risk-high{color:#dc2626;}
+    .spin{width:17px;height:17px;border:2px solid #e2e8f0;border-top-color:var(--teal-500);border-radius:50%;animation:spinner .7s linear infinite;flex-shrink:0;}
+    @keyframes spinner{to{transform:rotate(360deg)}}
+    .appt-loading{display:flex;align-items:center;justify-content:center;gap:8px;padding:28px;font-size:13px;color:#94a3b8;}
+    .mb-22{margin-bottom:22px;}
+    @media(max-width:1200px){.ai-stats-grid{grid-template-columns:1fr 1fr;}}
+    @media(max-width:960px){.ai-two-col{grid-template-columns:1fr;}}
+  </style>
 </head>
 
 <body>
-
 <div class="app-shell">
 
   <!-- ═══ SIDEBAR ═══ -->
@@ -31,26 +78,21 @@
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
         Dashboard
       </a>
-      <a href="sBooking.html" class="nav-item active">
+      <button class="nav-item active" onclick="showPage('booking', this)">
         <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>
         Book Appointment
-      </a>
+      </button>
       <a href="services.html" class="nav-item">
         <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Services
       </a>
-      <!-- ── AI Insights (new) ── -->
-      <a href="sDashboard.html#ai" class="nav-item" id="aiInsightsLink">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
-        </svg>
+      <button class="nav-item" onclick="showPage('ai', this)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
         AI Insights
-      </a>
+      </button>
     </nav>
 
     <div class="sidebar-footer">
-
-      <!-- Profile button → sProfile.html -->
       <a href="sProfile.html" class="sidebar-profile-btn">
         <div class="sidebar-avatar" id="avatarInitial">U</div>
         <div>
@@ -61,17 +103,13 @@
           <polyline points="9 18 15 12 9 6"/>
         </svg>
       </a>
-
-      <a href="login.html"
-         class="nav-item logout-btn"
-         id="logoutBtn">
+      <a href="login.html" class="nav-item logout-btn" id="logoutBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
           <polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
         </svg>
         Logout
       </a>
-
     </div>
 
   </aside>
@@ -80,170 +118,137 @@
   <div class="main-content">
 
     <div class="topbar">
-
       <div>
-        <div class="topbar-title">Book Appointment</div>
-        <div class="topbar-sub">Schedule a clinic visit</div>
+        <div class="topbar-title" id="pageTitle">Book Appointment</div>
+        <div class="topbar-sub" id="pageSub">Schedule a clinic visit</div>
       </div>
-
       <div class="topbar-right">
         <div class="topbar-avatar" id="topAvatar">U</div>
       </div>
-
     </div>
 
     <div class="page-body">
 
-      <!-- AI Insights tip strip -->
-      <div class="ai-booking-tip fade-up" onclick="window.location.href='sDashboard.html#ai'" style="cursor:pointer;">
-        <div class="ai-booking-tip-left">
-          <div class="ai-booking-tip-dot"></div>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-          </svg>
-          <span><strong>AI Tip:</strong> Check AI Insights before booking — see today's congestion level and the quietest times to visit.</span>
-        </div>
-        <a href="sDashboard.html#ai" class="ai-booking-tip-link" onclick="event.stopPropagation();">View Insights →</a>
-      </div>
+      <!-- ══════════ BOOKING PAGE ══════════ -->
+      <div id="page-booking">
 
-      <div class="booking-grid">
+        <div class="booking-grid">
 
-        <!-- LEFT -->
-        <div class="flex-col">
-
-          <!-- SERVICES -->
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Select Service</div>
+          <!-- LEFT -->
+          <div class="flex-col">
+            <div class="card">
+              <div class="card-header"><div class="card-title">Select Service</div></div>
+              <div class="card-body"><div id="chips"></div></div>
             </div>
-            <div class="card-body">
-              <div id="chips">
-                <!-- dynamic -->
+            <div class="card">
+              <div class="card-header"><div class="card-title">Select Date</div></div>
+              <div class="card-body">
+                <label class="field-label">Preferred Date</label>
+                <input type="date" id="dateInput" />
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><div class="card-title">Additional Notes</div></div>
+              <div class="card-body">
+                <textarea id="notesInput" rows="4" placeholder="Any symptoms or information..."></textarea>
               </div>
             </div>
           </div>
 
-          <!-- DATE -->
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Select Date</div>
+          <!-- RIGHT -->
+          <div class="flex-col">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title">Available Time Slots</div>
+                <div class="card-sub">Select a convenient time</div>
+              </div>
+              <div class="card-body"><div class="time-grid" id="timeGrid"></div></div>
             </div>
-            <div class="card-body">
-              <label class="field-label">Preferred Date</label>
-              <input type="date" id="dateInput" />
-            </div>
-          </div>
-
-          <!-- NOTES -->
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Additional Notes</div>
-            </div>
-            <div class="card-body">
-              <textarea
-                id="notesInput"
-                rows="4"
-                placeholder="Any symptoms or information..."
-              ></textarea>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- RIGHT -->
-        <div class="flex-col">
-
-          <!-- TIME -->
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Available Time Slots</div>
-              <div class="card-sub">Select a convenient time</div>
-            </div>
-            <div class="card-body">
-              <div class="time-grid" id="timeGrid">
-                <!-- dynamic -->
+            <div class="card">
+              <div class="card-header"><div class="card-title">Booking Summary</div></div>
+              <div class="card-body">
+                <div id="summary-empty">Select a service, date and time.</div>
+                <div id="summary-box" class="confirm-box" style="display:none;">
+                  <div class="confirm-row"><span class="confirm-key">Patient</span><span class="confirm-val" id="summaryPatient"></span></div>
+                  <div class="confirm-row"><span class="confirm-key">Service</span><span class="confirm-val" id="s-service"></span></div>
+                  <div class="confirm-row"><span class="confirm-key">Date</span><span class="confirm-val" id="s-date"></span></div>
+                  <div class="confirm-row"><span class="confirm-key">Time</span><span class="confirm-val" id="s-time"></span></div>
+                </div>
+                <button class="btn btn-primary btn-full mt-20" id="bookBtn" disabled>Book Appointment</button>
               </div>
             </div>
           </div>
 
-          <!-- SUMMARY -->
+        </div>
+
+        <!-- HISTORY -->
+        <div class="card mt-20">
+          <div class="card-header"><div class="card-title">My Appointment History</div></div>
+          <div class="card-body">
+            <div class="history-topbar">
+              <input type="text" id="searchAppointment" class="field" placeholder="Search appointments..." />
+              <select id="filterStatus" class="field">
+                <option value="All">All Status</option>
+                <option value="Booked">Booked</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+            <div class="appt-list" id="historyList"></div>
+          </div>
+        </div>
+
+      </div><!-- /page-booking -->
+
+      <!-- ══════════ AI INSIGHTS PAGE ══════════ -->
+      <div id="page-ai" style="display:none;">
+
+        <div id="aiCongestionBanner" class="info-banner mb-22">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="aiCongestionMessage">Analysing today's clinic activity…</span>
+        </div>
+
+        <div class="ai-stats-grid mb-22">
+          <div class="ai-stat-card"><div class="ai-stat-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="ai-stat-val" id="aiRiskLevel">--</div><div class="ai-stat-label">Congestion Risk Today</div><div class="ai-stat-sub">↑ Live prediction</div></div>
+          <div class="ai-stat-card"><div class="ai-stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="ai-stat-val" id="aiBusiestDay">--</div><div class="ai-stat-label">Busiest Day of Week</div><div class="ai-stat-sub">↑ Based on history</div></div>
+          <div class="ai-stat-card"><div class="ai-stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="ai-stat-val" id="aiBusiestHour">--</div><div class="ai-stat-label">Busiest Hour</div><div class="ai-stat-sub">↑ Based on history</div></div>
+          <div class="ai-stat-card"><div class="ai-stat-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="var(--teal-600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="ai-stat-val" id="aiTodayCount">--</div><div class="ai-stat-label">Appointments Today</div><div class="ai-stat-sub">↑ Live count</div></div>
+        </div>
+
+        <div class="ai-two-col mb-22">
           <div class="card">
-            <div class="card-header">
-              <div class="card-title">Booking Summary</div>
-            </div>
-            <div class="card-body">
+            <div class="card-header"><div><div class="card-title">Busiest Days of the Week</div><div class="card-sub">Helps you plan the best day to visit</div></div></div>
+            <div class="card-body"><div class="report-bar-wrap" id="aiBusiestDaysChart"><div class="appt-loading"><div class="spin"></div>Loading…</div></div></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div><div class="card-title">Busiest Hours of the Day</div><div class="card-sub">Helps you pick the quietest time to come in</div></div></div>
+            <div class="card-body"><div class="report-bar-wrap" id="aiBusiestHoursChart"><div class="appt-loading"><div class="spin"></div>Loading…</div></div></div>
+          </div>
+        </div>
 
-              <div id="summary-empty">
-                Select a service, date and time.
-              </div>
+        <div class="ai-two-col">
+          <div class="card">
+            <div class="card-header"><div><div class="card-title">Top 5 Busiest Dates</div><div class="card-sub">Historically high-demand dates — try to avoid these</div></div></div>
+            <div class="card-body"><table class="modern-table"><thead><tr><th>Date</th><th>Appointments</th><th>Load</th></tr></thead><tbody id="aiHighBookingTable"><tr><td colspan="3" style="text-align:center;color:#94a3b8;padding:20px;">Loading…</td></tr></tbody></table></div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div><div class="card-title">Tips for Your Visit</div><div class="card-sub">Personalised suggestions based on clinic trends</div></div></div>
+            <div class="card-body" id="aiRecommendations"><div class="appt-loading"><div class="spin"></div>Generating tips…</div></div>
+          </div>
+        </div>
 
-              <div
-                id="summary-box"
-                class="confirm-box"
-                style="display:none;"
-              >
-                <div class="confirm-row">
-                  <span class="confirm-key">Patient</span>
-                  <span class="confirm-val" id="summaryPatient"></span>
-                </div>
-                <div class="confirm-row">
-                  <span class="confirm-key">Service</span>
-                  <span class="confirm-val" id="s-service"></span>
-                </div>
-                <div class="confirm-row">
-                  <span class="confirm-key">Date</span>
-                  <span class="confirm-val" id="s-date"></span>
-                </div>
-                <div class="confirm-row">
-                  <span class="confirm-key">Time</span>
-                  <span class="confirm-val" id="s-time"></span>
-                </div>
-              </div>
-
-              <button
-                class="btn btn-primary btn-full mt-20"
-                id="bookBtn"
-                disabled>
-                Book Appointment
-              </button>
-
+        <div class="card" style="margin-top:22px;">
+          <div class="card-header"><div><div class="card-title">How AI Insights Work</div><div class="card-sub">Understanding your clinic predictions</div></div></div>
+          <div class="card-body">
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;text-align:center;">
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;"><div style="font-size:28px;margin-bottom:8px;">📋</div><div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Appointment Data</div><div style="font-size:11px;color:#94a3b8;line-height:1.5;">We analyse all historical bookings at the clinic</div></div>
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;"><div style="font-size:28px;margin-bottom:8px;">🧠</div><div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Pattern Detection</div><div style="font-size:11px;color:#94a3b8;line-height:1.5;">Patterns in days, times and dates are identified</div></div>
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;"><div style="font-size:28px;margin-bottom:8px;">📊</div><div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Risk Assessment</div><div style="font-size:11px;color:#94a3b8;line-height:1.5;">Today's load is assessed as Low, Medium or High</div></div>
+              <div style="padding:16px;background:#f8fafc;border-radius:12px;border:1px solid #e8ecf0;"><div style="font-size:28px;margin-bottom:8px;">💡</div><div style="font-weight:700;font-size:12px;color:#334155;margin-bottom:4px;">Smart Tips</div><div style="font-size:11px;color:#94a3b8;line-height:1.5;">Personalised tips to help you plan your visit</div></div>
             </div>
           </div>
-
         </div>
 
-      </div>
-
-      <!-- HISTORY -->
-      <div class="card mt-20">
-
-        <div class="card-header">
-          <div class="card-title">My Appointment History</div>
-        </div>
-
-        <div class="card-body">
-
-          <div class="history-topbar">
-            <input
-              type="text"
-              id="searchAppointment"
-              class="field"
-              placeholder="Search appointments..."
-            />
-            <select id="filterStatus" class="field">
-              <option value="All">All Status</option>
-              <option value="Booked">Booked</option>
-              <option value="Cancelled">Cancelled</option>
-            </select>
-          </div>
-
-          <div class="appt-list" id="historyList">
-            <!-- dynamic -->
-          </div>
-
-        </div>
-
-      </div>
+      </div><!-- /page-ai -->
 
     </div>
 
@@ -252,81 +257,114 @@
 </div>
 
 <!-- TOAST -->
-<div id="toast">
-  Appointment booked successfully!
-</div>
-
-<style>
-/* AI Booking Tip Strip */
-.ai-booking-tip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  background: #f0fdfa;
-  border: 1.5px solid #99f6e4;
-  border-radius: 12px;
-  padding: 12px 18px;
-  margin-bottom: 20px;
-  transition: background .15s, border-color .15s;
-}
-.ai-booking-tip:hover {
-  background: #e6faf5;
-  border-color: var(--teal-400, #2dd4bf);
-}
-.ai-booking-tip-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  color: #0f766e;
-  flex: 1;
-}
-.ai-booking-tip-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: #14b8a6;
-  flex-shrink: 0;
-  position: relative;
-}
-.ai-booking-tip-dot::after {
-  content: '';
-  position: absolute; inset: -3px;
-  border-radius: 50%;
-  background: #14b8a6;
-  opacity: .25;
-  animation: pulse-ring 1.6s ease-out infinite;
-}
-@keyframes pulse-ring { 0% { transform: scale(.6); opacity: .5; } 100% { transform: scale(1.8); opacity: 0; } }
-.ai-booking-tip-link {
-  font-family: var(--font-head, sans-serif);
-  font-size: 12px; font-weight: 700;
-  color: var(--teal-700, #0f766e);
-  text-decoration: none;
-  white-space: nowrap;
-  padding: 5px 12px;
-  border-radius: 8px;
-  border: 1.5px solid #5eead4;
-  transition: all .15s;
-}
-.ai-booking-tip-link:hover {
-  background: var(--teal-500, #14b8a6);
-  color: white;
-  border-color: var(--teal-500, #14b8a6);
-}
-</style>
+<div id="toast">Appointment booked successfully!</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="../JavaScript/supabase.js"></script>
 <script src="../JavaScript/auth-session.js"></script>
 <script src="../JavaScript/sBooking.js"></script>
 
-<!-- Handle #ai hash navigation from sDashboard -->
 <script>
-  // If someone lands here from a direct link with ?ai query, redirect to dashboard AI tab
-  if (window.location.hash === '#ai') {
-    window.location.href = 'sDashboard.html#ai';
-  }
+const pageMeta = {
+  booking: { title: 'Book Appointment', sub: 'Schedule a clinic visit' },
+  ai:      { title: 'AI Insights',      sub: 'Smart predictions to help you plan your clinic visit' },
+};
+
+function showPage(id, linkEl) {
+  document.querySelectorAll('[id^="page-"]').forEach(p => p.style.display = 'none');
+  document.getElementById('page-' + id).style.display = '';
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (linkEl) linkEl.classList.add('active');
+  const meta = pageMeta[id] || {};
+  document.getElementById('pageTitle').textContent = meta.title || '';
+  document.getElementById('pageSub').textContent   = meta.sub   || '';
+  if (id === 'ai' && !window._aiLoaded) { window._aiLoaded = true; runAndRenderPredictions(); }
+}
+
+// User session
+const currentUser = JSON.parse(localStorage.getItem("uniclinic_user")) || null;
+const db = window.supabaseClient;
+if (currentUser) {
+  const name = currentUser.full_name || "Student";
+  const initial = name.split(" ").map(n => n[0]).slice(0,2).join("").toUpperCase();
+  document.getElementById("avatarInitial").textContent = initial;
+  document.getElementById("studentName").textContent   = name;
+  document.getElementById("topAvatar").textContent     = initial;
+}
+document.getElementById("logoutBtn").addEventListener("click", () => localStorage.removeItem("uniclinic_user"));
+
+// ── AI Prediction Engine ──
+async function fetchAppointmentHistory() {
+  if (!db) return [];
+  const { data, error } = await db.from("appointments").select("appointment_id,appointment_date,appointment_time,status");
+  if (error) return [];
+  return data || [];
+}
+function predictBusiestDays(appointments) {
+  const dayCounts={Sunday:0,Monday:0,Tuesday:0,Wednesday:0,Thursday:0,Friday:0,Saturday:0};
+  appointments.forEach(app=>{const day=new Date(app.appointment_date).toLocaleDateString("en-ZA",{weekday:"long"});if(dayCounts[day]!==undefined)dayCounts[day]++;});
+  return Object.entries(dayCounts).sort((a,b)=>b[1]-a[1]).map(([day,count])=>({day,count}));
+}
+function predictBusiestHours(appointments) {
+  const hourCounts={};
+  appointments.forEach(app=>{if(!app.appointment_time)return;const hour=app.appointment_time.slice(0,2)+":00";hourCounts[hour]=(hourCounts[hour]||0)+1;});
+  return Object.entries(hourCounts).sort((a,b)=>b[1]-a[1]).map(([hour,count])=>({hour,count}));
+}
+function predictCongestionRisk(appointments) {
+  const today=new Date().toISOString().split("T")[0];
+  const todayAppointments=appointments.filter(a=>a.appointment_date===today);
+  let risk="Low",message="Clinic is running smoothly today — a great time to visit!";
+  if(todayAppointments.length>=10){risk="High";message="High activity expected today. Consider visiting another day or arriving early to reduce your wait.";}
+  else if(todayAppointments.length>=5){risk="Medium";message="Moderate activity today. You may experience some waiting time — plan accordingly.";}
+  return {risk,message,count:todayAppointments.length};
+}
+function predictHighBookingDays(appointments) {
+  const dateCounts={};
+  appointments.forEach(app=>{dateCounts[app.appointment_date]=(dateCounts[app.appointment_date]||0)+1;});
+  return Object.entries(dateCounts).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([date,count])=>({date,count}));
+}
+async function runAndRenderPredictions() {
+  const appointments=await fetchAppointmentHistory();
+  const busiestDays=predictBusiestDays(appointments);
+  const busiestHours=predictBusiestHours(appointments);
+  const congestionRisk=predictCongestionRisk(appointments);
+  const highBookingDays=predictHighBookingDays(appointments);
+
+  const banner=document.getElementById("aiCongestionBanner");
+  document.getElementById("aiCongestionMessage").textContent=congestionRisk.message;
+  banner.className="info-banner mb-22 "+(congestionRisk.risk==="High"?"banner-high":congestionRisk.risk==="Medium"?"banner-medium":"banner-low");
+
+  const riskEl=document.getElementById("aiRiskLevel");
+  riskEl.textContent=congestionRisk.risk;
+  riskEl.className="ai-stat-val risk-"+congestionRisk.risk.toLowerCase();
+  document.getElementById("aiBusiestDay").textContent=busiestDays[0]?.day||"--";
+  document.getElementById("aiBusiestHour").textContent=busiestHours[0]?.hour||"--";
+  document.getElementById("aiTodayCount").textContent=congestionRisk.count;
+
+  const daysMax=busiestDays[0]?.count||1;
+  document.getElementById("aiBusiestDaysChart").innerHTML=busiestDays.map(({day,count})=>{const pct=Math.round((count/daysMax)*100);return`<div class="report-bar-row"><span class="report-bar-label" title="${day}">${day.slice(0,3)}</span><div class="report-bar-track"><div class="report-bar-fill" style="width:${pct}%"></div></div><span class="report-bar-val">${count}</span></div>`;}).join("")||'<p style="color:#94a3b8;font-size:13px;text-align:center;padding:16px 0;">No data yet.</p>';
+
+  const hoursMax=busiestHours[0]?.count||1;
+  document.getElementById("aiBusiestHoursChart").innerHTML=busiestHours.slice(0,8).map(({hour,count})=>{const pct=Math.round((count/hoursMax)*100);return`<div class="report-bar-row"><span class="report-bar-label">${hour}</span><div class="report-bar-track"><div class="report-bar-fill" style="width:${pct}%"></div></div><span class="report-bar-val">${count}</span></div>`;}).join("")||'<p style="color:#94a3b8;font-size:13px;text-align:center;padding:16px 0;">No data yet.</p>';
+
+  const bookingMax=highBookingDays[0]?.count||1;
+  const tbody=document.getElementById("aiHighBookingTable");
+  tbody.innerHTML=highBookingDays.length===0?'<tr><td colspan="3" style="text-align:center;color:#94a3b8;padding:20px;">No historical data yet.</td></tr>':highBookingDays.map(({date,count})=>{const pct=Math.round((count/bookingMax)*100);const fmt=new Date(date+"T00:00:00").toLocaleDateString("en-ZA",{day:"numeric",month:"short",year:"numeric"});return`<tr><td>${fmt}</td><td style="font-weight:700;">${count}</td><td><div class="load-bar-inline"><div class="load-bar-track-sm"><div class="load-bar-fill-sm" style="width:${pct}%"></div></div><span style="font-size:11px;color:#64748b;">${pct}%</span></div></td></tr>`;}).join("");
+
+  const recs=buildPatientRecs(congestionRisk,busiestDays,busiestHours);
+  document.getElementById("aiRecommendations").innerHTML=recs.map(r=>`<div class="ai-rec-item"><div class="ai-rec-icon" style="background:${r.bg};">${r.icon}</div><div><div class="ai-rec-title">${r.title}</div><div class="ai-rec-body">${r.body}</div></div></div>`).join("");
+}
+function buildPatientRecs(congestion,busiestDays,busiestHours){
+  const recs=[];
+  if(congestion.risk==="High")recs.push({icon:"🚨",bg:"#fef2f2",title:"High Traffic Today",body:"Today's clinic is very busy. If your visit is not urgent, consider booking for another day to reduce waiting time."});
+  else if(congestion.risk==="Medium")recs.push({icon:"⚠️",bg:"#fffbeb",title:"Moderate Traffic Today",body:"Expect some waiting time today. Arriving at the start of your time slot will help."});
+  else recs.push({icon:"✅",bg:"#f0fdf4",title:"Good Time to Visit",body:"Today's clinic load is low — it's a great day to come in for your appointment."});
+  const quietDay=[...busiestDays].sort((a,b)=>a.count-b.count)[0];
+  if(quietDay)recs.push({icon:"📅",bg:"#f0fdfa",title:`Book on a ${quietDay.day}`,body:`${quietDay.day}s historically have the fewest appointments, meaning shorter queues and faster service.`});
+  if(busiestHours.length>0){const quietHour=[...busiestHours].sort((a,b)=>a.count-b.count)[0];const busyHour=busiestHours[0];recs.push({icon:"🕐",bg:"#eff6ff",title:`Avoid ${busyHour.hour} — Try ${quietHour.hour}`,body:`The busiest hour is around ${busyHour.hour}. Booking around ${quietHour.hour} gives you a much quicker experience.`});}
+  recs.push({icon:"💡",bg:"#fdf4ff",title:"Book Ahead When Possible",body:"Pre-booked appointments are prioritised. Walk-in slots fill up fast on busy days, so booking online saves you time."});
+  return recs;
+}
 </script>
 
 </body>
