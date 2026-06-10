@@ -1,0 +1,112 @@
+console.log("LOGIN JS LOADED");
+
+// ============================================
+// SUPABASE CLIENT
+// ============================================
+
+const db = window.supabaseClient;
+
+console.log("Supabase Client:", db);
+
+if (!db) {
+  console.warn("Supabase client not loaded. Check your supabase.js path.");
+}
+
+
+// ============================================
+// POPUP (for reference/compatibility)
+// ============================================
+
+function showPopup(message, type = "success") {
+  const popup = document.createElement("div");
+  popup.className = `popup ${type}`;
+  popup.innerHTML = `
+    <div class="popup-content">
+      ${message}
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.classList.add("show");
+  }, 100);
+
+  setTimeout(() => {
+    popup.classList.remove("show");
+
+    setTimeout(() => {
+      popup.remove();
+    }, 300);
+  }, 3000);
+}
+
+// ============================================
+// LOAD ROLES
+// ============================================
+
+async function loadRoles() {
+  const roleSelect = document.getElementById("roleSelect");
+
+  if (!roleSelect) return;
+
+  // Verify Supabase client is valid
+  if (!db || typeof db.from !== "function") {
+    console.warn("Supabase client not available for loading roles");
+    return;
+  }
+
+  try {
+    console.log("Loading roles...");
+
+    const { data, error } = await db
+      .from("roles")
+      .select("role_name")
+      .order("role_name");
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+      console.warn("No roles found in database");
+      return;
+    }
+
+    roleSelect.innerHTML = '<option value="">Select Role</option>';
+
+    const roleMap = {
+      student: 'Patient',
+      patient: 'Patient',
+      nurse: 'Nurse',
+      staff: 'University Staff',
+      admin: 'Admin'
+    };
+
+    data
+      .filter(role => {
+        const name = (role.role_name || '').toLowerCase().trim();
+        return name && name !== 'system_admin' && name !== 'system administrator';
+      })
+      .forEach(role => {
+        const name = role.role_name.toLowerCase().trim();
+        const label = roleMap[name] || role.role_name;
+        roleSelect.innerHTML += `
+          <option value="${name}">${label}</option>
+        `;
+      });
+
+    console.log("Roles loaded successfully.");
+  }
+  catch (err) {
+    console.error("loadRoles error:", err);
+  }
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+// Form submission is handled by inline script in HTML
+// This file handles role loading and other utilities
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadRoles();
+});
